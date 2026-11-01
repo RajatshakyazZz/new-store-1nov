@@ -2248,7 +2248,7 @@ class PortalApiClient {
     }
 
     await logAdminAction({
-      adminEmail: 'admin@vaultworld.shop',
+      adminEmail: 'Shaul.official1993@gmail.com',
       action: 'UPDATE_STORE_SETUP',
       module: 'Store Setup',
       details: `Updated store name: "${clean.store_name}", email: "${clean.contact_email}", phone: "${clean.support_whatsapp}"`,
@@ -2323,7 +2323,7 @@ class PortalApiClient {
     }
 
     await logAdminAction({
-      adminEmail: 'admin@vaultworld.shop',
+      adminEmail: 'Shaul.official1993@gmail.com',
       action: 'UPDATE_META_PIXEL',
       module: 'Meta Pixel',
       details: `Updated Pixel ID: ${clean.pixel_id}`,
@@ -2385,7 +2385,7 @@ class PortalApiClient {
       }
     }
     await logAdminAction({
-      adminEmail: 'admin@vaultworld.shop',
+      adminEmail: 'Shaul.official1993@gmail.com',
       action: 'UPDATE_WHATSAPP',
       module: 'WhatsApp Button',
       details: `Updated support phone to ${clean.phone_number}`,
@@ -2472,7 +2472,7 @@ class PortalApiClient {
               app_id: data.config.merchant_key || '',
               secret_key: data.config.merchant_salt || '',
               environment: data.config.environment || 'PRODUCTION',
-              return_url: data.config.return_url || 'https://vaultworld.shop/api/payment/payu/return',
+              return_url: data.config.return_url || 'https://digihaven.shop/api/payment/payu/return',
             };
             this.saveSettingLocally('payu', mapped);
             return mapped;
@@ -2511,7 +2511,7 @@ class PortalApiClient {
             app_id: data.merchant_key || data.app_id || '',
             secret_key: data.merchant_salt || data.secret_key || '',
             environment: data.environment === 'TEST' || data.environment === 'SANDBOX' ? 'TEST' : 'PRODUCTION',
-            return_url: data.return_url || 'https://vaultworld.shop/api/payment/payu/return',
+            return_url: data.return_url || 'https://digihaven.shop/api/payment/payu/return',
           };
           this.saveSettingLocally('payu', mapped);
           return mapped;
@@ -2567,7 +2567,7 @@ class PortalApiClient {
     }
 
     await logAdminAction({
-      adminEmail: 'admin@vaultworld.shop',
+      adminEmail: 'Shaul.official1993@gmail.com',
       action: 'UPDATE_PAYU_CONFIG',
       module: 'Payments',
       details: `Updated PayU Gateway credentials (Env: ${clean.environment || 'PRODUCTION'}) in Cloud Database`,

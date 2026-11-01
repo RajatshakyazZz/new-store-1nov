@@ -20,6 +20,9 @@ export default function AdminLayout() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    if (typeof document !== 'undefined') {
+      document.title = 'DigiHaven Command Center | Admin Portal';
+    }
   }, [location.pathname]);
 
   if (isLoading) {

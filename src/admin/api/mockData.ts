@@ -10279,7 +10279,7 @@ export const initialPayUConfig: PgBridgeConfig = {
   merchant_key: '',
   merchant_salt: '',
   environment: 'PRODUCTION',
-  return_url: 'https://vaultworld.shop/api/payment/payu/return',
+  return_url: 'https://digihaven.shop/api/payment/payu/return',
 };
 
 export const initialCashfreeConfig = initialPayUConfig;

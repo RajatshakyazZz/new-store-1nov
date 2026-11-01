@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Play, ArrowRight, ShieldCheck, KeyRound } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -7,6 +7,12 @@ import { useToast } from '../context/ToastContext';
 export default function Login() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.title = 'DigiHaven Admin Portal | Login';
+    }
+  }, []);
 
   const { loginWithPassword } = useAuth();
   const { success, error } = useToast();

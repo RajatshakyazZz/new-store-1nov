@@ -66,7 +66,7 @@ async function resolveDriveFilesForProduct(item: { id?: string; title?: string; 
             '';
 
           return {
-            primaryLink: primaryLink || filesList[0]?.file_url || 'https://drive.google.com/drive/folders/vaultworld-master-access',
+            primaryLink: primaryLink || filesList[0]?.file_url || 'https://drive.google.com/drive/folders/digihaven-master-access',
             files:
               filesList.length > 0
                 ? filesList
@@ -121,7 +121,7 @@ async function resolveDriveFilesForProduct(item: { id?: string; title?: string; 
             '';
 
           return {
-            primaryLink: primaryLink || filesList[0]?.file_url || 'https://drive.google.com/drive/folders/vaultworld-master-access',
+            primaryLink: primaryLink || filesList[0]?.file_url || 'https://drive.google.com/drive/folders/digihaven-master-access',
             files:
               filesList.length > 0
                 ? filesList
@@ -164,7 +164,7 @@ async function resolveDriveFilesForProduct(item: { id?: string; title?: string; 
       (cleanTitle && (cleanTitle.includes(b.slug) || b.title.toLowerCase().includes(cleanTitle) || cleanTitle.includes(b.title.toLowerCase())))
   );
 
-  const matchedLink = matched?.googleDriveLink || 'https://drive.google.com/drive/folders/vaultworld-master-access';
+  const matchedLink = matched?.googleDriveLink || 'https://drive.google.com/drive/folders/digihaven-master-access';
   const matchedFiles = Array.isArray(matched?.files) && matched.files.length > 0
     ? matched.files
     : [{ name: `${matched?.title || item.title || 'Reels Bundle'} Google Drive Access`, file_url: matchedLink }];

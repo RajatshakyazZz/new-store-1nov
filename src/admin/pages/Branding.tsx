@@ -90,7 +90,7 @@ export default function Branding() {
               label="Store Logo"
               value={form.logo_url}
               onChange={(url) => setForm({ ...form, logo_url: url })}
-              placeholder="/logo.webp?v=2"
+              placeholder="/logo.webp?v=3"
               helperText="Main header and brand logo. Upload .PNG or .JPG from your gallery."
             />
 

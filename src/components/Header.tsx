@@ -243,7 +243,7 @@ export default function Header() {
           <Link href="/" prefetch={false} className="flex items-center gap-2.5 group shrink-0">
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950 border border-orange-500/40 overflow-hidden flex items-center justify-center shadow-[0_0_16px_rgba(255,107,0,0.35)] group-hover:scale-105 transition-transform shrink-0">
               <img
-                src="/logo.webp?v=2"
+                src="/logo.webp?v=3"
                 alt={`${settings.storeName || 'DigiHaven'} Logo`}
                 width={44}
                 height={44}

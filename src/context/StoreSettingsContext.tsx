@@ -63,10 +63,10 @@ function sanitizeTagline(tagline?: string, fallback = 'Everything You Need, All 
   return tagline.trim();
 }
 
-function sanitizeLogoUrl(url?: string, fallback = '/logo.webp?v=2'): string {
+function sanitizeLogoUrl(url?: string, fallback = '/logo.webp?v=3'): string {
   if (!url || !url.trim()) return fallback;
   if (/vaultzet/i.test(url)) {
-    return '/logo.webp?v=2';
+    return '/logo.webp?v=3';
   }
   return url.trim();
 }

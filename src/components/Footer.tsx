@@ -134,7 +134,7 @@ export default function Footer() {
               <Link href="/" prefetch={false} className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-full bg-slate-950 border border-orange-500/40 overflow-hidden flex items-center justify-center shadow-[0_0_16px_rgba(255,107,0,0.4)] shrink-0">
                   <img
-                    src="/logo.webp?v=2"
+                    src="/logo.webp?v=3"
                     alt={`${settings.storeName || 'DigiHaven'} Logo`}
                     width={44}
                     height={44}

@@ -78,15 +78,15 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'VaultWorld Store',
+    title: 'DigiHaven',
   },
   icons: {
     icon: [
-      { url: '/favicon.ico?v=2', sizes: 'any' },
-      { url: '/logo.webp?v=2', type: 'image/webp' },
+      { url: '/favicon.ico?v=3', sizes: 'any' },
+      { url: '/logo.webp?v=3', type: 'image/webp' },
     ],
-    shortcut: '/favicon.ico?v=2',
-    apple: '/logo.png?v=2',
+    shortcut: '/favicon.ico?v=3',
+    apple: '/logo.png?v=3',
   },
   verification: {
     google: GSC_VERIFICATION,

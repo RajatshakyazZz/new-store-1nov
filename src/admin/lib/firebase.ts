@@ -31,7 +31,7 @@ export interface FirebaseConfigObject {
 export function getEffectiveFirebaseConfig(): FirebaseConfigObject {
   if (typeof window !== 'undefined') {
     try {
-      const stored = localStorage.getItem('vaultzet_firebase_config');
+      const stored = localStorage.getItem('digihaven_firebase_config') || localStorage.getItem('vaultzet_firebase_config');
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed.apiKey && parsed.projectId) {
@@ -46,27 +46,28 @@ export function getEffectiveFirebaseConfig(): FirebaseConfigObject {
   return {
     apiKey:
       (typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_API_KEY || (process.env as any).VITE_FIREBASE_API_KEY)) ||
-      'AIzaSyDemoAdminPortalKey_Vaultzet_2026',
+      'AIzaSyAToeS8Z6IiHvPF26KLKCHl8w8uZ0pskTI',
     authDomain:
       (typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || (process.env as any).VITE_FIREBASE_AUTH_DOMAIN)) ||
-      'vaultzet-5873e.firebaseapp.com',
+      'digihaven-3e613.firebaseapp.com',
     projectId:
       (typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || (process.env as any).VITE_FIREBASE_PROJECT_ID)) ||
-      'vaultzet-5873e',
+      'digihaven-3e613',
     storageBucket:
       (typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || (process.env as any).VITE_FIREBASE_STORAGE_BUCKET)) ||
-      'vaultzet-5873e.firebasestorage.app',
+      'digihaven-3e613.firebasestorage.app',
     messagingSenderId:
       (typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || (process.env as any).VITE_FIREBASE_MESSAGING_SENDER_ID)) ||
-      '1029384756',
+      '715075228385',
     appId:
       (typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_APP_ID || (process.env as any).VITE_FIREBASE_APP_ID)) ||
-      '1:1029384756:web:8a9b0c1d2e3f4a5b',
+      '1:715075228385:web:1d7810893e4ea8540c1da0',
   };
 }
 
 export function saveCustomFirebaseConfig(config: FirebaseConfigObject) {
   if (typeof window !== 'undefined') {
+    localStorage.setItem('digihaven_firebase_config', JSON.stringify(config));
     localStorage.setItem('vaultzet_firebase_config', JSON.stringify(config));
     window.location.reload();
   }

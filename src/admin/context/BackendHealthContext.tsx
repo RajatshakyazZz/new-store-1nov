@@ -168,9 +168,9 @@ function BackendHealthModal() {
 
   // Direct configuration form fields
   const [cfgApiKey, setCfgApiKey] = useState(firebaseConfig.apiKey || '');
-  const [cfgProjectId, setCfgProjectId] = useState(firebaseConfig.projectId || 'vaultzet-5873e');
-  const [cfgAuthDomain, setCfgAuthDomain] = useState(firebaseConfig.authDomain || 'vaultzet-5873e.firebaseapp.com');
-  const [cfgStorageBucket, setCfgStorageBucket] = useState(firebaseConfig.storageBucket || 'vaultzet-5873e.firebasestorage.app');
+  const [cfgProjectId, setCfgProjectId] = useState(firebaseConfig.projectId || 'digihaven-3e613');
+  const [cfgAuthDomain, setCfgAuthDomain] = useState(firebaseConfig.authDomain || 'digihaven-3e613.firebaseapp.com');
+  const [cfgStorageBucket, setCfgStorageBucket] = useState(firebaseConfig.storageBucket || 'digihaven-3e613.firebasestorage.app');
   const [cfgAppId, setCfgAppId] = useState(firebaseConfig.appId || '');
   const [cfgMessagingSenderId, setCfgMessagingSenderId] = useState(firebaseConfig.messagingSenderId || '');
   const [pasteSnippet, setPasteSnippet] = useState('');
@@ -385,7 +385,7 @@ service cloud.firestore {
                 <textarea
                   value={pasteSnippet}
                   onChange={(e) => handleJsonPaste(e.target.value)}
-                  placeholder={`const firebaseConfig = {\n  apiKey: "AIzaSy...",\n  projectId: "vaultzet-5873e",\n  ...\n};`}
+                  placeholder={`const firebaseConfig = {\n  apiKey: "AIzaSy...",\n  projectId: "digihaven-3e613",\n  ...\n};`}
                   rows={3}
                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-purple-500 placeholder-slate-600"
                 />
@@ -417,7 +417,7 @@ service cloud.firestore {
                     type="text"
                     value={cfgProjectId}
                     onChange={(e) => setCfgProjectId(e.target.value)}
-                    placeholder="vaultzet-5873e"
+                    placeholder="digihaven-3e613"
                     className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-mono"
                   />
                 </div>
@@ -430,7 +430,7 @@ service cloud.firestore {
                     type="text"
                     value={cfgAuthDomain}
                     onChange={(e) => setCfgAuthDomain(e.target.value)}
-                    placeholder="vaultzet-5873e.firebaseapp.com"
+                    placeholder="digihaven-3e613.firebaseapp.com"
                     className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-mono"
                   />
                 </div>
@@ -443,7 +443,7 @@ service cloud.firestore {
                     type="text"
                     value={cfgStorageBucket}
                     onChange={(e) => setCfgStorageBucket(e.target.value)}
-                    placeholder="vaultzet-5873e.firebasestorage.app"
+                    placeholder="digihaven-3e613.firebasestorage.app"
                     className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-mono"
                   />
                 </div>

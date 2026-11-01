@@ -8,7 +8,7 @@ import MetaPixelTracker from '@/components/MetaPixelTracker';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
-const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || 'G-7RMXL2RZ4J';
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || 'G-C7S3EXCDVT';
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION || 'googlef90de30240e3b03b';
 const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_VERIFICATION || '';
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '';

@@ -84,12 +84,12 @@ export async function getCashfreeCredentials(forceRefresh = false): Promise<Cash
   }
 
   let apiVersion = process.env.CASHFREE_API_VERSION || '2023-08-01';
-  const siteBase = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+  const siteBase = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
   let returnUrl = (
     process.env.CASHFREE_RETURN_URL ||
     process.env.NEXT_PUBLIC_CASHFREE_RETURN_URL ||
     `${siteBase}/api/payment/cashfree/return`
-  ).replace('store.vaultzet.shop', 'vaultworld.shop').replace('vaultzet.shop', 'vaultworld.shop').trim();
+  ).trim();
   let enabled = true;
 
   // If not configured in environment variables, read from Firestore store_settings/cashfree
@@ -170,10 +170,8 @@ export async function createCashfreePgOrder(
   // Clean customer ID
   const cleanCustomerId = `cust_${params.customer.email.replace(/[^a-zA-Z0-9]/g, '_').slice(0, 30)}`;
 
-  const defaultReturnUrl = `${(process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '')}/api/payment/cashfree/return`;
-  const rawReturnUrl = (params.returnUrl || creds.returnUrl || defaultReturnUrl)
-    .replace('store.vaultzet.shop', 'vaultworld.shop')
-    .replace('vaultzet.shop', 'vaultworld.shop');
+  const defaultReturnUrl = `${(process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '')}/api/payment/cashfree/return`;
+  const rawReturnUrl = (params.returnUrl || creds.returnUrl || defaultReturnUrl).trim();
   const finalReturnUrl = rawReturnUrl.includes('{order_id}')
     ? rawReturnUrl
     : `${rawReturnUrl}${rawReturnUrl.includes('?') ? '&' : '?'}order_id={order_id}`;
@@ -191,7 +189,7 @@ export async function createCashfreePgOrder(
     order_meta: {
       return_url: finalReturnUrl,
     },
-    order_note: params.orderNote || 'VaultWorld Digital Assets Bundle',
+    order_note: params.orderNote || 'DigiHaven Digital Assets Bundle',
   };
 
   const response = await fetch(baseUrl, {

@@ -71,7 +71,7 @@ export async function getPayUCredentials(forceRefresh = false): Promise<PayUCred
   let merchantKey = '';
   let merchantSalt = '';
   let environment: 'PRODUCTION' | 'TEST' = 'PRODUCTION';
-  const siteBase = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vaultworld.shop').replace(/\/+$/, '');
+  const siteBase = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
   let returnUrl = `${siteBase}/api/payment/payu/return`;
   let enabled = true;
 
@@ -205,7 +205,7 @@ export async function createPayUPaymentPayload(
     .replace(/[^a-zA-Z0-9\s]/g, '') || 'Customer';
   const cleanEmail = (params.customer.email || 'customer@gmail.com').trim().toLowerCase().slice(0, 80);
   const cleanPhone = (params.customer.phone || '9999999999').replace(/\D/g, '').slice(-10);
-  const cleanProductInfo = (params.productInfo || 'VaultWorld Digital Bundle')
+  const cleanProductInfo = (params.productInfo || 'DigiHaven Digital Bundle')
     .trim()
     .slice(0, 100)
     .replace(/[^a-zA-Z0-9\s_-]/g, ' ') || 'Digital Bundle';

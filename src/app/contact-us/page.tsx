@@ -23,8 +23,8 @@ export default function ContactUsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="text-center space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[11px] font-black uppercase text-amber-700 tracking-wider">
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-[11px] font-black uppercase text-orange-800 tracking-wider">
+            <ShieldCheck className="w-3.5 h-3.5 text-orange-600" />
             <span>OFFICIAL {storeName.toUpperCase()} HELPLINE</span>
           </span>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">

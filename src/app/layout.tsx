@@ -6,7 +6,7 @@ import StoreLayoutShell from '@/components/StoreLayoutShell';
 import AnalyticsTracker from '@/components/AnalyticsTracker';
 import MetaPixelTracker from '@/components/MetaPixelTracker';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vaultworld.shop';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || 'G-7RMXL2RZ4J';
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION || 'googlef90de30240e3b03b';
@@ -64,14 +64,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: SITE_URL,
-    siteName: 'VaultWorld Store',
-    title: 'VaultWorld Store | 222,000+ Viral Reels Bundles – Instant Download',
+    siteName: 'DigiHaven',
+    title: 'DigiHaven | 222,000+ Viral Reels Bundles – Instant Download',
     description:
       'Over 222,000+ vertical HD reels across 129+ niches with zero watermarks & full commercial rights. Instant Google Drive delivery.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VaultWorld Store | Viral Reels Bundles – Instant Google Drive Access',
+    title: 'DigiHaven | Viral Reels Bundles – Instant Google Drive Access',
     description:
       'Grow faster on Instagram & YouTube Shorts with 222,000+ ready-to-post HD reels bundles.',
   },
@@ -191,7 +191,7 @@ export default function RootLayout({
               'wait_for_update': 500
             });
             try {
-              var consent = localStorage.getItem('vaultworld_cookie_consent');
+              var consent = localStorage.getItem('digihaven_cookie_consent') || localStorage.getItem('vaultworld_cookie_consent');
               if (consent === 'accepted') {
                 gtag('consent', 'update', {
                   'ad_storage': 'granted',
@@ -200,7 +200,7 @@ export default function RootLayout({
                   'ad_personalization': 'granted'
                 });
               } else if (consent === 'custom') {
-                var prefs = JSON.parse(localStorage.getItem('vaultworld_cookie_preferences') || '{}');
+                var prefs = JSON.parse(localStorage.getItem('digihaven_cookie_preferences') || localStorage.getItem('vaultworld_cookie_preferences') || '{}');
                 gtag('consent', 'update', {
                   'ad_storage': prefs.marketing ? 'granted' : 'denied',
                   'analytics_storage': prefs.analytics ? 'granted' : 'denied',

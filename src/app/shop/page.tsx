@@ -176,11 +176,11 @@ function ShopContent() {
     }
   };
 
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'VaultWorld Store Reels Bundles',
+    name: 'DigiHaven Reels Bundles',
     numberOfItems: filteredBundles.length,
     itemListElement: paginatedBundles.map((b, idx) => ({
       '@type': 'ListItem',

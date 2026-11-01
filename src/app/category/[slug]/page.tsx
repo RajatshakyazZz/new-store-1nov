@@ -99,7 +99,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
   const canonicalUrl = `${siteUrl}/category/${category.slug}`;
 
   const customProducts = await fetchCustomProducts();

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ShieldCheck, FileText, CheckCircle2, AlertCircle, Scale, CreditCard, Lock, Sparkles } from 'lucide-react';
+import { ShieldCheck, Scale, CreditCard, Lock, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import PolicyContactInfo from '@/components/PolicyContactInfo';
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | DigiHaven',
-  description: 'Official Terms of Service and Merchant Agreement for DigiHaven. Fully compliant with RBI payment aggregator guidelines and Indian IT Act.',
+  title: 'Terms & Conditions | DigiHaven - Official Merchant Agreement',
+  description: 'Official Terms of Service and Merchant Agreement for DigiHaven. Fully compliant with RBI payment aggregator guidelines, Indian IT Act 2000, and Consumer Protection Rules.',
   alternates: {
     canonical: `${siteUrl}/terms-and-conditions`,
   },
@@ -16,20 +16,20 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="py-12 sm:py-20 bg-[#faf9ff]">
+    <div className="py-12 sm:py-20 bg-[#faf9f6]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Header Section */}
         <div className="text-center space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[11px] font-black uppercase text-amber-800 tracking-wider">
-            <Scale className="w-3.5 h-3.5 text-amber-600" />
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-[11px] font-black uppercase text-orange-800 tracking-wider">
+            <Scale className="w-3.5 h-3.5 text-orange-600" />
             <span>LEGAL &amp; COMPLIANCE AGREEMENT</span>
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#182247] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             Terms &amp; Conditions (Terms of Service)
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
-            Effective Date: October 2026 • Last Updated: October 30, 2026 • Governing Law: Republic of India
+            Effective Date: November 2026 • Last Updated: November 1, 2026 • Governing Law: Republic of India
           </p>
         </div>
 
@@ -42,42 +42,42 @@ export default function TermsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600 font-medium">
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
               <strong className="text-slate-900 block font-bold mb-1">⚡ Instant Digital Delivery</strong>
-              All purchases are digital video reel bundles delivered immediately via cloud storage (Google Drive). Zero physical shipping.
+              All purchases are digital video reels and creative assets delivered immediately via cloud storage (Google Drive). Zero physical shipping.
             </div>
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
               <strong className="text-slate-900 block font-bold mb-1">🔒 RBI-Licensed Gateways</strong>
-              Payments are processed via authorized payment aggregators (Cashfree, Razorpay, PayU). We never store your card or UPI PINs.
+              Payments are securely processed via authorized payment aggregators (Cashfree, Razorpay). We never store your card details or UPI PINs.
             </div>
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-              <strong className="text-slate-900 block font-bold mb-1">⚖️ Fair Refund Protection</strong>
+              <strong className="text-slate-900 block font-bold mb-1">⚖️ Fair Consumer Protection</strong>
               Full refunds or instant link replacement provided for duplicate charges or inaccessible files as per our transparent policy.
             </div>
           </div>
         </div>
 
         {/* Main Legal Content Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 text-sm text-[#475569] font-normal leading-relaxed">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 text-sm text-slate-600 font-normal leading-relaxed">
           
           {/* Section 1 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">1</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">1</span>
               <span>Agreement to Terms &amp; Scope of Contract</span>
             </h2>
             <p>
               These Terms and Conditions (&quot;Terms&quot;, &quot;Terms of Service&quot;, &quot;Agreement&quot;) constitute a legally binding electronic agreement between you (&quot;User&quot;, &quot;Customer&quot;, &quot;Buyer&quot;, or &quot;You&quot;) and <strong>DigiHaven</strong> (&quot;Store&quot;, &quot;We&quot;, &quot;Us&quot;, or &quot;Our&quot;).
             </p>
             <p>
-              By visiting our website, browsing our digital bundle catalog, placing an order, or initiating checkout, you acknowledge that you have read, understood, and agreed to be bound by these Terms, as well as our{' '}
-              <Link href="/privacy-policy" className="text-amber-700 font-semibold underline underline-offset-2">
+              By accessing our website, browsing our digital bundle catalog, placing an order, or initiating checkout, you acknowledge that you have read, understood, and agreed to be bound by these Terms, as well as our{' '}
+              <Link href="/privacy-policy" className="text-orange-600 font-semibold underline underline-offset-2">
                 Privacy Policy
               </Link>
               ,{' '}
-              <Link href="/refund-policy" className="text-amber-700 font-semibold underline underline-offset-2">
+              <Link href="/refund-policy" className="text-orange-600 font-semibold underline underline-offset-2">
                 Refund &amp; Cancellation Policy
               </Link>
               , and{' '}
-              <Link href="/shipping-policy" className="text-amber-700 font-semibold underline underline-offset-2">
+              <Link href="/shipping-policy" className="text-orange-600 font-semibold underline underline-offset-2">
                 Shipping &amp; Delivery Policy
               </Link>
               . If you do not agree with any part of these Terms, you must immediately discontinue use of the platform.
@@ -86,17 +86,17 @@ export default function TermsPage() {
 
           {/* Section 2 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">2</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">2</span>
               <span>Nature of Products &amp; Digital Offerings</span>
             </h2>
             <p>
-              DigiHaven is an e-commerce platform dedicated exclusively to <strong>intangible digital goods</strong>. Our products include:
+              DigiHaven is an e-commerce platform dedicated exclusively to <strong>intangible digital goods</strong>. Our catalog consists of:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600 font-medium">
-              <li>Pre-rendered, high-definition (1080p Full HD) vertical video clips optimized for social media reels (9:16 aspect ratio).</li>
-              <li>Thematic AI and creative reels bundles, video transitions, background assets, and audio synchronization tracks.</li>
-              <li>Ready-to-use digital templates and viral content assets designed for video creators, social media marketers, and digital entrepreneurs.</li>
+              <li>Pre-rendered, high-definition (1080p Full HD) vertical video clips optimized for social media reels, shorts, and stories (9:16 aspect ratio).</li>
+              <li>Thematic AI and creative reels bundles, video transitions, background assets, audio synchronization tracks, and editable templates.</li>
+              <li>Ready-to-use digital content assets designed for video creators, social media marketers, and digital entrepreneurs.</li>
             </ul>
             <p>
               <strong>No Physical Shipment:</strong> We do not sell or ship physical merchandise. All digital assets are stored in secure cloud repositories (Google Drive) and access permissions are provided instantaneously upon successful payment confirmation.
@@ -105,8 +105,8 @@ export default function TermsPage() {
 
           {/* Section 3 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">3</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">3</span>
               <span>User Eligibility &amp; Representations</span>
             </h2>
             <p>
@@ -121,8 +121,8 @@ export default function TermsPage() {
 
           {/* Section 4 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">4</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">4</span>
               <span>Pricing, Currency &amp; Taxes</span>
             </h2>
             <p>
@@ -131,15 +131,15 @@ export default function TermsPage() {
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600 font-medium">
               <li><strong>Inclusive Pricing:</strong> Prices listed on bundle cards and checkout are final and inclusive of applicable Goods and Services Tax (GST) unless explicitly indicated otherwise.</li>
               <li><strong>No Recurring Subscriptions or Hidden Charges:</strong> All bundle purchases are one-time payments granting lifetime cloud access. We do not enroll users into recurring auto-debit subscriptions without their explicit, separate authorization.</li>
-              <li><strong>Price Revisions:</strong> We reserve the right to modify prices, launch promotional flash discounts, or discontinue bundles at any time. Price adjustments do not retroactively apply to previously confirmed purchases.</li>
+              <li><strong>Price Revisions:</strong> We reserve the right to modify prices, launch promotional discounts, or update bundles at any time. Price adjustments do not retroactively apply to previously confirmed purchases.</li>
             </ul>
           </section>
 
           {/* Section 5 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">5</span>
-              <span>Payment Terms &amp; Payment Aggregator Security</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">5</span>
+              <span>Payment Processing &amp; Financial Security</span>
             </h2>
             <p>
               To ensure top-tier security and absolute financial privacy, all online payments on DigiHaven are facilitated through Reserve Bank of India (RBI) authorized, PCI-DSS Level 1 compliant payment aggregators:
@@ -156,21 +156,21 @@ export default function TermsPage() {
                 <li><strong>Digital Wallets:</strong> Leading wallet providers.</li>
               </ul>
             </div>
-            <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-xs text-amber-900 font-medium space-y-1">
+            <div className="p-4 rounded-2xl bg-orange-50/70 border border-orange-200/80 text-xs text-orange-950 font-medium space-y-1">
               <div className="flex items-center gap-1.5 font-bold">
-                <Lock className="w-4 h-4 text-amber-700" />
+                <Lock className="w-4 h-4 text-orange-700" />
                 <span>PCI-DSS Financial Data Security Commitment:</span>
               </div>
               <p>
-                <strong>DigiHaven does not collect, record, or store any sensitive financial credentials</strong> such as credit/debit card numbers, CVV codes, net banking passwords, or UPI PINs. All payment transactions are encrypted via 256-bit SSL technology directly through the certified payment gateway servers (Cashfree Payments India Pvt. Ltd. / Razorpay Software Pvt. Ltd. / PayU Payments Pvt. Ltd.).
+                <strong>DigiHaven does not collect, record, or store any sensitive financial credentials</strong> such as credit/debit card numbers, CVV codes, net banking passwords, or UPI PINs. All payment transactions are encrypted via 256-bit SSL technology directly through certified, RBI-licensed payment aggregators.
               </p>
             </div>
           </section>
 
           {/* Section 6 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">6</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">6</span>
               <span>Instant Digital Delivery &amp; Access Rights</span>
             </h2>
             <p>
@@ -179,15 +179,15 @@ export default function TermsPage() {
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600 font-medium">
               <li><strong>On-Screen Access:</strong> You are immediately redirected to our secure Order Confirmation Page where your direct Google Drive access buttons and folder links are made available.</li>
               <li><strong>Email Delivery:</strong> An automated digital delivery receipt containing your permanent access link is dispatched to your provided Gmail address within 60 seconds of transaction completion.</li>
-              <li><strong>Self-Service Access:</strong> Customers may re-access their Google Drive links at any time by entering their checkout email on our self-service portal at <Link href="/my-order" className="text-amber-700 underline font-semibold">vaultworld.shop/my-order</Link>.</li>
+              <li><strong>Self-Service Access:</strong> Customers may re-access their Google Drive links at any time by entering their checkout email on our self-service portal at <Link href="/my-order" className="text-orange-600 underline font-semibold">DigiHaven Order Portal (/my-order)</Link>.</li>
               <li><strong>Shipping Charges:</strong> There are zero shipping, courier, or delivery fees (₹0.00).</li>
             </ul>
           </section>
 
           {/* Section 7 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">7</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">7</span>
               <span>License Terms &amp; Permitted Usage</span>
             </h2>
             <p>
@@ -199,12 +199,12 @@ export default function TermsPage() {
                   A. Personal &amp; Commercial Creator License
                 </span>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Grants you the right to post, edit, modify, add voiceovers/captions, and publish the video reels across your own personal, creator, or commercial social media channels (Instagram, YouTube Shorts, Facebook Reels, TikTok, LinkedIn) to generate engagement, leads, or views. You may not resell the raw, unedited source files as your own standalone bundle pack.
+                  Grants you the right to post, edit, modify, add voiceovers/captions, and publish the video reels across your own personal, creator, or commercial social media channels (Instagram, YouTube Shorts, Facebook Reels, TikTok, LinkedIn) to generate engagement, leads, or views. You may not resell the raw, unedited source files as your own standalone bundle pack without an appropriate commercial resale license.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/80 space-y-1.5">
-                <span className="text-xs font-black text-amber-900 uppercase tracking-wider block">
+              <div className="p-4 rounded-2xl bg-orange-50/50 border border-orange-200/80 space-y-1.5">
+                <span className="text-xs font-black text-orange-950 uppercase tracking-wider block">
                   B. Master Resell Rights (MRR / PLR License)
                 </span>
                 <p className="text-xs text-slate-600 leading-relaxed">
@@ -216,8 +216,8 @@ export default function TermsPage() {
 
           {/* Section 8 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">8</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">8</span>
               <span>Prohibited Activities &amp; Anti-Fraud Policy</span>
             </h2>
             <p>
@@ -236,9 +236,9 @@ export default function TermsPage() {
 
           {/* Section 9 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">9</span>
-              <span>Disclaimer of Warranties &amp; Earnings Representation</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">9</span>
+              <span>Disclaimer of Warranties &amp; Performance</span>
             </h2>
             <p>
               <strong>Educational &amp; Creative Utility Only:</strong> All video templates, hooks, and bundle assets provided by DigiHaven are creative tools provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis.
@@ -250,13 +250,13 @@ export default function TermsPage() {
 
           {/* Section 10 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">10</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">10</span>
               <span>Refund, Replacement &amp; Cancellation</span>
             </h2>
             <p>
               Due to the irrevocable nature of downloadable digital content, all sales are governed by our official{' '}
-              <Link href="/refund-policy" className="text-amber-700 font-bold underline underline-offset-2">
+              <Link href="/refund-policy" className="text-orange-600 font-bold underline underline-offset-2">
                 Refund &amp; Cancellation Policy
               </Link>
               . We guarantee 100% resolution, link replacement, or a full refund in genuine cases including verified duplicate charges or technical corruption of Google Drive links unresolvable within 24 hours.
@@ -265,8 +265,8 @@ export default function TermsPage() {
 
           {/* Section 11 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">11</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">11</span>
               <span>Limitation of Liability &amp; Indemnification</span>
             </h2>
             <p>
@@ -279,8 +279,8 @@ export default function TermsPage() {
 
           {/* Section 12 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">12</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">12</span>
               <span>Governing Law &amp; Dispute Resolution</span>
             </h2>
             <p>
@@ -293,8 +293,8 @@ export default function TermsPage() {
 
           {/* Section 13 */}
           <section className="space-y-3 pt-4 border-t border-slate-200">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">13</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">13</span>
               <span>Customer Support &amp; Grievance Redressal</span>
             </h2>
             <p>
@@ -307,17 +307,17 @@ export default function TermsPage() {
 
         {/* Footer Navigation Back to Store */}
         <div className="flex items-center justify-between text-xs font-semibold text-slate-500 pt-2">
-          <Link href="/" className="hover:text-amber-600 transition-colors">
+          <Link href="/" className="hover:text-orange-600 transition-colors">
             ← Return to DigiHaven Home
           </Link>
           <div className="flex gap-4">
-            <Link href="/privacy-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-orange-600 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/refund-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/refund-policy" className="hover:text-orange-600 transition-colors">
               Refund Policy
             </Link>
-            <Link href="/shipping-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/shipping-policy" className="hover:text-orange-600 transition-colors">
               Shipping &amp; Delivery
             </Link>
           </div>

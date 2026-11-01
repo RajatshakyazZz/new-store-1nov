@@ -659,10 +659,10 @@ export default function ResellerLandingClient({
         {/* Seller Disclosure & Legal Safeguard */}
         <div className="p-5 rounded-2xl border border-white/5 bg-white/[0.02] text-center text-[11px] text-white/50 space-y-1 max-w-2xl mx-auto">
           <p className="font-semibold text-white/70">
-            Authorized Reseller Listing • Powered by VaultWorld Digital Storefront
+            Authorized Reseller Listing • Powered by DigiHaven Digital Storefront
           </p>
           <p>
-            Payments are securely processed via certified PayU India Payment Gateway with 256-bit SSL encryption.
+            Payments are securely processed via certified RBI-compliant Payment Gateway with 256-bit SSL encryption.
             Digital files are delivered instantly via automated cloud infrastructure.
           </p>
         </div>

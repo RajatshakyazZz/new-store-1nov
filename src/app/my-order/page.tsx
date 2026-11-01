@@ -219,7 +219,7 @@ function MyOrdersContent() {
                     No Orders Found for &ldquo;{email}&rdquo;
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
-                    Kripya check karein ki aapne vahi email dala hai jo payment ke waqt PayU checkout par enter kiya tha.
+                    Kripya check karein ki aapne vahi email dala hai jo payment ke waqt checkout par enter kiya tha.
                   </p>
                 </div>
 

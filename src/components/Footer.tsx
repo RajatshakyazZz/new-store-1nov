@@ -66,7 +66,7 @@ export default function Footer() {
     },
     {
       title: 'Secure Checkout',
-      subtitle: 'Verified RBI PayU Gateway',
+      subtitle: 'Verified RBI 256-Bit Gateway',
       icon: ShieldCheck,
       bg: 'bg-orange-100 text-orange-900',
     },
@@ -287,6 +287,7 @@ export default function Footer() {
               type="button"
               onClick={() => {
                 if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('digihaven:open_cookie_consent'));
                   window.dispatchEvent(new CustomEvent('vaultworld:open_cookie_consent'));
                 }
               }}

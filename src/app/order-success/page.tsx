@@ -330,7 +330,7 @@ function OrderSuccessContent() {
                 Verifying Payment &amp; Unlocking Files...
               </h1>
               <p className="text-sm text-[#5e6888] font-medium max-w-md mx-auto leading-relaxed">
-                We are securely confirming your transaction status with the PayU gateway.
+                We are securely confirming your transaction status with the secure gateway.
                 Your Google Drive access links will appear immediately upon verification.
               </p>
             </div>
@@ -397,7 +397,7 @@ function OrderSuccessContent() {
           <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8 animate-fadeIn">
             {/* Top Minimal Brand Bar */}
             <div className="flex items-center justify-between pb-4 border-b border-orange-100 text-xs text-slate-500">
-              <span className="font-bold text-slate-700">VaultWorld Order Confirmation</span>
+              <span className="font-bold text-slate-700">DigiHaven Order Confirmation</span>
               <span className="font-mono text-[11px] bg-orange-50 text-orange-700 px-2.5 py-1 rounded-full font-bold">
                 Order #{verifiedData?.orderNumber || orderId}
               </span>
@@ -530,7 +530,7 @@ function OrderSuccessContent() {
                 <div className="p-3 rounded-xl bg-slate-50">
                   <span className="text-[11px] text-slate-400 font-bold block">Payment Gateway</span>
                   <strong className="text-xs font-bold text-slate-800">
-                    PayU Verified
+                    100% Verified
                   </strong>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 col-span-2 sm:col-span-1">
@@ -570,7 +570,7 @@ function OrderSuccessContent() {
               </p>
               <a
                 href={`https://wa.me/${cleanWhatsappNumber}?text=${encodeURIComponent(
-                  `Hi ${settings.storeName || 'VaultWorld'}, I purchased order #${verifiedData?.orderNumber || orderId} and need assistance.`
+                  `Hi ${settings.storeName || 'DigiHaven'}, I purchased order #${verifiedData?.orderNumber || orderId} and need assistance.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -661,7 +661,7 @@ function OrderSuccessContent() {
                 </h3>
                 <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
                   <Check className="w-3 h-3 stroke-[3]" />
-                  <span>PayU Verified</span>
+                  <span>Payment Verified</span>
                 </span>
               </div>
 
@@ -1329,7 +1329,7 @@ function OrderSuccessContent() {
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
               {/* 1. WhatsApp Support */}
               <a
-                href={`https://wa.me/${cleanWhatsappNumber}?text=Hi%20VaultWorld%20Support%2C%20I%20have%20an%20order%20query%20regarding%20Order%20${verifiedData?.orderNumber || orderId}`}
+                href={`https://wa.me/${cleanWhatsappNumber}?text=Hi%20DigiHaven%20Support%2C%20I%20have%20an%20order%20query%20regarding%20Order%20${verifiedData?.orderNumber || orderId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-2xl border border-emerald-200/80 bg-[#f5fff9] p-4 space-y-2 hover:shadow-md transition-shadow"
@@ -1435,7 +1435,7 @@ function OrderSuccessContent() {
                   <span className="text-xl">🔒</span>
                   <div>
                     <strong suppressHydrationWarning className="block text-xs font-black text-[#17214a]">256-Bit SSL</strong>
-                    <small className="block text-[11px] text-slate-400 font-semibold">PayU Verified</small>
+                    <small className="block text-[11px] text-slate-400 font-semibold">100% Verified</small>
                   </div>
                 </div>
 
@@ -1509,7 +1509,7 @@ class OrderSuccessErrorBoundary extends React.Component<
 
             <div className="pt-2 space-y-3">
               <a
-                href="https://drive.google.com/drive/folders/vaultworld-master-access"
+                href="https://drive.google.com/drive/folders/digihaven-master-access"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition"
@@ -1520,7 +1520,7 @@ class OrderSuccessErrorBoundary extends React.Component<
               </a>
 
               <a
-                href={`https://wa.me/${waPhone}?text=${encodeURIComponent('Hi VaultWorld Support, I have completed my payment and need my download access.')}`}
+                href={`https://wa.me/${waPhone}?text=${encodeURIComponent('Hi DigiHaven Support, I have completed my payment and need my download access.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-2 border border-slate-700 transition"

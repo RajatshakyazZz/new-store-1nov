@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { RotateCcw, ShieldCheck, Clock, CheckCircle2, HelpCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import PolicyContactInfo from '@/components/PolicyContactInfo';
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
 
 export const metadata: Metadata = {
-  title: 'Refund & Cancellation Policy | DigiHaven',
-  description: 'Official Refund & Cancellation Policy of DigiHaven. Details our transparent refund guidelines and 5-7 day payment gateway reversal timelines.',
+  title: 'Refund & Cancellation Policy | DigiHaven - 100% Buyer Protection',
+  description: 'Official Refund & Cancellation Policy of DigiHaven. Transparent refund guidelines, duplicate payment protection, and 5-7 business day bank reversal timelines.',
   alternates: {
     canonical: `${siteUrl}/refund-policy`,
   },
@@ -16,24 +16,24 @@ export const metadata: Metadata = {
 
 export default function RefundPolicyPage() {
   return (
-    <div className="py-12 sm:py-20 bg-[#faf9ff]">
+    <div className="py-12 sm:py-20 bg-[#faf9f6]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Header Section */}
         <div className="text-center space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[11px] font-black uppercase text-amber-800 tracking-wider">
-            <RotateCcw className="w-3.5 h-3.5 text-amber-600" />
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-[11px] font-black uppercase text-orange-800 tracking-wider">
+            <RotateCcw className="w-3.5 h-3.5 text-orange-600" />
             <span>TRANSPARENT CONSUMER PROTECTION</span>
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#182247] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             Refund &amp; Cancellation Policy
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
-            Effective Date: October 2026 • Last Revised: October 30, 2026 • Applicable to all purchases on vaultworld.shop
+            Effective Date: November 2026 • Last Revised: November 1, 2026 • Applicable to all purchases on DigiHaven
           </p>
         </div>
 
-        {/* Quick Summary Pill Box */}
+        {/* Quick Summary Card */}
         <div className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 p-5 sm:p-7 shadow-xs space-y-4">
           <div className="flex items-center gap-2 text-slate-900 font-extrabold text-sm sm:text-base">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
@@ -42,7 +42,7 @@ export default function RefundPolicyPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600 font-medium">
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
               <strong className="text-slate-900 block font-bold mb-1">⏱️ 24–48 Hour Review</strong>
-              All refund requests are reviewed and initiated by our support team within 24–48 business hours.
+              All refund requests are reviewed and initiated by our dedicated support team within 24–48 business hours.
             </div>
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
               <strong className="text-slate-900 block font-bold mb-1">🏦 5–7 Days Bank Credit</strong>
@@ -56,12 +56,12 @@ export default function RefundPolicyPage() {
         </div>
 
         {/* Main Content Body */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 text-sm text-[#475569] font-normal leading-relaxed">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 text-sm text-slate-600 font-normal leading-relaxed">
           
           {/* Section 1 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">1</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">1</span>
               <span>Nature of Digital Intangible Goods</span>
             </h2>
             <p>
@@ -74,12 +74,12 @@ export default function RefundPolicyPage() {
 
           {/* Section 2 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">2</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">2</span>
               <span>Eligibility &amp; Conditions for a Full Refund</span>
             </h2>
             <p>
-              You are entitled to a 100% full refund or immediate replacement under any of the following verified conditions:
+              You are entitled to a 100% full refund or immediate link replacement under any of the following verified conditions:
             </p>
             
             <div className="space-y-3 pt-1">
@@ -123,8 +123,8 @@ export default function RefundPolicyPage() {
 
           {/* Section 3 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">3</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">3</span>
               <span>Non-Refundable Circumstances</span>
             </h2>
             <p>
@@ -140,8 +140,8 @@ export default function RefundPolicyPage() {
 
           {/* Section 4 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">4</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">4</span>
               <span>Cancellation Policy</span>
             </h2>
             <p>
@@ -154,8 +154,8 @@ export default function RefundPolicyPage() {
 
           {/* Section 5 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">5</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">5</span>
               <span>Refund Processing &amp; Bank Reversal Timelines</span>
             </h2>
             <p>
@@ -167,7 +167,7 @@ export default function RefundPolicyPage() {
                 <span>Payment Gateway Reversal Flow:</span>
               </div>
               <ol className="list-decimal pl-5 space-y-1 text-xs text-slate-700">
-                <li>Once approved, our team triggers the refund via the originating payment gateway (Cashfree / Razorpay / PayU) within <strong>24 to 48 business hours</strong>.</li>
+                <li>Once approved, our team triggers the refund via the originating payment gateway (such as Cashfree Payments / Razorpay Software) within <strong>24 to 48 business hours</strong>.</li>
                 <li>The payment gateway transmits the reversal instruction to your bank or card network.</li>
                 <li>Depending on your banking institution or UPI provider, the funds will reflect in your original payment source within <strong>5 to 7 business days</strong>.</li>
                 <li>Refunds are always credited back to the exact payment method used during checkout (Original Payment Source); cash or alternative third-party account refunds are strictly prohibited under anti-money laundering regulations.</li>
@@ -177,8 +177,8 @@ export default function RefundPolicyPage() {
 
           {/* Section 6 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">6</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">6</span>
               <span>How to Request a Refund or Link Assistance</span>
             </h2>
             <p>
@@ -200,8 +200,8 @@ export default function RefundPolicyPage() {
 
           {/* Section 7 */}
           <section className="space-y-3 pt-4 border-t border-slate-200">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center">7</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">7</span>
               <span>Official Support &amp; Grievance Redressal</span>
             </h2>
             <p>
@@ -214,17 +214,17 @@ export default function RefundPolicyPage() {
 
         {/* Footer Navigation Back to Store */}
         <div className="flex items-center justify-between text-xs font-semibold text-slate-500 pt-2">
-          <Link href="/" className="hover:text-amber-600 transition-colors">
+          <Link href="/" className="hover:text-orange-600 transition-colors">
             ← Return to DigiHaven Home
           </Link>
           <div className="flex gap-4">
-            <Link href="/terms-and-conditions" className="hover:text-amber-600 transition-colors">
+            <Link href="/terms-and-conditions" className="hover:text-orange-600 transition-colors">
               Terms &amp; Conditions
             </Link>
-            <Link href="/privacy-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-orange-600 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/shipping-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/shipping-policy" className="hover:text-orange-600 transition-colors">
               Shipping &amp; Delivery
             </Link>
           </div>

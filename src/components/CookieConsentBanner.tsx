@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Cookie, ShieldCheck, X, ChevronDown, ChevronUp, Check, Settings2 } from 'lucide-react';
 
-const STORAGE_KEY = 'vaultworld_cookie_consent';
-const STORAGE_DATE_KEY = 'vaultworld_cookie_consent_date';
-const STORAGE_PREFS_KEY = 'vaultworld_cookie_preferences';
+const STORAGE_KEY = 'digihaven_cookie_consent';
+const STORAGE_DATE_KEY = 'digihaven_cookie_consent_date';
+const STORAGE_PREFS_KEY = 'digihaven_cookie_preferences';
 
 export default function CookieConsentBanner() {
   const pathname = usePathname();
@@ -50,8 +50,10 @@ export default function CookieConsentBanner() {
       setShowCustomize(true);
     };
 
+    window.addEventListener('digihaven:open_cookie_consent', handleOpenConsent);
     window.addEventListener('vaultworld:open_cookie_consent', handleOpenConsent);
     return () => {
+      window.removeEventListener('digihaven:open_cookie_consent', handleOpenConsent);
       window.removeEventListener('vaultworld:open_cookie_consent', handleOpenConsent);
     };
   }, []);

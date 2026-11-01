@@ -593,7 +593,7 @@ function CheckoutContent() {
 
     // Track GA4 add_payment_info
     track('add_payment_info', {
-      payment_type: 'PayU India UPI / Netbanking / Cards',
+      payment_type: 'Instant UPI / Netbanking / Cards',
       currency: 'INR',
       value: checkoutTotal,
       items: allCheckoutItems.map((i, idx) => ({
@@ -647,7 +647,7 @@ function CheckoutContent() {
     };
 
     try {
-      // 1. Create PayU Order on server
+      // 1. Create Order on server
       const res = await fetch('/api/payment/payu/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -659,19 +659,19 @@ function CheckoutContent() {
       if (!res.ok || !data.success || !data.action || !data.params) {
         throw new Error(
           data.error ||
-            'Could not initialize PayU payment. Please verify PayU API credentials in the Admin Portal.'
+            'Could not initialize payment gateway. Please try again shortly or contact support.'
         );
       }
 
       // Store temporary pending order details for confirmation
-      localStorage.setItem('vaultzet_latest_order', JSON.stringify({
+      localStorage.setItem('digihaven_latest_order', JSON.stringify({
         ...orderPayload,
         orderId: orderNumber,
         orderToken: data.order_token,
         status: 'pending',
       }));
 
-      // 2. Auto-submit form to PayU India Hosted Checkout (UPI, GPay, PhonePe, Paytm, Cards, NetBanking)
+      // 2. Auto-submit form to Secure Hosted Checkout (UPI, GPay, PhonePe, Paytm, Cards, NetBanking)
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = data.action;
@@ -688,7 +688,7 @@ function CheckoutContent() {
       document.body.appendChild(form);
       form.submit();
     } catch (err: any) {
-      console.error('PayU order error:', err);
+      console.error('Payment order error:', err);
       setIsProcessing(false);
       setErrorMessage(
         err.message || 'Payment initiation failed. Please check your connection and try again.'
@@ -705,7 +705,7 @@ function CheckoutContent() {
         </div>
         <h2 className="text-xl font-black text-slate-950">Loading Your Checkout...</h2>
         <p className="text-xs text-slate-500 max-w-sm">
-          Preparing bundle details and secure PayU payment gateway.
+          Preparing bundle details and secure payment gateway.
         </p>
       </div>
     );
@@ -769,10 +769,10 @@ function CheckoutContent() {
                   <span className="text-[11px] font-bold text-slate-500">Authorized Partner Checkout</span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-                  Secure PayU Checkout
+                  Secure Instant Checkout
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                  Fill your details below, pay securely via PayU, and get instant Google Drive access.
+                  Fill your details below, pay securely via UPI, Cards or NetBanking, and get instant Google Drive access.
                 </p>
               </div>
               <div className="flex items-center gap-2 text-xs font-bold text-orange-950 bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-200/80 self-start sm:self-center shrink-0">
@@ -787,7 +787,7 @@ function CheckoutContent() {
                   {isBuyNowMode ? 'Instant Buy Now Checkout' : 'Express Checkout'}
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                  Zero hassle: Fill your details, pay securely via PayU, and get instant Google Drive access.
+                  Zero hassle: Fill your details, pay securely, and get instant Google Drive access.
                 </p>
               </div>
               <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-orange-950 bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-200/80">
@@ -867,9 +867,9 @@ function CheckoutContent() {
                   <span className="font-bold">Checkout Issue: </span>
                   {errorMessage}
                 </div>
-                {(errorMessage.includes('PayU') || errorMessage.includes('Merchant')) && (
+                {(errorMessage.includes('Merchant') || errorMessage.includes('credentials') || errorMessage.includes('gateway')) && (
                   <p className="text-[11px] text-rose-700 font-normal mt-1 leading-relaxed">
-                    Note: Agar aapne Admin Portal ya Vercel me PayU keys update ki hain, toh Vercel dashboard me <strong>Deployments &gt; Redeploy</strong> karein ya Admin Portal (Settings &gt; Integrations &gt; PayU Gateway) me Merchant Key &amp; Salt save karein.
+                    Note: If payment gateway keys were recently updated, please redeploy on Vercel or verify Gateway settings in the Admin Portal.
                   </p>
                 )}
               </div>
@@ -1045,12 +1045,12 @@ function CheckoutContent() {
                       {isProcessing ? (
                         <span className="flex items-center gap-2">
                           <Loader2 className="w-5 h-5 animate-spin" />
-                          <span>Connecting PayU Gateway...</span>
+                          <span>Processing Secure Order...</span>
                         </span>
                       ) : (
                         <>
                           <Lock className="w-4 h-4 text-white" />
-                          <span>Pay ₹{checkoutTotal}.00 via PayU (Instant Access)</span>
+                          <span>Pay ₹{checkoutTotal}.00 (Instant Access)</span>
                         </>
                       )}
                     </button>
@@ -1122,7 +1122,7 @@ function CheckoutContent() {
                 </div>
               )}
 
-              {/* 3. PayU Payment Gateway Card */}
+              {/* 3. Secure Payment Gateway Card */}
               <div className="rounded-3xl p-6 bg-white border border-slate-200/90 shadow-sm space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <div className="flex items-center gap-2">
@@ -1134,16 +1134,16 @@ function CheckoutContent() {
                     </h2>
                   </div>
                   <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-orange-100 text-orange-950 border border-orange-200 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" /> PayU Verified
+                    <ShieldCheck className="w-3.5 h-3.5" /> 256-Bit SSL Encrypted
                   </span>
                 </div>
 
-                {/* Branded PayU Details Card */}
+                {/* Secure Gateway Details Card */}
                 <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-orange-500/30 text-white space-y-3.5 shadow-md">
                   <div className="flex items-center justify-between">
                     <div className="font-bold text-xs text-orange-400 flex items-center gap-1.5">
                       <CreditCard className="w-4 h-4 text-orange-400" />
-                      <span>PayU Payment Gateway (India)</span>
+                      <span>Instant Secure Payment Gateway</span>
                     </div>
                     <span className="text-[10px] font-bold text-slate-400">
                       RBI Regulated • Zero Extra Fee
@@ -1151,7 +1151,7 @@ function CheckoutContent() {
                   </div>
 
                   <p className="text-xs text-slate-300 leading-relaxed">
-                    Pay securely with any payment option of your choice. A fast, encrypted PayU checkout will open to complete payment via UPI, Cards, or NetBanking.
+                    Pay securely with any payment option of your choice. A bank-grade 256-bit encrypted checkout will open to complete payment via UPI, Cards, or NetBanking.
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
@@ -1466,12 +1466,12 @@ function CheckoutContent() {
                     {isProcessing ? (
                       <span className="flex items-center gap-2">
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        Connecting PayU Gateway...
+                        Processing Secure Order...
                       </span>
                     ) : (
                       <>
                         <Lock className="w-4 h-4 text-white" />
-                        <span>Pay ₹{checkoutTotal}.00 via PayU (Instant Access)</span>
+                        <span>Pay ₹{checkoutTotal}.00 (Instant Access)</span>
                       </>
                     )}
                   </button>
@@ -1481,7 +1481,7 @@ function CheckoutContent() {
                       <ShieldCheck className="w-4 h-4 text-orange-600" />
                       Instant Google Drive Link Delivery
                     </p>
-                    <p>Protected by 256-bit SSL encryption & PayU India Security</p>
+                    <p>Protected by 256-bit SSL encryption &amp; Bank-grade Security</p>
                   </div>
                 </div>
               </div>
@@ -1544,12 +1544,12 @@ function CheckoutContent() {
                   {isProcessing ? (
                     <span className="flex items-center gap-2">
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Connecting PayU Gateway...
+                      Processing Secure Order...
                     </span>
                   ) : (
                     <>
                       <Lock className="w-4 h-4 text-white" />
-                      <span>Pay ₹{checkoutTotal}.00 via PayU (Instant Access)</span>
+                      <span>Pay ₹{checkoutTotal}.00 (Instant Access)</span>
                     </>
                   )}
                 </button>
@@ -1571,9 +1571,6 @@ function CheckoutContent() {
 export default function CheckoutPage() {
   return (
     <>
-      {/* PayU India Secure Hosted Checkout - high priority preconnect */}
-      <link rel="preconnect" href="https://secure.payu.in" />
-      <link rel="dns-prefetch" href="https://secure.payu.in" />
       <Suspense
         fallback={
           <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4 bg-[#faf9f6]">
@@ -1582,7 +1579,7 @@ export default function CheckoutPage() {
             </div>
             <h2 className="text-xl font-black text-slate-950">Loading Checkout...</h2>
             <p className="text-xs text-slate-500 max-w-sm">
-              Preparing bundle details and secure PayU payment gateway.
+              Preparing bundle details and secure payment gateway.
             </p>
           </div>
         }

@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { ShieldCheck, Lock, Eye, Database, Server, UserCheck, AlertTriangle } from 'lucide-react';
 import PolicyContactInfo from '@/components/PolicyContactInfo';
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app').replace(/\/+$/, '');
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | DigiHaven',
-  description: 'Official Privacy Policy of DigiHaven. Details our adherence to the Digital Personal Data Protection Act (DPDP Act 2023) and RBI payment security rules.',
+  title: 'Privacy Policy | DigiHaven - Data Protection & Security',
+  description: 'Official Privacy Policy of DigiHaven. Details our adherence to the Digital Personal Data Protection Act (DPDP Act 2023) and RBI payment security guidelines.',
   alternates: {
     canonical: `${siteUrl}/privacy-policy`,
   },
@@ -16,49 +16,49 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="py-12 sm:py-20 bg-[#faf9ff]">
+    <div className="py-12 sm:py-20 bg-[#faf9f6]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Header Section */}
         <div className="text-center space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[11px] font-black uppercase text-emerald-800 tracking-wider">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-[11px] font-black uppercase text-orange-800 tracking-wider">
+            <ShieldCheck className="w-3.5 h-3.5 text-orange-600" />
             <span>DPDP ACT 2023 &amp; RBI COMPLIANT PRIVACY POLICY</span>
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#182247] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             Privacy Policy &amp; Data Protection
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
-            Effective Date: October 2026 • Last Revised: October 30, 2026 • Platform: vaultworld.shop
+            Effective Date: November 2026 • Last Revised: November 1, 2026 • Platform: DigiHaven
           </p>
         </div>
 
-        {/* Core Financial Privacy Commitment Card (Mandatory for Cashfree / Razorpay / PayU Onboarding) */}
-        <div className="rounded-2xl sm:rounded-3xl bg-emerald-950 text-white p-6 sm:p-8 shadow-md border border-emerald-700/50 space-y-3">
+        {/* Core Financial Privacy Commitment Card (Mandatory for Payment Gateway Onboarding) */}
+        <div className="rounded-2xl sm:rounded-3xl bg-slate-950 text-white p-6 sm:p-8 shadow-md border border-orange-500/30 space-y-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
-              <Lock className="w-5 h-5 text-emerald-400" />
+            <div className="w-9 h-9 rounded-xl bg-orange-500/20 border border-orange-400/40 text-orange-300 flex items-center justify-center shrink-0">
+              <Lock className="w-5 h-5 text-orange-400" />
             </div>
-            <h3 className="font-extrabold text-base sm:text-lg text-emerald-200">
+            <h3 className="font-extrabold text-base sm:text-lg text-orange-200">
               100% Zero Financial Data Storage Guarantee (PCI-DSS &amp; RBI Aligned)
             </h3>
           </div>
-          <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-normal">
-            <strong>DigiHaven never collects, captures, views, or stores your sensitive banking or payment card details.</strong> All transactions (UPI, Credit/Debit Cards, Net Banking) are conducted through bank-grade 256-bit encrypted sessions directly on the servers of Reserve Bank of India (RBI) authorized payment aggregators (Cashfree Payments, Razorpay Software, PayU India). Your card CVV, expiry dates, net banking passwords, and UPI PINs are processed exclusively on certified, PCI-DSS Level 1 compliant infrastructure.
+          <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+            <strong>DigiHaven never collects, captures, views, or stores your sensitive banking or payment card details.</strong> All transactions (UPI, Credit/Debit Cards, Net Banking) are conducted through bank-grade 256-bit encrypted sessions directly on the servers of Reserve Bank of India (RBI) authorized payment aggregators (such as Cashfree Payments, Razorpay Software). Your card CVV, expiry dates, net banking passwords, and UPI PINs are processed exclusively on certified, PCI-DSS Level 1 compliant infrastructure.
           </p>
         </div>
 
         {/* Main Content Body */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 text-sm text-[#475569] font-normal leading-relaxed">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 text-sm text-slate-600 font-normal leading-relaxed">
           
           {/* Section 1 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">1</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">1</span>
               <span>Introduction &amp; Regulatory Framework</span>
             </h2>
             <p>
-              At <strong>DigiHaven</strong> (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;), protecting the personal privacy and data of our customers and visitors (&quot;you&quot;, &quot;user&quot;, &quot;buyer&quot;) is a paramount priority. This Privacy Policy sets forth our practices regarding the collection, storage, use, and disclosure of information when you interact with our website.
+              At <strong>DigiHaven</strong> (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;), protecting the personal privacy and data of our customers and visitors (&quot;you&quot;, &quot;user&quot;, &quot;buyer&quot;) is our highest priority. This Privacy Policy sets forth our practices regarding the collection, storage, use, and disclosure of information when you interact with our website.
             </p>
             <p>
               This document is prepared in strict accordance with:
@@ -73,8 +73,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 2 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">2</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">2</span>
               <span>Information We Collect</span>
             </h2>
             <p>
@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
                   A. Personal Contact Information (Provided by you during checkout)
                 </span>
                 <ul className="list-disc pl-5 space-y-1 text-xs text-slate-600">
-                  <li><strong>Full Name:</strong> To identify the customer and address transaction invoices.</li>
+                  <li><strong>Full Name:</strong> To identify the customer and generate transaction invoices.</li>
                   <li><strong>Gmail / Email Address:</strong> Essential to grant instant permission access to the purchased Google Drive bundle folders and dispatch order confirmation emails.</li>
                   <li><strong>WhatsApp / Phone Number:</strong> Used to dispatch automated order status receipts, link delivery confirmations, and provide instant customer support.</li>
                 </ul>
@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
                   <span>C. Information We DO NOT Collect</span>
                 </span>
                 <p className="text-xs text-rose-900 font-medium">
-                  We explicitly do NOT capture, store, or have access to your bank account logins, debit or credit card CVV numbers, OTPs, or UPI security PINs. All financial checkout flows occur on the secure iframe or hosted gateway pages of authorized payment aggregators.
+                  We explicitly do NOT capture, store, or have access to your bank account credentials, debit or credit card CVV numbers, card PINs, OTPs, or UPI security PINs. All financial checkout flows occur on the secure hosted gateway pages of authorized payment aggregators.
                 </p>
               </div>
             </div>
@@ -116,8 +116,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 3 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">3</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">3</span>
               <span>How We Use Your Information</span>
             </h2>
             <p>
@@ -134,8 +134,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 4 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">4</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">4</span>
               <span>Sharing of Information &amp; Third-Party Service Providers</span>
             </h2>
             <p>
@@ -144,7 +144,7 @@ export default function PrivacyPolicyPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs">
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                 <strong className="text-slate-900 block font-bold">Payment Aggregators</strong>
-                Cashfree Payments, Razorpay Software, and PayU Payments receive transaction tokens and order IDs to process payments securely.
+                Licensed payment aggregators (such as Cashfree Payments and Razorpay Software) receive transaction tokens and order IDs to process payments securely.
               </div>
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                 <strong className="text-slate-900 block font-bold">Cloud Infrastructure</strong>
@@ -163,8 +163,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 5 */}
           <section id="cookies" className="space-y-3 scroll-mt-24">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">5</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">5</span>
               <span>Cookies &amp; Tracking Technologies</span>
             </h2>
             <p>
@@ -182,8 +182,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 6 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">6</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">6</span>
               <span>Data Retention &amp; Security Measures</span>
             </h2>
             <p>
@@ -198,8 +198,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 7 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">7</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">7</span>
               <span>Your Rights under the DPDP Act, 2023</span>
             </h2>
             <p>
@@ -218,8 +218,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 8 */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">8</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">8</span>
               <span>Protection of Minors</span>
             </h2>
             <p>
@@ -229,8 +229,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 9 */}
           <section className="space-y-3 pt-4 border-t border-slate-200">
-            <h2 className="text-lg sm:text-xl font-bold text-[#182247] flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 font-black text-xs flex items-center justify-center">9</span>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 font-black text-xs flex items-center justify-center">9</span>
               <span>Grievance Officer &amp; Regulatory Redressal</span>
             </h2>
             <p>
@@ -243,17 +243,17 @@ export default function PrivacyPolicyPage() {
 
         {/* Footer Navigation Back to Store */}
         <div className="flex items-center justify-between text-xs font-semibold text-slate-500 pt-2">
-          <Link href="/" className="hover:text-amber-600 transition-colors">
+          <Link href="/" className="hover:text-orange-600 transition-colors">
             ← Return to DigiHaven Home
           </Link>
           <div className="flex gap-4">
-            <Link href="/terms-and-conditions" className="hover:text-amber-600 transition-colors">
+            <Link href="/terms-and-conditions" className="hover:text-orange-600 transition-colors">
               Terms &amp; Conditions
             </Link>
-            <Link href="/refund-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/refund-policy" className="hover:text-orange-600 transition-colors">
               Refund Policy
             </Link>
-            <Link href="/shipping-policy" className="hover:text-amber-600 transition-colors">
+            <Link href="/shipping-policy" className="hover:text-orange-600 transition-colors">
               Shipping &amp; Delivery
             </Link>
           </div>

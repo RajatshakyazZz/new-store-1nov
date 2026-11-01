@@ -98,9 +98,9 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             <span className={`font-extrabold text-[15px] tracking-tight leading-none truncate ${
               isLight ? 'text-slate-950' : 'text-white'
             }`}>
-              VaultWorld Store
+              DigiHaven Store
             </span>
-            <span className="text-[11px] font-black text-amber-500 tracking-wide mt-1 truncate">
+            <span className="text-[11px] font-black text-orange-500 tracking-wide mt-1 truncate">
               COMMAND CENTER v2.0
             </span>
           </div>

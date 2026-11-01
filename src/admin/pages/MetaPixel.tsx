@@ -89,7 +89,7 @@ export default function MetaPixel() {
       } else {
         success(
           'Browser Pixel Active! 🎯',
-          `Pixel initialized with ID ${cleanPixelId}. In Meta Events Manager > Test Events, enter your website URL https://www.vaultworld.shop to view browser events.`
+          `Pixel initialized with ID ${cleanPixelId}. In Meta Events Manager > Test Events, enter your website URL to view browser events.`
         );
       }
     } catch (err: any) {
@@ -253,7 +253,7 @@ export default function MetaPixel() {
                 Open <strong>Meta Events Manager</strong> &gt; Select your Pixel &gt; Click <strong>Test Events</strong> tab.
               </li>
               <li>
-                <strong>Browser Testing:</strong> Under <em>&quot;Confirm your website events are set up correctly&quot;</em>, enter <code className="bg-slate-950 px-1 py-0.5 rounded text-purple-300">https://www.vaultworld.shop</code> and click <em>Open Website</em>. PageView will show up immediately.
+                <strong>Browser Testing:</strong> Under <em>&quot;Confirm your website events are set up correctly&quot;</em>, enter your store website URL and click <em>Open Website</em>. PageView will show up immediately.
               </li>
               <li>
                 <strong>Server CAPI Testing:</strong> Under <em>&quot;Confirm your server events are set up correctly&quot;</em>, copy the <strong>Test Event Code</strong> (e.g. <code className="bg-slate-950 px-1 py-0.5 rounded text-blue-300">TEST12345</code>), paste it in the field above, and click <strong>Send Test Event to Meta</strong>.

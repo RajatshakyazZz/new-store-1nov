@@ -10175,13 +10175,13 @@ export const initialContent: ContentItem[] = [
 ];
 
 export const initialBranding: StoreBranding = {
-  store_name: 'VaultWorld Store',
-  tagline: 'Premium Reels for Your Growth',
-  logo_url: '/logo.png',
+  store_name: 'DigiHaven Store',
+  tagline: 'Everything You Need, All in One Place.',
+  logo_url: '/logo.webp?v=3',
   favicon_url: '/favicon.ico',
-  primary_color: '#9b28ff',
-  secondary_color: '#6d3dff',
-  accent_color: '#fe5f9b',
+  primary_color: '#ea580c',
+  secondary_color: '#f97316',
+  accent_color: '#f59e0b',
   font_family: 'Plus Jakarta Sans',
 };
 
@@ -10247,14 +10247,14 @@ export const initialPlugins: WpPlugin[] = [
     version: '2.0.0',
     active: true,
     has_update: false,
-    description: 'High-speed real-time Firestore database sync for VaultWorld Store',
+    description: 'High-speed real-time Firestore database sync for DigiHaven Store',
   },
 ];
 
 export const initialThemes: WpTheme[] = [
   {
-    name: 'VaultWorld Modern Dark Store',
-    slug: 'vaultworld-dark',
+    name: 'DigiHaven Modern Store',
+    slug: 'digihaven-store',
     version: '1.0.0',
     active: true,
     screenshot: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80',
@@ -10263,7 +10263,7 @@ export const initialThemes: WpTheme[] = [
 ];
 
 export const initialConnectorStatus: ConnectorStatus = {
-  plugin_name: 'VaultWorld Cloud Engine',
+  plugin_name: 'DigiHaven Cloud Engine',
   current_version: '2.0.0',
   latest_version: '2.0.0',
   update_available: false,
@@ -10310,7 +10310,7 @@ export const initialRankMath: RankMathConfig = {
     seo_analysis: true,
   },
   global_title_separator: '|',
-  homepage_meta_title: 'VaultWorld Store | 220,000+ Viral Reels Bundles & Reseller Rights',
+  homepage_meta_title: 'DigiHaven Store | 220,000+ Viral Reels Bundles & Reseller Rights',
   homepage_meta_description: 'Download 220,000+ viral AI Reels, Spiritual, Aesthetic & Motivation bundles. Instant Google Drive access & Reseller Rights.',
 };
 

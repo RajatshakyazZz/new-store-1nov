@@ -94,10 +94,11 @@ export default function SettingsIntegrations() {
         merchant_key: pgConfig.merchant_key || pgConfig.app_id || '',
         merchant_salt: pgConfig.merchant_salt || pgConfig.secret_key || '',
         environment: pgConfig.environment === 'TEST' || pgConfig.environment === 'SANDBOX' ? 'TEST' : 'PRODUCTION',
-        return_url: (pgConfig.return_url || 'https://vaultworld.shop/api/payment/payu/return')
+        return_url: (pgConfig.return_url || 'https://digihaven.shop/api/payment/payu/return')
           .replace('api/payment/cashfree/return', 'api/payment/payu/return')
-          .replace('store.vaultzet.shop', 'vaultworld.shop')
-          .replace('vaultzet.shop', 'vaultworld.shop'),
+          .replace('store.vaultzet.shop', 'digihaven.shop')
+          .replace('vaultworld.shop', 'digihaven.shop')
+          .replace('vaultzet.shop', 'digihaven.shop'),
       });
     }
   }, [pgConfig]);
@@ -464,7 +465,7 @@ export default function SettingsIntegrations() {
                   </span>
                 </div>
                 <p className="text-xs text-slate-400 mt-1">
-                  Primary payment engine powering UPI (PhonePe, GPay, Paytm, CRED), Cards & NetBanking on VaultWorld Store via PayU India.
+                  Primary payment engine powering UPI (PhonePe, GPay, Paytm, CRED), Cards & NetBanking on DigiHaven Store via PayU India.
                 </p>
               </div>
 
@@ -584,7 +585,7 @@ export default function SettingsIntegrations() {
                 <label className="text-xs font-bold text-slate-300">Customer Return / Redirect URL</label>
                 <input
                   type="text"
-                  value={pgForm.return_url || 'https://vaultworld.shop/api/payment/payu/return'}
+                  value={pgForm.return_url || 'https://digihaven.shop/api/payment/payu/return'}
                   onChange={(e) => setPgForm({ ...pgForm, return_url: e.target.value })}
                   className="w-full mt-1.5 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-purple-500 font-mono"
                 />
@@ -960,7 +961,7 @@ export default function SettingsIntegrations() {
                   type="text"
                   value={mmcForm.tracking_id || ''}
                   onChange={(e) => setMmcForm({ ...mmcForm, tracking_id: e.target.value })}
-                  placeholder="e.g. MMC-VAULTWORLD-01"
+                  placeholder="e.g. MMC-DIGIHAVEN-01"
                   className="w-full mt-1.5 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
                 />
               </div>

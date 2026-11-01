@@ -60,10 +60,10 @@ export default function Login() {
           </div>
           <div>
             <h1 className="text-2xl font-black text-white tracking-tight">
-              VaultWorld Admin Portal
+              DigiHaven Admin Portal
             </h1>
             <p className="text-xs text-slate-400 font-medium mt-1">
-              Command Center for <span className="text-purple-400 font-bold">VaultWorld Store</span>
+              Command Center for <span className="text-orange-400 font-bold">DigiHaven Store</span>
             </p>
           </div>
         </div>

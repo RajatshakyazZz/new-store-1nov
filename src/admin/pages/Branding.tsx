@@ -16,13 +16,13 @@ export default function Branding() {
   });
 
   const [form, setForm] = useState<StoreBranding>({
-    store_name: 'VaultWorld Store',
-    tagline: 'Premium Reels for Your Growth',
-    logo_url: '/logo.png',
+    store_name: 'DigiHaven Store',
+    tagline: 'Everything You Need, All in One Place.',
+    logo_url: '/logo.webp?v=3',
     favicon_url: '/favicon.ico',
-    primary_color: '#6d36e8',
-    secondary_color: '#fe5f9b',
-    accent_color: '#10b981',
+    primary_color: '#ea580c',
+    secondary_color: '#f97316',
+    accent_color: '#f59e0b',
     font_family: 'Plus Jakarta Sans',
   });
 

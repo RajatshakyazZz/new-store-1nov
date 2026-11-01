@@ -53,12 +53,16 @@ export function BackendHealthProvider({ children }: { children: React.ReactNode 
   const rawKey = firebaseConfig.apiKey || '';
   const apiKeyMasked = rawKey.length > 8 ? `${rawKey.slice(0, 6)}...${rawKey.slice(-4)}` : 'NOT SET';
   const hasCustomConfig =
-    typeof window !== 'undefined' && !!localStorage.getItem('vaultzet_firebase_config');
+    typeof window !== 'undefined' &&
+    (!!localStorage.getItem('digihaven_firebase_config') ||
+      !!localStorage.getItem('vaultzet_firebase_config'));
   const isPlaceholderKey =
-    !hasCustomConfig &&
-    (!(typeof process !== 'undefined' && (process.env.NEXT_PUBLIC_FIREBASE_API_KEY || (process.env as any).VITE_FIREBASE_API_KEY)) ||
-      rawKey.includes('Demo') ||
-      firebaseConfig.projectId === 'demo-project');
+    !rawKey ||
+    rawKey.includes('Demo') ||
+    rawKey.includes('Vaultzet') ||
+    rawKey === 'NOT SET' ||
+    firebaseConfig.projectId === 'demo-project' ||
+    firebaseConfig.projectId === 'vaultzet-5873e';
 
   const runHealthCheck = useCallback(async () => {
     setStatus('checking');

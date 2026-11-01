@@ -1,4 +1,4 @@
-// Telegram Reseller Notifications & Admin Command Bot for VaultWorld Store
+// Telegram Reseller Notifications & Admin Command Bot for DigiHaven Store
 import {
   TELEGRAM_BOT_TOKEN,
   OWNER_CHAT_ID,
@@ -68,7 +68,7 @@ ${profile.phone ? `📱 <b>Phone:</b> <code>${escapeHtml(profile.phone)}</code>\
 • Available wallet balance: <b>₹0</b>
 • Pending wallet balance: <b>₹0</b>
 ━━━━━━━━━━━━━━━━━━
-🔍 <i>View in Admin Panel:</i> https://vaultworld.shop/asdf/resellers`;
+🔍 <i>View in Admin Panel:</i> https://digihaven.shop/asdf/resellers`;
 
   const buttons: Array<Array<TelegramInlineButton>> = [
     [
@@ -143,7 +143,7 @@ ${productBreakdownText}
 🕒 <b>Requested At:</b> ${escapeHtml(requestedTime)} IST
 ━━━━━━━━━━━━━━━━━━
 🔎 <i>Review & process in the authenticated admin panel:</i>
-👉 https://vaultworld.shop/asdf/resellers`;
+👉 https://digihaven.shop/asdf/resellers`;
 
   const buttons: Array<Array<TelegramInlineButton>> = [
     [
@@ -156,7 +156,7 @@ ${productBreakdownText}
     ],
     [
       { text: `👛 Wallet: ${wdr.resellerUid}`, callback_data: `wallet_${wdr.resellerUid}` },
-      { text: '📋 Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '📋 Admin Panel', url: 'https://digihaven.shop/asdf/resellers' },
     ],
   ];
 
@@ -230,7 +230,7 @@ ${detailsText}
   const buttons: Array<Array<TelegramInlineButton>> = [
     [
       { text: `👛 Wallet: ${wdr.resellerUid}`, callback_data: `wallet_${wdr.resellerUid}` },
-      { text: '📋 Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '📋 Admin Panel', url: 'https://digihaven.shop/asdf/resellers' },
     ],
   ];
 
@@ -263,7 +263,7 @@ export async function sendResellerSaleTelegramAlert(params: {
   const {
     orderNumber,
     resellerId,
-    resellerUid = 'RSL-VAULTWORLD',
+    resellerUid = 'RSL-DIGIHAVEN',
     resellerName = 'Reseller',
     resellerEmail = '',
     resellerPhone = '',
@@ -285,7 +285,7 @@ export async function sendResellerSaleTelegramAlert(params: {
 🧾 <b>Order ID:</b> <code>${escapeHtml(orderNumber)}</code>
 📦 <b>Reels Bundle:</b> ${escapeHtml(productTitle)}
 💰 <b>Customer Paid:</b> <b>₹${totalAmount}.00</b>
-🏷️ <b>VaultWorld Base Cost:</b> ₹${calculatedBase}.00
+🏷️ <b>DigiHaven Base Cost:</b> ₹${calculatedBase}.00
 💵 <b>Reseller Commission:</b> <b>+₹${resellerEarning}.00</b> (Instant Credit)
 
 👤 <b>RESELLER DETAILS</b>
@@ -306,7 +306,7 @@ ${customer?.phone ? `• Phone: <code>${escapeHtml(customer.phone)}</code>\n` : 
 
 🕒 <b>Time:</b> ${escapeHtml(nowIst)} IST
 ━━━━━━━━━━━━━━━━━━
-🔎 <i>Manage Resellers in Admin:</i> https://vaultworld.shop/asdf/resellers`;
+🔎 <i>Manage Resellers in Admin:</i> https://digihaven.shop/asdf/resellers`;
 
   const buttons: Array<Array<TelegramInlineButton>> = [
     [
@@ -315,7 +315,7 @@ ${customer?.phone ? `• Phone: <code>${escapeHtml(customer.phone)}</code>\n` : 
     ],
     [
       { text: `📦 Order #${orderNumber}`, callback_data: `order_${orderNumber}` },
-      { text: '📋 Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '📋 Admin Panel', url: 'https://digihaven.shop/asdf/resellers' },
     ],
   ];
 
@@ -333,7 +333,7 @@ export async function handleAdminTelegramCommand(
 ): Promise<boolean> {
   if (!isAuthorizedTelegramAdmin(fromId, chatId)) {
     await sendTelegramMessage(
-      '⛔ <b>Access Denied:</b> This bot command interface is restricted to authorized VaultWorld Store administrators.',
+      '⛔ <b>Access Denied:</b> This bot command interface is restricted to authorized DigiHaven Store administrators.',
       undefined,
       chatId
     );
@@ -346,7 +346,7 @@ export async function handleAdminTelegramCommand(
 
   // /help or /start
   if (command === '/help' || command === '/start' || command === 'help') {
-    const helpMsg = `🤖 <b>VAULTWORLD RESELLER ADMIN BOT COMMANDS</b>
+    const helpMsg = `🤖 <b>DIGIHAVEN RESELLER ADMIN BOT COMMANDS</b>
 ━━━━━━━━━━━━━━━━━━
 Available Admin Commands:
 

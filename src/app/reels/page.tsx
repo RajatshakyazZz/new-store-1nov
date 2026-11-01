@@ -251,11 +251,11 @@ export default function ReelsFeedPage() {
     buyNow(bundle, 'personal');
   };
 
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://digihaven.shop').replace(/\/+$/, '');
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'VaultWorld Store Viral Reels Video Previews',
+    name: 'DigiHaven Store Viral Reels Video Previews',
     numberOfItems: baseReels.length,
     itemListElement: baseReels.slice(0, 20).map((r, idx) => ({
       '@type': 'ListItem',

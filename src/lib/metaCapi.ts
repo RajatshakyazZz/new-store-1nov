@@ -220,7 +220,7 @@ export async function sendMetaCapiPurchase(params: MetaPurchaseEventParams): Pro
     event_name: 'Purchase',
     event_time: Math.floor(Date.now() / 1000),
     event_id: eventId,
-    event_source_url: params.eventSourceUrl || `${(process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '')}/order-success?orderId=${encodeURIComponent(params.orderId)}`,
+    event_source_url: params.eventSourceUrl || `${(process.env.NEXT_PUBLIC_SITE_URL || 'https://digihaven.shop').replace(/\/+$/, '')}/order-success?orderId=${encodeURIComponent(params.orderId)}`,
     action_source: 'website',
     user_data: userData,
     custom_data: {

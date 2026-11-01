@@ -1,4 +1,4 @@
-// Premium Interactive Telegram Bot Admin Panel for VaultWorld Store
+// Premium Interactive Telegram Bot Admin Panel for DigiHaven Store
 // Supporting Persistent 5-Row Footer Keyboard (ReplyKeyboardMarkup),
 // Contextual Inline Dashboards (InlineKeyboardMarkup), Multi-Step Search Flows,
 // Real-Time Database Queries, and Strict Admin Authorization.
@@ -1011,7 +1011,7 @@ Select status filter or search:`;
     ],
     [
       { text: '📊 Withdrawal Summary', callback_data: 'wdr:sum' },
-      { text: '🌐 Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '🌐 Admin Panel', url: 'https://digihaven.shop/asdf/resellers' },
     ],
     [{ text: '🏠 Home', callback_data: 'nav:home' }],
   ];
@@ -1140,7 +1140,7 @@ Inspect risk categories or review in Admin Panel:`;
     ],
     [
       { text: '👤 Flagged Partners', callback_data: 'fraud:flag' },
-      { text: '🌐 Open Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '🌐 Open Admin Panel', url: 'https://digihaven.shop/asdf/resellers' },
     ],
     [{ text: '🏠 Home', callback_data: 'nav:home' }],
   ];
@@ -1191,7 +1191,7 @@ export async function renderAnalyticsMenu(
     subTitle = 'EXPORT REPORT SUMMARY';
     bodyText = `📊 <b>CSV EXPORT READY</b>
 All records are archived in Firestore and accessible via the secure web admin:
-👉 https://vaultworld.shop/asdf/resellers
+👉 https://digihaven.shop/asdf/resellers
 
 • Total Partners: <b>${resellers.length}</b>
 • Total Orders: <b>${verifiedOrders.length}</b>
@@ -1285,12 +1285,12 @@ export async function renderSettingsMenu(
 
   const text = `⚙️ <b>BOT & SYSTEM SETTINGS</b>
 ━━━━━━━━━━━━━━━━━━
-• Application: <b>VaultWorld Digital Reseller Network</b>
+• Application: <b>DigiHaven Digital Reseller Network</b>
 • Bot API Endpoint: <code>https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN.slice(0, 10)}...</code>
 • Authorized Administrator User IDs:
 ${AUTHORIZED_TELEGRAM_ADMINS.map((id, idx) => `  ${idx + 1}. <code>${id}</code>`).join('\n')}
 • Timezone: <b>Asia/Kolkata (IST)</b>
-• Webhook URL: <code>https://www.vaultworld.shop/api/telegram/webhook</code>
+• Webhook URL: <code>https://www.digihaven.shop/api/telegram/webhook</code>
 • Fallback Slash Commands: <b>100% Retained &amp; Active</b>
 • Security Mode: <b>Strict Allowlist Only</b> (Others Rejected)
 ━━━━━━━━━━━━━━━━━━
@@ -1361,7 +1361,7 @@ Status: 🟢 <b>Approved</b> (Funds remain reserved)
       { text: '⚙️ Mark Processing', callback_data: `wdr:act:processing:${w.id}` },
       { text: '❌ Reject', callback_data: `wdr:act:reject:${w.id}` },
     ],
-    [{ text: '🌐 Open Admin Panel (Mark Paid)', url: 'https://vaultworld.shop/asdf/resellers' }],
+    [{ text: '🌐 Open Admin Panel (Mark Paid)', url: 'https://digihaven.shop/asdf/resellers' }],
     [
       { text: '⬅️ Back to Withdrawals', callback_data: 'nav:wdr' },
       { text: '🏠 Home', callback_data: 'nav:home' },
@@ -1409,7 +1409,7 @@ Transfer funds to the reseller via UPI and then record the Bank UTR reference in
 
   const buttons: Array<Array<TelegramInlineButton>> = [
     [{ text: '❌ Reject & Refund', callback_data: `wdr:act:reject:${w.id}` }],
-    [{ text: '🌐 Open Admin Panel to Mark Paid', url: 'https://vaultworld.shop/asdf/resellers' }],
+    [{ text: '🌐 Open Admin Panel to Mark Paid', url: 'https://digihaven.shop/asdf/resellers' }],
     [
       { text: '⬅️ Back to Withdrawals', callback_data: 'nav:wdr' },
       { text: '🏠 Home', callback_data: 'nav:home' },
@@ -1517,21 +1517,21 @@ ${productBreakdownText}
     ]);
     inlineButtons.push([
       { text: '❌ Reject', callback_data: `wdr:act:reject:${wdr.id}` },
-      { text: '🌐 Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '🌐 Admin Panel', url: 'https://digihaven.shop/asdf/resellers' },
     ]);
   } else if (wdr.status === 'approved') {
     inlineButtons.push([
       { text: '⚙️ Mark Processing', callback_data: `wdr:act:processing:${wdr.id}` },
       { text: '❌ Reject', callback_data: `wdr:act:reject:${wdr.id}` },
     ]);
-    inlineButtons.push([{ text: '🌐 Admin Panel (Mark Paid)', url: 'https://vaultworld.shop/asdf/resellers' }]);
+    inlineButtons.push([{ text: '🌐 Admin Panel (Mark Paid)', url: 'https://digihaven.shop/asdf/resellers' }]);
   } else if (wdr.status === 'processing') {
     inlineButtons.push([
       { text: '❌ Reject', callback_data: `wdr:act:reject:${wdr.id}` },
-      { text: '🌐 Admin Panel (Mark Paid)', url: 'https://vaultworld.shop/asdf/resellers' },
+      { text: '🌐 Admin Panel (Mark Paid)', url: 'https://digihaven.shop/asdf/resellers' },
     ]);
   } else {
-    inlineButtons.push([{ text: '🌐 View in Admin Panel', url: 'https://vaultworld.shop/asdf/resellers' }]);
+    inlineButtons.push([{ text: '🌐 View in Admin Panel', url: 'https://digihaven.shop/asdf/resellers' }]);
   }
 
   inlineButtons.push([
@@ -1757,7 +1757,7 @@ export async function handleAdminPanelCallback(
   if (action === 'notif:test') {
     const start = Date.now();
     await sendTelegramMessage(
-      `🧪 <b>LIVE TEST ALERT SUCCESSFUL</b>\n━━━━━━━━━━━━━━━━━━\nVerified test dispatch from VaultWorld Bot to Admin Chat <code>${chatId}</code>.\nTimestamp: ${getIstTimestamp()} IST.`,
+      `🧪 <b>LIVE TEST ALERT SUCCESSFUL</b>\n━━━━━━━━━━━━━━━━━━\nVerified test dispatch from DigiHaven Bot to Admin Chat <code>${chatId}</code>.\nTimestamp: ${getIstTimestamp()} IST.`,
       undefined,
       chatId
     );
@@ -1781,8 +1781,8 @@ export async function handleAdminPanelCallback(
       const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`);
       const data = await res.json();
       const latency = Date.now() - start;
-      const botName = data.result?.first_name || 'VaultWorld Store Bot';
-      const botUser = data.result?.username || 'VaultWorld_Bot';
+      const botName = data.result?.first_name || 'DigiHaven Store Bot';
+      const botUser = data.result?.username || 'DigiHaven_Bot';
       const text = `🧪 <b>TELEGRAM BOT CONNECTION: 200 OK</b>
 ━━━━━━━━━━━━━━━━━━
 • Bot Name: <b>${escapeHtml(botName)}</b>
@@ -1902,7 +1902,7 @@ export async function handleAdminPanelMessage(
   }
 
   // Unrecognized text - show polite welcome with persistent footer attached
-  const helpText = `👋 <b>VaultWorld Reseller Admin Bot</b>
+  const helpText = `👋 <b>DigiHaven Reseller Admin Bot</b>
 ━━━━━━━━━━━━━━━━━━
 Use the persistent 5-row button menu at the bottom of your screen to navigate, or tap any command below:
 

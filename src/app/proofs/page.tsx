@@ -5,7 +5,7 @@ import { Sparkles, ArrowRight, TrendingUp, CheckCircle2, ShieldCheck, Flame } fr
 import ProofsClient from './ProofsClient';
 
 export const metadata: Metadata = {
-  title: 'Real Creator Growth Proofs & Results | VaultWorld Store',
+  title: 'Real Creator Growth Proofs & Results | DigiHaven',
   description:
     'Explore real 100K+ follower growth results, viral reach screenshots and testimonials from creators using our AI & viral reels bundles.',
 };
@@ -16,7 +16,7 @@ export default function ProofsPage() {
       {/* Breadcrumb & Top Indicator */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <nav className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-          <Link href="/" className="hover:text-amber-600 transition-colors">
+          <Link href="/" className="hover:text-orange-600 transition-colors">
             Home
           </Link>
           <span>/</span>
@@ -29,10 +29,10 @@ export default function ProofsPage() {
 
       {/* Conversion Banner: Get Started Now */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        <div className="rounded-3xl bg-gradient-to-r from-purple-950 via-slate-900 to-indigo-950 border border-purple-500/30 p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl text-white">
+        <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-[#1f0d05] to-slate-950 border border-orange-500/30 p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl text-white">
           <div className="space-y-2 text-center md:text-left">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-black uppercase tracking-wider border border-purple-500/30">
-              <Flame className="w-3.5 h-3.5 text-amber-400" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-xs font-black uppercase tracking-wider border border-orange-500/30">
+              <Flame className="w-3.5 h-3.5 text-orange-400" />
               Start Scaling Today
             </span>
             <h3 className="text-xl sm:text-2xl font-black text-white">
@@ -45,7 +45,7 @@ export default function ProofsPage() {
 
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/20 transition-all hover:scale-105 active:scale-95 shrink-0"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm shadow-[0_0_24px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] transition-all hover:scale-105 active:scale-95 shrink-0 cursor-pointer"
           >
             <span>Explore All Bundles</span>
             <ArrowRight className="w-4 h-4" />

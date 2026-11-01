@@ -39,7 +39,7 @@ export default function FreeBundleOfferBanner({
   const isCheckoutAction = variant === 'checkout' && isUnlocked;
 
   const content = (
-    <div className="w-full flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border border-cyan-500/30 bg-slate-950 shadow-[0_12px_36px_rgba(6,182,212,0.15)] group transition-all">
+    <div className="w-full flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border border-orange-500/30 bg-slate-950 shadow-[0_12px_36px_rgba(255,107,0,0.15)] group transition-all">
       {/* 1. Image Banner Uploaded from Admin Panel */}
       <Link
         href={isCheckoutAction ? '#' : '/claim-offer'}
@@ -75,12 +75,12 @@ export default function FreeBundleOfferBanner({
         />
       </Link>
 
-      {/* 2. Cyber Cobalt Cyan Glowing Button right below the banner */}
+      {/* 2. Radiant Sunset Orange Glowing Button right below the banner */}
       {isCheckoutAction ? (
         <button
           type="button"
           onClick={() => setIsFreeBundleModalOpen(true)}
-          className="w-full py-3.5 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:via-cyan-400 hover:to-blue-500 text-white font-black text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-[0_0_28px_rgba(6,182,212,0.55),0_8px_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_36px_rgba(6,182,212,0.7),0_10px_28px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.005] active:scale-[0.99] cursor-pointer ring-1 ring-cyan-300/50 relative overflow-hidden"
+          className="w-full py-3.5 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:via-orange-400 hover:to-amber-400 text-white font-black text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] flex items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.005] active:scale-[0.99] cursor-pointer ring-1 ring-orange-300/50 relative overflow-hidden"
         >
           <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white fill-white animate-pulse shrink-0" />
@@ -94,7 +94,7 @@ export default function FreeBundleOfferBanner({
         <Link
           href="/claim-offer"
           prefetch={false}
-          className="w-full py-3.5 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:via-cyan-400 hover:to-blue-500 text-white font-black text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-[0_0_28px_rgba(6,182,212,0.55),0_8px_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_36px_rgba(6,182,212,0.7),0_10px_28px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.005] active:scale-[0.99] cursor-pointer ring-1 ring-cyan-300/50 relative overflow-hidden"
+          className="w-full py-3.5 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:via-orange-400 hover:to-amber-400 text-white font-black text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] flex items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.005] active:scale-[0.99] cursor-pointer ring-1 ring-orange-300/50 relative overflow-hidden"
         >
           <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white fill-white animate-pulse shrink-0" />

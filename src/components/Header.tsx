@@ -172,20 +172,20 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(2,132,199,0.05)] max-w-full overflow-x-clip">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(249,115,22,0.06)] max-w-full overflow-x-clip">
       {/* Top Promotional Coupon Header Bar ("OFF20" for 20% Off on all products) */}
       {isCouponBannerVisible && (
-        <div className="relative bg-gradient-to-r from-[#030712] via-[#081e3d] to-[#030712] border-b border-cyan-500/25 text-white overflow-hidden">
+        <div className="relative bg-gradient-to-r from-[#0d0704] via-[#241006] to-[#0d0704] border-b border-orange-500/30 text-white overflow-hidden">
           {/* Subtle diagonal ambient glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_50%_-20%,rgba(6,182,212,0.3),rgba(255,255,255,0))] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_50%_-20%,rgba(255,107,0,0.3),rgba(255,255,255,0))] pointer-events-none" />
 
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 relative flex items-center justify-between gap-2 text-xs">
-            {/* Left: Cyan Sparkle + Special Offer Pill */}
+            {/* Left: Orange Sparkle + Special Offer Pill */}
             <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 z-10">
-              <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(6,182,212,0.5)]">
-                <Sparkles className="w-3.5 h-3.5 fill-cyan-300 text-cyan-300" />
+              <span className="w-5 h-5 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(255,107,0,0.5)]">
+                <Sparkles className="w-3.5 h-3.5 fill-orange-400 text-orange-400" />
               </span>
-              <span className="px-2 sm:px-2.5 py-0.5 rounded-full border border-cyan-400/40 bg-cyan-500/15 text-[10px] font-black uppercase tracking-wider text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.25)] flex items-center gap-1">
+              <span className="px-2 sm:px-2.5 py-0.5 rounded-full border border-orange-400/40 bg-orange-500/15 text-[10px] font-black uppercase tracking-wider text-orange-300 shadow-[0_0_12px_rgba(255,107,0,0.25)] flex items-center gap-1">
                 <span>⚡</span>
                 <span>LIMITED OFFER</span>
               </span>
@@ -196,7 +196,7 @@ export default function Header() {
               <div className="animate-diwali-ltr font-bold text-[11px] sm:text-xs md:text-[13px] text-white tracking-wide">
                 <span>🔥 Special Launch Discount: </span>
                 <span>Get </span>
-                <span className="text-cyan-300 font-extrabold underline decoration-cyan-400/50">Flat 20% Off</span>
+                <span className="text-orange-300 font-extrabold underline decoration-orange-400/50">Flat 20% Off</span>
                 <span> on All Viral Reels Bundles! ✨</span>
               </div>
             </div>
@@ -206,19 +206,19 @@ export default function Header() {
               <button
                 type="button"
                 onClick={handleCopyCoupon}
-                className="px-2.5 sm:px-3 py-1 rounded-lg bg-white hover:bg-cyan-50 border border-cyan-300/40 text-slate-900 shadow-[0_0_14px_rgba(6,182,212,0.35)] flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer select-none group"
+                className="px-2.5 sm:px-3 py-1 rounded-lg bg-white hover:bg-orange-50 border border-orange-300/40 text-slate-900 shadow-[0_0_14px_rgba(255,107,0,0.35)] flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer select-none group"
                 title="Click to copy code and auto-apply discount"
               >
                 <span className="text-[9px] sm:text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">
                   CODE
                 </span>
-                <span className="text-xs font-black text-blue-900 tracking-wider">
+                <span className="text-xs font-black text-orange-950 tracking-wider">
                   {isCopied ? 'COPIED!' : 'OFF20'}
                 </span>
                 {isCopied ? (
-                  <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                 ) : (
-                  <Copy className="w-3.5 h-3.5 text-blue-600 group-hover:scale-110 transition-transform shrink-0" />
+                  <Copy className="w-3.5 h-3.5 text-orange-600 group-hover:scale-110 transition-transform shrink-0" />
                 )}
               </button>
 
@@ -241,7 +241,7 @@ export default function Header() {
           
           {/* Dynamic Brand Logo synced with Admin Panel */}
           <Link href="/" prefetch={false} className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950 border border-cyan-500/40 overflow-hidden flex items-center justify-center shadow-[0_0_16px_rgba(6,182,212,0.35)] group-hover:scale-105 transition-transform shrink-0">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950 border border-orange-500/40 overflow-hidden flex items-center justify-center shadow-[0_0_16px_rgba(255,107,0,0.35)] group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/logo.webp?v=2"
                 alt={`${settings.storeName || 'DigiHaven'} Logo`}
@@ -271,17 +271,17 @@ export default function Header() {
                   href={link.href}
                   prefetch={false}
                   className={`text-[14px] xl:text-[15px] font-bold transition-all relative py-1 flex items-center gap-1.5 ${
-                    isActive ? 'text-blue-600 font-extrabold' : 'text-slate-600 hover:text-blue-600'
+                    isActive ? 'text-orange-600 font-extrabold' : 'text-slate-600 hover:text-orange-600'
                   }`}
                 >
                   <span>{link.name}</span>
                   {link.href === '/my-order' && (
-                    <span className="text-[9px] font-black uppercase tracking-wider bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded border border-blue-200 shadow-2xs">
+                    <span className="text-[9px] font-black uppercase tracking-wider bg-orange-50 text-orange-700 px-1.5 py-0.5 rounded border border-orange-200 shadow-2xs">
                       ACCESS
                     </span>
                   )}
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.6)]" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-orange-600 via-amber-400 to-orange-500 rounded-full shadow-[0_0_12px_rgba(255,107,0,0.6)]" />
                   )}
                 </Link>
               );
@@ -294,9 +294,9 @@ export default function Header() {
             <div ref={desktopSearchRef} className="relative hidden sm:block">
               <form
                 onSubmit={handleSearchSubmit}
-                className="flex items-center bg-slate-50 hover:bg-slate-100/80 focus-within:bg-white border border-slate-200 rounded-full pl-3.5 pr-2 py-0.5 focus-within:ring-2 focus-within:ring-cyan-500/25 focus-within:border-cyan-500 transition-all"
+                className="flex items-center bg-slate-50 hover:bg-slate-100/80 focus-within:bg-white border border-slate-200 rounded-full pl-3.5 pr-2 py-0.5 focus-within:ring-2 focus-within:ring-orange-500/25 focus-within:border-orange-500 transition-all"
               >
-                <Search className="w-4 h-4 text-blue-600 shrink-0" />
+                <Search className="w-4 h-4 text-orange-600 shrink-0" />
                 <input
                   type="text"
                   autoComplete="off"
@@ -325,9 +325,9 @@ export default function Header() {
               {/* Instant Dropdown Results for Desktop */}
               {isDropdownOpen && searchQuery.trim() && (
                 <div className="absolute top-full right-0 mt-2 w-80 lg:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="p-2.5 bg-gradient-to-r from-blue-50 to-cyan-50 border-b border-blue-100 flex items-center justify-between">
-                    <span className="text-[11px] font-black text-blue-900 uppercase tracking-wider flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-cyan-600" />
+                  <div className="p-2.5 bg-gradient-to-r from-orange-50 to-amber-50 border-b border-orange-100 flex items-center justify-between">
+                    <span className="text-[11px] font-black text-orange-950 uppercase tracking-wider flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-orange-600" />
                       <span>{searchResults.length} Bundle{searchResults.length !== 1 ? 's' : ''} Found</span>
                     </span>
                     {searchResults.length > 0 && (
@@ -335,13 +335,13 @@ export default function Header() {
                     )}
                   </div>
 
-                  <div className="max-h-80 overflow-y-auto divide-y divide-blue-50 p-1">
+                  <div className="max-h-80 overflow-y-auto divide-y divide-orange-50 p-1">
                     {searchResults.slice(0, 5).map((bundle) => (
                       <Link
                         key={bundle.id}
                         href={`/product/${bundle.slug}`}
                         onClick={() => setIsDropdownOpen(false)}
-                        className="flex items-center gap-3 p-2 rounded-xl hover:bg-blue-50/60 transition-colors group"
+                        className="flex items-center gap-3 p-2 rounded-xl hover:bg-orange-50/60 transition-colors group"
                       >
                         <img
                           src={bundle.thumbnail}
@@ -349,11 +349,11 @@ export default function Header() {
                           className="w-11 h-11 rounded-lg object-cover shrink-0 bg-slate-900 border border-slate-200"
                         />
                         <div className="min-w-0 flex-1">
-                          <h4 className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
+                          <h4 className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-orange-600 transition-colors">
                             {bundle.title}
                           </h4>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="text-[10px] font-bold text-blue-700 bg-blue-100/70 px-1.5 py-0.5 rounded">
+                            <span className="text-[10px] font-bold text-orange-800 bg-orange-100/70 px-1.5 py-0.5 rounded">
                               {bundle.reelCount}+ Reels
                             </span>
                             <span className="text-xs font-black text-slate-900">
@@ -381,7 +381,7 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={handleViewAllResults}
-                      className="w-full py-2.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-xs text-center block transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                      className="w-full py-2.5 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-xs text-center block transition-all shadow-[0_0_15px_rgba(255,107,0,0.4)]"
                     >
                       View all {searchResults.length} results in Shop &rarr;
                     </button>
@@ -398,7 +398,7 @@ export default function Header() {
                 if (isMobileMenuOpen) setIsMobileMenuOpen(false);
               }}
               aria-label="Search"
-              className="sm:hidden w-9 h-9 rounded-xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center hover:bg-blue-100 transition-colors shrink-0"
+              className="sm:hidden w-9 h-9 rounded-xl bg-orange-50 text-orange-700 border border-orange-200/60 flex items-center justify-center hover:bg-orange-100 transition-colors shrink-0"
             >
               <Search className="w-4 h-4" />
             </button>
@@ -407,13 +407,13 @@ export default function Header() {
             <Link
               href="/cart"
               prefetch={false}
-              className="sm:hidden px-2.5 h-9 rounded-xl bg-blue-50 text-blue-900 border border-blue-200/60 flex items-center gap-1.5 hover:bg-blue-100 transition-colors text-xs font-bold relative shrink-0"
+              className="sm:hidden px-2.5 h-9 rounded-xl bg-orange-50 text-orange-900 border border-orange-200/60 flex items-center gap-1.5 hover:bg-orange-100 transition-colors text-xs font-bold relative shrink-0"
               aria-label="Cart"
             >
-              <ShoppingCart className="w-4 h-4 text-blue-600" />
+              <ShoppingCart className="w-4 h-4 text-orange-600" />
               <span>Cart</span>
               {cartCount > 0 && (
-                <span className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-[9px] font-black text-white flex items-center justify-center shadow-[0_0_8px_rgba(6,182,212,0.5)]">
+                <span className="w-4 h-4 rounded-full bg-gradient-to-r from-orange-600 to-amber-500 text-[9px] font-black text-white flex items-center justify-center shadow-[0_0_8px_rgba(255,107,0,0.5)]">
                   {cartCount}
                 </span>
               )}
@@ -423,10 +423,10 @@ export default function Header() {
             <Link
               href="/proofs"
               prefetch={false}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-50 via-sky-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 text-blue-700 hover:text-cyan-800 border border-blue-200/60 text-xs font-extrabold tracking-wide transition-all hover:scale-105 active:scale-95 shadow-[0_0_12px_rgba(6,182,212,0.2)] shrink-0"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-orange-50 via-amber-50 to-orange-50 hover:from-orange-100 hover:to-amber-100 text-orange-800 hover:text-orange-900 border border-orange-200/60 text-xs font-extrabold tracking-wide transition-all hover:scale-105 active:scale-95 shadow-[0_0_12px_rgba(255,107,0,0.2)] shrink-0"
               title="View Real Instagram Growth Proofs"
             >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-600 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-orange-600 animate-pulse" />
               <span>Growth Proofs</span>
             </Link>
 
@@ -434,13 +434,13 @@ export default function Header() {
             <Link
               href="/cart"
               prefetch={false}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-cyan-500/30 text-white font-bold text-sm transition-all group shadow-[0_0_16px_rgba(6,182,212,0.25)] hover:shadow-[0_0_24px_rgba(6,182,212,0.45)]"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-orange-500/30 text-white font-bold text-sm transition-all group shadow-[0_0_16px_rgba(255,107,0,0.25)] hover:shadow-[0_0_24px_rgba(255,107,0,0.45)]"
               aria-label="Cart"
             >
               <div className="relative">
-                <ShoppingCart className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+                <ShoppingCart className="w-4 h-4 text-orange-400 group-hover:scale-110 transition-transform" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2.5 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-[10px] font-black text-slate-950 flex items-center justify-center shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+                  <span className="absolute -top-2 -right-2.5 w-4 h-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-400 text-[10px] font-black text-slate-950 flex items-center justify-center shadow-[0_0_8px_rgba(255,107,0,0.6)]">
                     {cartCount}
                   </span>
                 )}
@@ -469,9 +469,9 @@ export default function Header() {
           <div className="sm:hidden border-t border-slate-100 bg-white py-2.5 px-1 animate-in fade-in duration-150">
             <form
               onSubmit={handleSearchSubmit}
-              className="flex items-center bg-slate-50 border border-slate-200 rounded-full pl-3 pr-2 py-0.5 focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/25"
+              className="flex items-center bg-slate-50 border border-slate-200 rounded-full pl-3 pr-2 py-0.5 focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-500/25"
             >
-              <Search className="w-4 h-4 text-blue-600 shrink-0" />
+              <Search className="w-4 h-4 text-orange-600 shrink-0" />
               <input
                 type="text"
                 autoFocus
@@ -491,7 +491,7 @@ export default function Header() {
                   <X className="w-3.5 h-3.5" />
                 </button>
               ) : (
-                <div className="w-7 h-7 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white flex items-center justify-center shrink-0 shadow-[0_0_8px_rgba(6,182,212,0.4)]">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-600 to-amber-500 text-white flex items-center justify-center shrink-0 shadow-[0_0_8px_rgba(255,107,0,0.4)]">
                   <Search className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
               )}
@@ -500,7 +500,7 @@ export default function Header() {
             {/* Mobile Instant Results List */}
             {searchQuery.trim() && (
               <div className="mt-2.5 bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden animate-in fade-in duration-150">
-                <div className="p-2 bg-blue-50/90 border-b border-blue-100 flex items-center justify-between text-[11px] font-bold text-blue-900">
+                <div className="p-2 bg-orange-50/90 border-b border-orange-100 flex items-center justify-between text-[11px] font-bold text-orange-950">
                   <span>
                     {searchResults.length} Bundle{searchResults.length !== 1 ? 's' : ''} Found
                   </span>
@@ -508,7 +508,7 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={handleViewAllResults}
-                      className="text-[10px] text-blue-700 underline font-extrabold"
+                      className="text-[10px] text-orange-700 underline font-extrabold"
                     >
                       See All in Shop &rarr;
                     </button>
@@ -524,7 +524,7 @@ export default function Header() {
                         setIsMobileSearchOpen(false);
                         setIsDropdownOpen(false);
                       }}
-                      className="flex items-center gap-2.5 p-2 rounded-xl active:bg-blue-50/70 transition-colors"
+                      className="flex items-center gap-2.5 p-2 rounded-xl active:bg-orange-50/70 transition-colors"
                     >
                       <img
                         src={bundle.thumbnail}
@@ -536,7 +536,7 @@ export default function Header() {
                           {bundle.title}
                         </h4>
                         <div className="flex items-center gap-1.5 mt-0.5">
-                          <span className="text-[9px] font-bold text-blue-700 bg-blue-100/70 px-1 py-0.2 rounded">
+                          <span className="text-[9px] font-bold text-orange-800 bg-orange-100/80 px-1 py-0.2 rounded">
                             {bundle.reelCount}+ Reels
                           </span>
                           <span className="text-xs font-black text-slate-900">
@@ -558,7 +558,7 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={handleViewAllResults}
-                    className="w-full py-2 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 text-white font-black text-xs text-center block shadow-[0_0_12px_rgba(6,182,212,0.4)]"
+                    className="w-full py-2 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white font-black text-xs text-center block shadow-[0_0_12px_rgba(255,107,0,0.5)]"
                   >
                     View all {searchResults.length} results in Shop &rarr;
                   </button>
@@ -582,15 +582,15 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[15px] font-bold transition-colors ${
                       isOrder
-                        ? 'bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-950 border border-blue-200 font-black shadow-2xs'
+                        ? 'bg-gradient-to-r from-orange-50 to-amber-50 text-orange-950 border border-orange-200 font-black shadow-2xs'
                         : isProof
-                        ? 'bg-gradient-to-r from-sky-50 to-cyan-50 text-sky-900 border border-sky-200 font-extrabold shadow-2xs'
-                        : 'text-slate-900 hover:bg-blue-50 active:bg-blue-100'
+                        ? 'bg-gradient-to-r from-orange-50 to-amber-50 text-orange-900 border border-orange-200 font-extrabold shadow-2xs'
+                        : 'text-slate-900 hover:bg-orange-50 active:bg-orange-100'
                     }`}
                   >
                     <span>{link.name}</span>
                     {isOrder && (
-                      <span className="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-2 py-0.5 rounded-md shadow-[0_0_8px_rgba(6,182,212,0.4)]">
+                      <span className="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-orange-600 to-amber-500 text-white px-2 py-0.5 rounded-md shadow-[0_0_8px_rgba(255,107,0,0.4)]">
                         Drive Access
                       </span>
                     )}

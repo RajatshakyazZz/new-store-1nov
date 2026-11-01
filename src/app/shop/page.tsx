@@ -229,7 +229,7 @@ function ShopContent() {
 
             {/* Counter 2: Instant Access */}
             <div className="bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:py-2.5 sm:px-4 shadow-sm flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-cyan-50 border border-cyan-200/60 text-cyan-700 flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-orange-50 border border-orange-200/60 text-orange-700 flex items-center justify-center shrink-0">
                 <HardDrive className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
               <div className="min-w-0">
@@ -244,7 +244,7 @@ function ShopContent() {
 
             {/* Counter 3: Starting from */}
             <div className="bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:py-2.5 sm:px-4 shadow-sm flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-cyan-50 border border-cyan-200/60 text-cyan-700 flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-orange-50 border border-orange-200/60 text-orange-700 flex items-center justify-center shrink-0">
                 <IndianRupee className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
               <div className="min-w-0">
@@ -264,7 +264,7 @@ function ShopContent() {
         {/* PROMINENT SEARCH BAR: Enter to Search + Dedicated Search Button + Instant Live Dropdown */}
         <div ref={shopSearchRef} className="relative rounded-3xl bg-white border border-slate-200/90 p-3.5 sm:p-6 shadow-sm space-y-3.5 z-30">
           <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-            <div className="absolute inset-y-0 left-0 pl-3.5 sm:pl-5 flex items-center pointer-events-none text-cyan-600">
+            <div className="absolute inset-y-0 left-0 pl-3.5 sm:pl-5 flex items-center pointer-events-none text-orange-600">
               <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             
@@ -279,7 +279,7 @@ function ShopContent() {
                 if (searchTerm.trim()) setIsDropdownOpen(true);
               }}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full pl-10 sm:pl-13 pr-28 sm:pr-36 py-3 sm:py-3.5 rounded-2xl bg-slate-50/70 border-2 border-slate-200 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10 text-xs sm:text-base font-bold text-slate-950 placeholder:text-slate-400 focus:outline-none shadow-sm transition-all"
+              className="w-full pl-10 sm:pl-13 pr-28 sm:pr-36 py-3 sm:py-3.5 rounded-2xl bg-slate-50/70 border-2 border-slate-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 text-xs sm:text-base font-bold text-slate-950 placeholder:text-slate-400 focus:outline-none shadow-sm transition-all"
             />
 
             {/* Clear Button (X) + Dedicated Search Action Button */}
@@ -298,7 +298,7 @@ function ShopContent() {
 
               <button
                 type="submit"
-                className="px-3.5 sm:px-5 py-2 sm:py-2 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white text-xs sm:text-sm font-black shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all flex items-center gap-1.5 shrink-0 active:scale-95 cursor-pointer"
+                className="px-3.5 sm:px-5 py-2 sm:py-2 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white text-xs sm:text-sm font-black shadow-[0_0_20px_rgba(255,107,0,0.6)] transition-all flex items-center gap-1.5 shrink-0 active:scale-95 cursor-pointer"
               >
                 <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
                 <span>Search</span>
@@ -310,8 +310,8 @@ function ShopContent() {
           {isDropdownOpen && searchTerm.trim() && (
             <div className="absolute top-[68px] sm:top-[78px] left-3.5 sm:left-6 right-3.5 sm:right-6 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
               <div className="p-2.5 sm:p-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <span className="text-[11px] sm:text-xs font-extrabold text-cyan-800 uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
+                <span className="text-[11px] sm:text-xs font-extrabold text-orange-950 uppercase tracking-wider flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-orange-600" />
                   <span>{searchResults.length} Bundle{searchResults.length !== 1 ? 's' : ''} Found</span>
                 </span>
                 {searchResults.length > 0 && (
@@ -325,7 +325,7 @@ function ShopContent() {
                     key={bundle.id}
                     href={`/product/${bundle.slug}`}
                     onClick={() => setIsDropdownOpen(false)}
-                    className="flex items-center gap-3 p-2 sm:p-2.5 rounded-xl hover:bg-cyan-50/70 transition-colors group"
+                    className="flex items-center gap-3 p-2 sm:p-2.5 rounded-xl hover:bg-orange-50/70 transition-colors group"
                   >
                     <img
                       src={bundle.thumbnail}
@@ -333,7 +333,7 @@ function ShopContent() {
                       className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover shrink-0 bg-slate-900 border border-slate-200"
                     />
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 line-clamp-1 group-hover:text-cyan-600 transition-colors">
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 line-clamp-1 group-hover:text-orange-600 transition-colors">
                         {bundle.title}
                       </h4>
                       <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
@@ -365,7 +365,7 @@ function ShopContent() {
                 <button
                   type="button"
                   onClick={() => handleSearchSubmit()}
-                  className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white text-xs sm:text-sm font-black text-center block transition-all cursor-pointer shadow-md"
+                  className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white text-xs sm:text-sm font-black text-center block transition-all cursor-pointer shadow-md"
                 >
                   View all {searchResults.length} results in Shop &rarr;
                 </button>
@@ -376,7 +376,7 @@ function ShopContent() {
           {/* Quick 1-Tap Search Filter Tags */}
           <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5">
             <span className="text-[11px] sm:text-xs font-extrabold text-slate-600 shrink-0 flex items-center gap-1">
-              <TrendingUp className="w-3 h-3 text-cyan-600" />
+              <TrendingUp className="w-3 h-3 text-orange-600" />
               <span>Popular:</span>
             </span>
             {POPULAR_SEARCH_TAGS.map((tag) => {
@@ -388,8 +388,8 @@ function ShopContent() {
                   onClick={() => handlePopularTagClick(tag.query)}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-slate-950 text-cyan-400 border border-cyan-500/40 shadow-xs font-black'
-                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-cyan-50/70 hover:border-cyan-300'
+                      ? 'bg-slate-950 text-orange-400 border border-orange-500/40 shadow-xs font-black'
+                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-orange-50/70 hover:border-orange-300'
                   }`}
                 >
                   {tag.label}
@@ -407,12 +407,12 @@ function ShopContent() {
               {Math.min(safePage * ITEMS_PER_PAGE, filteredBundles.length)} of {filteredBundles.length} bundles
             </span>
             {searchTerm && (
-              <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-cyan-50 text-cyan-900 border border-cyan-200">
+              <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-orange-50 text-orange-950 border border-orange-200">
                 <span>&ldquo;{searchTerm}&rdquo;</span>
                 <button
                   type="button"
                   onClick={handleClearSearch}
-                  className="hover:text-red-600"
+                  className="hover:text-orange-600"
                   aria-label="Remove search"
                 >
                   <X className="w-3 h-3" />
@@ -429,7 +429,7 @@ function ShopContent() {
                 setSortBy(e.target.value as any);
                 setCurrentPage(1);
               }}
-              className="px-2.5 sm:px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xs cursor-pointer"
+              className="px-2.5 sm:px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs cursor-pointer"
             >
               <option value="popular">Popular</option>
               <option value="price-low">Price: Low to High</option>
@@ -442,7 +442,7 @@ function ShopContent() {
         {/* Empty State */}
         {paginatedBundles.length === 0 && (
           <div className="py-16 text-center bg-white rounded-3xl border border-slate-200/90 p-8 space-y-3">
-            <div className="w-14 h-14 rounded-2xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center mx-auto text-2xl">
+            <div className="w-14 h-14 rounded-2xl bg-orange-50 text-orange-700 border border-orange-200/60 flex items-center justify-center mx-auto text-2xl">
               🔍
             </div>
             <h3 className="text-lg font-bold text-slate-950">
@@ -453,7 +453,7 @@ function ShopContent() {
             </p>
             <button
               onClick={handleClearSearch}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-black hover:from-blue-500 hover:to-cyan-400 transition-colors shadow-sm cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 text-white text-xs font-black hover:from-orange-500 hover:to-amber-400 transition-colors shadow-sm cursor-pointer"
             >
               Show All Bundles
             </button>
@@ -513,17 +513,17 @@ function ShopContent() {
                   {/* Diagonal Ribbon: BEST SELLER or TRENDING or HOT */}
                   <div className="absolute top-0 right-0 overflow-hidden w-20 h-20 sm:w-24 sm:h-24 pointer-events-none">
                     {isBestSelling ? (
-                      <div className="absolute transform rotate-45 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black text-[7px] sm:text-[8px] py-0.5 sm:py-1 right-[-34px] sm:right-[-32px] top-[14px] sm:top-[18px] w-[110px] sm:w-[120px] text-center shadow-md flex items-center justify-center gap-0.5">
+                      <div className="absolute transform rotate-45 bg-gradient-to-r from-orange-600 to-amber-500 text-white font-black text-[7px] sm:text-[8px] py-0.5 sm:py-1 right-[-34px] sm:right-[-32px] top-[14px] sm:top-[18px] w-[110px] sm:w-[120px] text-center shadow-md flex items-center justify-center gap-0.5">
                         <span>★</span>
                         <span>BEST SELLER</span>
                       </div>
                     ) : isTrending ? (
-                      <div className="absolute transform rotate-45 bg-gradient-to-r from-slate-950 to-slate-900 text-cyan-400 border border-cyan-500/30 font-black text-[7px] sm:text-[8px] py-0.5 sm:py-1 right-[-34px] sm:right-[-32px] top-[14px] sm:top-[18px] w-[110px] sm:w-[120px] text-center shadow-md flex items-center justify-center gap-0.5">
+                      <div className="absolute transform rotate-45 bg-gradient-to-r from-slate-950 to-slate-900 text-orange-400 border border-orange-500/30 font-black text-[7px] sm:text-[8px] py-0.5 sm:py-1 right-[-34px] sm:right-[-32px] top-[14px] sm:top-[18px] w-[110px] sm:w-[120px] text-center shadow-md flex items-center justify-center gap-0.5">
                         <span>↗</span>
                         <span>TRENDING</span>
                       </div>
                     ) : (
-                      <div className="absolute transform rotate-45 bg-gradient-to-r from-rose-600 to-red-600 text-white font-black text-[7.5px] sm:text-[9px] py-0.5 sm:py-1 right-[-34px] sm:right-[-32px] top-[14px] sm:top-[18px] w-[110px] sm:w-[120px] text-center shadow-md flex items-center justify-center gap-0.5">
+                      <div className="absolute transform rotate-45 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white font-black text-[7.5px] sm:text-[9px] py-0.5 sm:py-1 right-[-34px] sm:right-[-32px] top-[14px] sm:top-[18px] w-[110px] sm:w-[120px] text-center shadow-md flex items-center justify-center gap-0.5">
                         <span>🔥</span>
                         <span>HOT</span>
                       </div>
@@ -532,7 +532,7 @@ function ShopContent() {
 
                   {/* HD / 1080P Pill */}
                   <span className="absolute bottom-1.5 right-1.5 sm:bottom-2.5 sm:right-2.5 px-1.5 py-0.5 sm:px-2 rounded-md text-[9px] sm:text-[10px] font-black bg-black/80 text-white backdrop-blur-md border border-white/20 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
                     <span>{String(bundle.resolution || '').includes('1080') ? '1080P' : 'HD'}</span>
                   </span>
                 </Link>
@@ -557,7 +557,7 @@ function ShopContent() {
                         })
                       }
                     >
-                      <h3 className="font-extrabold text-xs sm:text-[14px] text-slate-900 hover:text-cyan-600 transition-colors line-clamp-2 leading-snug min-h-[32px] sm:min-h-[40px]">
+                      <h3 className="font-extrabold text-xs sm:text-[14px] text-slate-900 hover:text-orange-600 transition-colors line-clamp-2 leading-snug min-h-[32px] sm:min-h-[40px]">
                         {bundle.title}
                       </h3>
                     </Link>
@@ -585,7 +585,7 @@ function ShopContent() {
                           ₹{bundle.personalPrice}.00
                         </span>
                       </div>
-                      <span className="px-1.5 py-0.5 rounded-md text-[9px] sm:text-[10px] font-extrabold bg-rose-50 text-rose-700 border border-rose-200">
+                      <span className="px-1.5 py-0.5 rounded-md text-[9px] sm:text-[10px] font-extrabold bg-orange-100 text-orange-800 border border-orange-200">
                         {discount}% OFF
                       </span>
                     </div>
@@ -595,7 +595,7 @@ function ShopContent() {
                       <button
                         type="button"
                         onClick={() => addToCart(bundle, 'personal')}
-                        className="p-2 sm:p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-cyan-50 hover:border-cyan-300 text-slate-700 hover:text-cyan-700 transition-colors shadow-2xs shrink-0 flex items-center justify-center active:scale-95 cursor-pointer"
+                        className="p-2 sm:p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-orange-50 hover:border-orange-300 text-slate-700 hover:text-orange-700 transition-colors shadow-2xs shrink-0 flex items-center justify-center active:scale-95 cursor-pointer"
                         aria-label="Add to cart"
                         title="Add to cart"
                       >
@@ -605,7 +605,7 @@ function ShopContent() {
                       <button
                         type="button"
                         onClick={() => buyNow(bundle, 'personal')}
-                        className="flex-1 py-2 sm:py-2.5 px-2 sm:px-4 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-[11px] sm:text-xs flex items-center justify-center shadow-[0_0_18px_rgba(6,182,212,0.5)] transition-all active:scale-95 cursor-pointer border border-cyan-400/30"
+                        className="flex-1 py-2 sm:py-2.5 px-2 sm:px-4 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-[11px] sm:text-xs flex items-center justify-center shadow-[0_0_18px_rgba(255,107,0,0.6)] transition-all active:scale-95 cursor-pointer border border-orange-400/30"
                       >
                         Buy Now
                       </button>
@@ -646,7 +646,7 @@ function ShopContent() {
                     onClick={() => setCurrentPage(pageNum)}
                     className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs font-black transition-colors cursor-pointer ${
                       isActive
-                        ? 'bg-slate-950 text-cyan-400 border border-cyan-500/40 shadow-sm'
+                        ? 'bg-slate-950 text-orange-400 border border-orange-500/40 shadow-sm'
                         : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                     }`}
                   >
@@ -681,8 +681,8 @@ function ShopContent() {
         {/* 3 Trust / Value Cards */}
         <div className="rounded-3xl bg-white border border-slate-200/90 p-4 sm:p-6 shadow-sm space-y-3.5 mt-8">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0">
-              <Zap className="w-4 h-4 fill-cyan-500/20" />
+            <div className="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
+              <Zap className="w-4 h-4 fill-orange-500/20" />
             </div>
             <div>
               <h4 className="text-xs sm:text-sm font-extrabold text-slate-900">Instant Access</h4>
@@ -691,7 +691,7 @@ function ShopContent() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>

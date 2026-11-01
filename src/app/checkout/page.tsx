@@ -700,7 +700,7 @@ function CheckoutContent() {
   if (isLoadingBundle) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4 bg-[#faf9f6]">
-        <div className="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 animate-pulse">
+        <div className="w-16 h-16 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-600 animate-pulse">
           <Loader2 className="w-8 h-8 animate-spin" />
         </div>
         <h2 className="text-xl font-black text-slate-950">Loading Your Checkout...</h2>
@@ -716,7 +716,7 @@ function CheckoutContent() {
     if (resellerSlug) {
       return (
         <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4 bg-[#faf9f6]">
-          <div className="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 flex items-center justify-center mx-auto text-2xl">
+          <div className="w-16 h-16 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center mx-auto text-2xl">
             📦
           </div>
           <h1 className="text-2xl font-black text-slate-950">Bundle Not Found</h1>
@@ -725,7 +725,7 @@ function CheckoutContent() {
           </p>
           <Link
             href={`/r/${resellerSlug}`}
-            className="inline-block px-6 py-3 rounded-full btn-gradient-primary text-white text-xs font-black shadow-[0_0_24px_rgba(6,182,212,0.5)] hover:scale-105 transition-transform"
+            className="inline-block px-6 py-3 rounded-full btn-gradient-primary text-white text-xs font-black shadow-[0_0_24px_rgba(255,107,0,0.5)] hover:scale-105 transition-transform"
           >
             ← Return to Product Page
           </Link>
@@ -735,14 +735,14 @@ function CheckoutContent() {
 
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4 bg-[#faf9f6]">
-        <div className="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 flex items-center justify-center mx-auto text-2xl">
+        <div className="w-16 h-16 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center mx-auto text-2xl">
           🛍️
         </div>
         <h1 className="text-2xl font-black text-slate-950">Your Checkout is Empty</h1>
         <p className="text-sm text-slate-500">Pick a viral reels bundle before proceeding to checkout.</p>
         <Link
           href="/shop"
-          className="inline-block px-6 py-3 rounded-full btn-gradient-primary text-white text-xs font-black shadow-[0_0_24px_rgba(6,182,212,0.5)] hover:scale-105 transition-transform"
+          className="inline-block px-6 py-3 rounded-full btn-gradient-primary text-white text-xs font-black shadow-[0_0_24px_rgba(255,107,0,0.5)] hover:scale-105 transition-transform"
         >
           Explore All Bundles →
         </Link>
@@ -761,7 +761,7 @@ function CheckoutContent() {
                 <div className="flex items-center gap-2 mb-1.5">
                   <Link
                     href={`/r/${resellerSlug}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-cyan-600 hover:text-cyan-700 hover:underline"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-orange-600 hover:text-orange-700 hover:underline"
                   >
                     ← Back to Product
                   </Link>
@@ -775,8 +775,8 @@ function CheckoutContent() {
                   Fill your details below, pay securely via PayU, and get instant Google Drive access.
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-cyan-900 bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-200/80 self-start sm:self-center shrink-0">
-                <Lock className="w-3.5 h-3.5 text-cyan-600" />
+              <div className="flex items-center gap-2 text-xs font-bold text-orange-950 bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-200/80 self-start sm:self-center shrink-0">
+                <Lock className="w-3.5 h-3.5 text-orange-600" />
                 <span>256-bit Secure Encryption</span>
               </div>
             </div>
@@ -790,8 +790,8 @@ function CheckoutContent() {
                   Zero hassle: Fill your details, pay securely via PayU, and get instant Google Drive access.
                 </p>
               </div>
-              <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-cyan-900 bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-200/80">
-                <Lock className="w-3.5 h-3.5 text-cyan-600" />
+              <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-orange-950 bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-200/80">
+                <Lock className="w-3.5 h-3.5 text-orange-600" />
                 <span>256-bit Secure Encryption</span>
               </div>
             </div>
@@ -799,16 +799,16 @@ function CheckoutContent() {
 
           {/* Selected Product Card (Displays the exact product chosen by the customer) */}
           {checkoutItems.length > 0 && (
-            <div className="mb-6 p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-cyan-400/40 transition-colors">
+            <div className="mb-6 p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-orange-400/40 transition-colors">
               <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse" />
                   <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                     {checkoutItems.length === 1 ? 'Selected Product' : `Selected Products (${checkoutItems.length})`}
                   </span>
                 </div>
-                <span className="text-[11px] font-bold text-cyan-800 bg-cyan-50 border border-cyan-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                  <CheckCircle2 className="w-3 h-3 text-cyan-600" />
+                <span className="text-[11px] font-bold text-orange-900 bg-orange-50 border border-orange-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-orange-600" />
                   Instant Google Drive Delivery
                 </span>
               </div>
@@ -829,7 +829,7 @@ function CheckoutContent() {
                         {item?.product?.title || 'Digital Bundle'}
                       </h3>
                       <div className="flex flex-wrap items-center gap-2 mt-1.5">
-                        <span className="text-[10px] sm:text-[11px] font-bold text-sky-900 bg-sky-50 border border-sky-200/80 px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] sm:text-[11px] font-bold text-orange-950 bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded-md">
                           {item?.license === 'reseller' ? 'Reseller Rights' : 'Personal License'}
                         </span>
                         <span className="text-[10px] sm:text-[11px] font-semibold text-slate-500 hidden sm:inline">
@@ -882,10 +882,10 @@ function CheckoutContent() {
             <div className="lg:col-span-7 space-y-6">
               
               {/* 1. Customer Details (Minimal 3 Fields with Strict Anti-Fake Validation) */}
-              <div id="delivery-info" className="rounded-3xl p-5 sm:p-6 bg-white border border-slate-200/90 shadow-sm hover:border-cyan-400/40 transition-colors space-y-4 scroll-mt-24">
+              <div id="delivery-info" className="rounded-3xl p-5 sm:p-6 bg-white border border-slate-200/90 shadow-sm hover:border-orange-400/40 transition-colors space-y-4 scroll-mt-24">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-slate-950 text-cyan-400 border border-cyan-500/40 text-xs font-black flex items-center justify-center shadow-xs">
+                    <span className="w-6 h-6 rounded-full bg-slate-950 text-orange-400 border border-orange-500/40 text-xs font-black flex items-center justify-center shadow-xs">
                       1
                     </span>
                     <h2 className="text-base font-extrabold text-slate-900">
@@ -919,8 +919,8 @@ function CheckoutContent() {
                         (touched.name || fullName.length > 0) && nameError
                           ? 'border-red-400 bg-red-50/30 focus:ring-red-400'
                           : fullName.length > 0 && !nameError
-                          ? 'border-cyan-400 bg-cyan-50/20 focus:ring-cyan-400'
-                          : 'border-slate-200 focus:ring-cyan-500/30 focus:border-cyan-500'
+                          ? 'border-orange-400 bg-orange-50/20 focus:ring-orange-400'
+                          : 'border-slate-200 focus:ring-orange-500/30 focus:border-orange-500'
                       }`}
                     />
                     {(touched.name || fullName.length > 0) && nameError && (
@@ -937,7 +937,7 @@ function CheckoutContent() {
                       <label className="block text-xs font-bold text-slate-700">
                         Gmail Address (For Google Drive Access) <span className="text-red-500">*</span>
                       </label>
-                      <span className="text-[10px] font-extrabold text-sky-900 bg-sky-50 border border-sky-200/70 px-2 py-0.5 rounded">
+                      <span className="text-[10px] font-extrabold text-orange-950 bg-orange-50 border border-orange-200/70 px-2 py-0.5 rounded">
                         Only @gmail.com
                       </span>
                     </div>
@@ -953,8 +953,8 @@ function CheckoutContent() {
                         (touched.email || email.length > 0) && emailError
                           ? 'border-red-400 bg-red-50/30 focus:ring-red-400'
                           : email.length > 0 && !emailError
-                          ? 'border-cyan-400 bg-cyan-50/20 focus:ring-cyan-400'
-                          : 'border-slate-200 focus:ring-cyan-500/30 focus:border-cyan-500'
+                          ? 'border-orange-400 bg-orange-50/20 focus:ring-orange-400'
+                          : 'border-slate-200 focus:ring-orange-500/30 focus:border-orange-500'
                       }`}
                     />
                     {(touched.email || email.length > 0) && emailError ? (
@@ -963,7 +963,7 @@ function CheckoutContent() {
                         <span>{emailError}</span>
                       </p>
                     ) : email.length > 0 && !emailError ? (
-                      <p className="text-[11px] font-bold text-cyan-600 mt-1 flex items-center gap-1">
+                      <p className="text-[11px] font-bold text-orange-600 mt-1 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                         <span>Valid @gmail.com address verified for Google Drive delivery.</span>
                       </p>
@@ -983,7 +983,7 @@ function CheckoutContent() {
                       <span
                         className={`text-[10px] font-extrabold px-2 py-0.5 rounded ${
                           phone.length === 10 && !phoneError
-                            ? 'bg-cyan-100 text-cyan-900'
+                            ? 'bg-orange-100 text-orange-950'
                             : 'bg-slate-100 text-slate-600'
                         }`}
                       >
@@ -995,8 +995,8 @@ function CheckoutContent() {
                         (touched.phone || phone.length > 0) && phoneError
                           ? 'border-red-400 bg-red-50/30 focus-within:ring-red-400'
                           : phone.length === 10 && !phoneError
-                          ? 'border-cyan-400 bg-cyan-50/20 focus-within:ring-cyan-400'
-                          : 'border-slate-200 bg-white focus-within:ring-cyan-500/30 focus-within:border-cyan-500'
+                          ? 'border-orange-400 bg-orange-50/20 focus-within:ring-orange-400'
+                          : 'border-slate-200 bg-white focus-within:ring-orange-500/30 focus-within:border-orange-500'
                       }`}
                     >
                       <span className="px-3.5 py-3 bg-slate-100 border-r border-slate-200 text-xs sm:text-sm font-extrabold text-slate-700 select-none shrink-0">
@@ -1022,7 +1022,7 @@ function CheckoutContent() {
                         <span>{phoneError}</span>
                       </p>
                     ) : phone.length === 10 && !phoneError ? (
-                      <p className="text-[11px] font-bold text-cyan-600 mt-1 flex items-center gap-1">
+                      <p className="text-[11px] font-bold text-orange-600 mt-1 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                         <span>Valid 10-digit WhatsApp number verified (+91 {phone}).</span>
                       </p>
@@ -1040,7 +1040,7 @@ function CheckoutContent() {
                     <button
                       type="submit"
                       disabled={isProcessing}
-                      className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(6,182,212,0.55)] hover:shadow-[0_0_36px_rgba(6,182,212,0.7)] border border-cyan-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
+                      className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
                     >
                       {isProcessing ? (
                         <span className="flex items-center gap-2">
@@ -1055,8 +1055,8 @@ function CheckoutContent() {
                       )}
                     </button>
                     <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500 font-semibold text-center mt-2.5">
-                      <span className="flex items-center gap-1 text-cyan-700 font-bold">
-                        <ShieldCheck className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                      <span className="flex items-center gap-1 text-orange-800 font-bold">
+                        <ShieldCheck className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                         <span>Instant Google Drive Delivery</span>
                       </span>
                       <span>•</span>
@@ -1068,13 +1068,13 @@ function CheckoutContent() {
 
               {/* 2. Exclusive Order Bump with Live 10-Min Timer matching reelsbundles.in */}
               {!isBumpExpired && activeBumpOffer && (
-                <div className="rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-cyan-50/50 via-white to-blue-50/30 border-2 border-cyan-400/60 shadow-sm relative overflow-hidden">
+                <div className="rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-orange-50/50 via-white to-amber-50/30 border-2 border-orange-400/60 shadow-sm relative overflow-hidden">
                   {/* Header ribbon */}
                   <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-slate-950 text-cyan-400 border border-cyan-500/30 shadow-xs">
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-slate-950 text-orange-400 border border-orange-500/30 shadow-xs">
                       ★ SPECIAL 1-TIME OFFER
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs font-black text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full border border-rose-200 animate-pulse">
+                    <div className="flex items-center gap-1.5 text-xs font-black text-orange-700 bg-orange-100 px-2.5 py-1 rounded-full border border-orange-200 animate-pulse">
                       <Clock className="w-3.5 h-3.5" />
                       <span>Offer ends in {timeFormatted}</span>
                     </div>
@@ -1084,7 +1084,7 @@ function CheckoutContent() {
                     <img
                       src={activeBumpOffer.thumbnail}
                       alt={activeBumpOffer.title}
-                      className="w-20 sm:w-24 aspect-[4/3] rounded-xl object-cover shrink-0 border border-cyan-200 shadow-sm"
+                      className="w-20 sm:w-24 aspect-[4/3] rounded-xl object-cover shrink-0 border border-orange-200 shadow-sm"
                     />
                     <div className="flex-1 min-w-0">
                       <h3 className="font-extrabold text-sm text-slate-950 leading-snug">
@@ -1094,13 +1094,13 @@ function CheckoutContent() {
                         {activeBumpOffer.subtitle}
                       </p>
                       <div className="flex items-center gap-2 mt-2">
-                        <span className="font-black text-sm text-cyan-700">
+                        <span className="font-black text-sm text-orange-700">
                           ₹{activeBumpOffer.discountPrice}.00
                         </span>
                         <span className="text-xs text-slate-400 line-through">
                           ₹{activeBumpOffer.originalPrice}.00
                         </span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-rose-100 text-rose-800 border border-rose-200">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-orange-100 text-orange-800 border border-orange-200">
                           {activeBumpOffer.discountPercentage}% OFF
                         </span>
                       </div>
@@ -1108,12 +1108,12 @@ function CheckoutContent() {
                   </div>
 
                   {/* Switcher Toggle */}
-                  <label className="mt-4 pt-3 border-t border-cyan-200/80 flex items-center gap-3 cursor-pointer select-none">
+                  <label className="mt-4 pt-3 border-t border-orange-200/80 flex items-center gap-3 cursor-pointer select-none">
                     <input
                       type="checkbox"
                       checked={orderBumpAdded}
                       onChange={() => setOrderBumpAdded(!orderBumpAdded)}
-                      className="w-5 h-5 rounded text-cyan-500 focus:ring-cyan-500 border-slate-300 cursor-pointer"
+                      className="w-5 h-5 rounded text-orange-500 focus:ring-orange-500 border-slate-300 cursor-pointer"
                     />
                     <span className="text-xs font-extrabold text-slate-900">
                       Yes! Add this {activeBumpOffer.reelCount || 1000}+ reels mega pack to my order for just ₹{activeBumpOffer.discountPrice}
@@ -1126,23 +1126,23 @@ function CheckoutContent() {
               <div className="rounded-3xl p-6 bg-white border border-slate-200/90 shadow-sm space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-slate-950 text-cyan-400 border border-cyan-500/40 text-xs font-black flex items-center justify-center shadow-xs">
+                    <span className="w-6 h-6 rounded-full bg-slate-950 text-orange-400 border border-orange-500/40 text-xs font-black flex items-center justify-center shadow-xs">
                       2
                     </span>
                     <h2 className="text-base font-extrabold text-slate-900">
                       Payment Method
                     </h2>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-100 text-cyan-900 border border-cyan-200 flex items-center gap-1">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-orange-100 text-orange-950 border border-orange-200 flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5" /> PayU Verified
                   </span>
                 </div>
 
                 {/* Branded PayU Details Card */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-cyan-500/30 text-white space-y-3.5 shadow-md">
+                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-orange-500/30 text-white space-y-3.5 shadow-md">
                   <div className="flex items-center justify-between">
-                    <div className="font-bold text-xs text-cyan-400 flex items-center gap-1.5">
-                      <CreditCard className="w-4 h-4 text-cyan-400" />
+                    <div className="font-bold text-xs text-orange-400 flex items-center gap-1.5">
+                      <CreditCard className="w-4 h-4 text-orange-400" />
                       <span>PayU Payment Gateway (India)</span>
                     </div>
                     <span className="text-[10px] font-bold text-slate-400">
@@ -1157,7 +1157,7 @@ function CheckoutContent() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                     <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1 shadow-xs">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-                        <Smartphone className="w-3.5 h-3.5 text-cyan-400" />
+                        <Smartphone className="w-3.5 h-3.5 text-orange-400" />
                         <span>All UPI Apps</span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-medium">
@@ -1167,7 +1167,7 @@ function CheckoutContent() {
 
                     <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1 shadow-xs">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-                        <CreditCard className="w-3.5 h-3.5 text-cyan-400" />
+                        <CreditCard className="w-3.5 h-3.5 text-orange-400" />
                         <span>Cards</span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-medium">
@@ -1177,7 +1177,7 @@ function CheckoutContent() {
 
                     <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1 shadow-xs">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-                        <Building className="w-3.5 h-3.5 text-cyan-400" />
+                        <Building className="w-3.5 h-3.5 text-orange-400" />
                         <span>NetBanking</span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-medium">
@@ -1187,8 +1187,8 @@ function CheckoutContent() {
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-cyan-50/80 border border-cyan-200/80 flex items-center gap-2 text-xs text-cyan-800 font-semibold">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-600 shrink-0" />
+                <div className="p-3 rounded-xl bg-orange-50/80 border border-orange-200/80 flex items-center gap-2 text-xs text-orange-950 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
                   <span>Instant Google Drive Bundle delivery upon payment confirmation.</span>
                 </div>
               </div>
@@ -1218,7 +1218,7 @@ function CheckoutContent() {
                         <h4 className="font-bold text-xs text-slate-950 line-clamp-1">
                           {item?.product?.title || 'Viral Reels Bundle'}
                         </h4>
-                        <span className="text-[10px] font-bold text-sky-900 bg-sky-50 border border-sky-200/70 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-orange-950 bg-orange-50 border border-orange-200/70 px-1.5 py-0.5 rounded">
                           {item?.license === 'reseller' ? 'Reseller Rights' : 'Personal Use'}
                         </span>
                       </div>
@@ -1242,7 +1242,7 @@ function CheckoutContent() {
                   ))}
 
                   {orderBumpAdded && activeBumpOffer && (
-                    <div className="flex gap-3 items-center justify-between p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200">
+                    <div className="flex gap-3 items-center justify-between p-2.5 rounded-xl bg-orange-50/70 border border-orange-200">
                       <img
                         src={activeBumpOffer.thumbnail}
                         alt={activeBumpOffer.title}
@@ -1252,12 +1252,12 @@ function CheckoutContent() {
                         <h4 className="font-bold text-xs text-slate-950 line-clamp-1">
                           {activeBumpOffer.title}
                         </h4>
-                        <span className="text-[10px] font-bold text-cyan-800 bg-cyan-100 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-orange-950 bg-orange-100 px-1.5 py-0.5 rounded">
                           Bonus Offer
                         </span>
                       </div>
                       <div className="text-right shrink-0">
-                        <div className="font-extrabold text-xs text-cyan-950">
+                        <div className="font-extrabold text-xs text-orange-950">
                           ₹{activeBumpOffer.discountPrice}.00
                         </div>
                         <button
@@ -1273,13 +1273,13 @@ function CheckoutContent() {
 
                   {/* Free Bonus Bundles (Promotional Offer) */}
                   {isOfferActive && checkoutSubtotal >= minCart && freeBundles.length > 0 && (
-                    <div className="space-y-2 pt-2 border-t border-dashed border-cyan-200">
-                      <div className="flex items-center justify-between text-[11px] font-black text-cyan-800 uppercase tracking-wider">
+                    <div className="space-y-2 pt-2 border-t border-dashed border-orange-200">
+                      <div className="flex items-center justify-between text-[11px] font-black text-orange-950 uppercase tracking-wider">
                         <span>🎁 Claimed Free Gifts ({freeBundles.length}/{freeQty})</span>
                         <button
                           type="button"
                           onClick={() => setIsFreeBundleModalOpen(true)}
-                          className="text-cyan-600 underline hover:text-cyan-800"
+                          className="text-orange-600 underline hover:text-orange-800"
                         >
                           Change
                         </button>
@@ -1287,7 +1287,7 @@ function CheckoutContent() {
                       {freeBundles.slice(0, freeQty).map((fb) => (
                         <div
                           key={`free-${fb.id}`}
-                          className="flex gap-3 items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-cyan-50/70 to-blue-50/50 border border-cyan-200"
+                          className="flex gap-3 items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-orange-50/70 to-amber-50/50 border border-orange-200"
                         >
                           <img
                             src={fb.thumbnail || '/logo.webp'}
@@ -1298,7 +1298,7 @@ function CheckoutContent() {
                             <h4 className="font-bold text-xs text-slate-950 line-clamp-1">
                               {fb.title}
                             </h4>
-                            <span className="text-[10px] font-black text-cyan-700 bg-cyan-100 px-1.5 py-0.5 rounded">
+                            <span className="text-[10px] font-black text-orange-800 bg-orange-100 px-1.5 py-0.5 rounded">
                               FREE BONUS GIFT
                             </span>
                           </div>
@@ -1306,7 +1306,7 @@ function CheckoutContent() {
                             <div className="text-[10px] text-slate-400 line-through">
                               ₹{fb.personalPrice}.00
                             </div>
-                            <div className="font-black text-xs text-cyan-700">
+                            <div className="font-black text-xs text-orange-700">
                               ₹0.00
                             </div>
                             <button
@@ -1324,15 +1324,15 @@ function CheckoutContent() {
 
                   {/* If qualified but hasn't claimed all free bundles */}
                   {isOfferActive && checkoutSubtotal >= minCart && freeBundles.length < freeQty && (
-                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/15 border border-cyan-400/40 flex items-center justify-between gap-2 shadow-xs">
+                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-orange-500/10 via-amber-500/10 to-orange-500/15 border border-orange-400/40 flex items-center justify-between gap-2 shadow-xs">
                       <div className="text-xs font-bold text-slate-950 flex items-center gap-1.5">
-                        <Gift className="w-4 h-4 shrink-0 text-cyan-600" />
+                        <Gift className="w-4 h-4 shrink-0 text-orange-600" />
                         <span>You unlocked {freeQty} Free Bundles!</span>
                       </div>
                       <button
                         type="button"
                         onClick={() => setIsFreeBundleModalOpen(true)}
-                        className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 text-white text-xs font-black hover:opacity-95 shadow-[0_0_15px_rgba(6,182,212,0.5)] cursor-pointer hover:scale-105 active:scale-95 transition-transform"
+                        className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white text-xs font-black hover:opacity-95 shadow-[0_0_15px_rgba(255,107,0,0.5)] cursor-pointer hover:scale-105 active:scale-95 transition-transform"
                       >
                         Claim Now (₹0)
                       </button>
@@ -1344,12 +1344,12 @@ function CheckoutContent() {
                 <div className="pt-3 border-t border-slate-100">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                      <Tag className="w-3.5 h-3.5 text-cyan-500" />
+                      <Tag className="w-3.5 h-3.5 text-orange-500" />
                       Promo / Discount Code
                     </span>
                     {appliedCoupon && (
-                      <span className="text-[10px] font-black text-cyan-800 bg-cyan-100 px-2 py-0.5 rounded-full flex items-center gap-1 border border-cyan-200">
-                        <CheckCircle2 className="w-3 h-3 text-cyan-600" />
+                      <span className="text-[10px] font-black text-orange-950 bg-orange-100 px-2 py-0.5 rounded-full flex items-center gap-1 border border-orange-200">
+                        <CheckCircle2 className="w-3 h-3 text-orange-600" />
                         Applied
                       </span>
                     )}
@@ -1373,14 +1373,14 @@ function CheckoutContent() {
                               }
                             }}
                             placeholder="Enter coupon code"
-                            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 uppercase tracking-wider"
+                            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 uppercase tracking-wider"
                           />
                         </div>
                         <button
                           type="button"
                           onClick={() => handleApplyCoupon()}
                           disabled={couponLoading || !couponInput.trim()}
-                          className="px-4 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 active:scale-95 disabled:opacity-50 text-cyan-400 text-xs font-black transition-all flex items-center gap-1.5 shrink-0 cursor-pointer shadow-xs border border-slate-800"
+                          className="px-4 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 active:scale-95 disabled:opacity-50 text-orange-400 text-xs font-black transition-all flex items-center gap-1.5 shrink-0 cursor-pointer shadow-xs border border-slate-800"
                         >
                           {couponLoading ? (
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -1398,9 +1398,9 @@ function CheckoutContent() {
                       )}
                     </div>
                   ) : (
-                    <div className="p-3 rounded-2xl bg-gradient-to-r from-cyan-50 to-blue-50/60 border border-cyan-200 flex items-center justify-between gap-2 shadow-2xs animate-in fade-in duration-200">
+                    <div className="p-3 rounded-2xl bg-gradient-to-r from-orange-50 to-amber-50/60 border border-orange-200 flex items-center justify-between gap-2 shadow-2xs animate-in fade-in duration-200">
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="w-8 h-8 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+                        <div className="w-8 h-8 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs">
                           <CheckCircle2 className="w-4 h-4" />
                         </div>
                         <div className="min-w-0">
@@ -1408,11 +1408,11 @@ function CheckoutContent() {
                             <span className="text-xs font-black text-slate-950 uppercase tracking-wide">
                               {appliedCoupon.code}
                             </span>
-                            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-rose-100 text-rose-800">
+                            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-orange-100 text-orange-800">
                               -₹{couponDiscount} OFF
                             </span>
                           </div>
-                          <p className="text-[10px] text-cyan-800 font-medium truncate mt-0.5">
+                          <p className="text-[10px] text-orange-950 font-medium truncate mt-0.5">
                             {appliedCoupon.description || 'Special promo discount applied!'}
                           </p>
                         </div>
@@ -1420,7 +1420,7 @@ function CheckoutContent() {
                       <button
                         type="button"
                         onClick={handleRemoveCoupon}
-                        className="w-7 h-7 rounded-lg text-cyan-700 hover:bg-cyan-200/60 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                        className="w-7 h-7 rounded-lg text-orange-700 hover:bg-orange-200/60 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                         title="Remove promo code"
                       >
                         <X className="w-4 h-4" />
@@ -1436,15 +1436,15 @@ function CheckoutContent() {
                     <span className="text-slate-800">₹{checkoutSubtotal}.00</span>
                   </div>
                   {orderBumpAdded && activeBumpOffer && (
-                    <div className="flex justify-between text-cyan-700 font-bold">
+                    <div className="flex justify-between text-orange-700 font-bold">
                       <span>Order Bump ({activeBumpOffer.discountPercentage}% Off)</span>
                       <span>+₹{activeBumpOffer.discountPrice}.00</span>
                     </div>
                   )}
                   {appliedCoupon && couponDiscount > 0 && (
-                    <div className="flex justify-between text-cyan-700 font-bold animate-in fade-in">
+                    <div className="flex justify-between text-orange-700 font-bold animate-in fade-in">
                       <span className="flex items-center gap-1">
-                        <Tag className="w-3.5 h-3.5 text-cyan-500" />
+                        <Tag className="w-3.5 h-3.5 text-orange-500" />
                         Coupon Discount ({appliedCoupon.code})
                       </span>
                       <span>-₹{couponDiscount}.00</span>
@@ -1461,7 +1461,7 @@ function CheckoutContent() {
                   <button
                     type="submit"
                     disabled={isProcessing}
-                    className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(6,182,212,0.55)] hover:shadow-[0_0_36px_rgba(6,182,212,0.7)] border border-cyan-400/40 hover:scale-[1.01] transition-all disabled:opacity-70 cursor-pointer"
+                    className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] transition-all disabled:opacity-70 cursor-pointer"
                   >
                     {isProcessing ? (
                       <span className="flex items-center gap-2">
@@ -1478,7 +1478,7 @@ function CheckoutContent() {
 
                   <div className="space-y-1.5 text-center text-[11px] text-slate-400 pt-2 font-medium">
                     <p className="flex items-center justify-center gap-1 text-slate-600 font-bold">
-                      <ShieldCheck className="w-4 h-4 text-cyan-600" />
+                      <ShieldCheck className="w-4 h-4 text-orange-600" />
                       Instant Google Drive Link Delivery
                     </p>
                     <p>Protected by 256-bit SSL encryption & PayU India Security</p>
@@ -1500,8 +1500,8 @@ function CheckoutContent() {
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-cyan-900 bg-cyan-50 px-2 py-0.5 rounded-md border border-cyan-200">
-                      <ShieldCheck className="w-3 h-3 text-cyan-600" />
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-orange-950 bg-orange-50 px-2 py-0.5 rounded-md border border-orange-200">
+                      <ShieldCheck className="w-3.5 h-3.5 text-orange-600" />
                       <span>256-bit SSL</span>
                     </span>
                   </div>
@@ -1509,9 +1509,9 @@ function CheckoutContent() {
 
                 {/* Applied Coupon Pill (If any) */}
                 {appliedCoupon && (
-                  <div className="p-2 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 flex items-center justify-between gap-2 shadow-2xs animate-in fade-in duration-200">
+                  <div className="p-2 rounded-xl bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 flex items-center justify-between gap-2 shadow-2xs animate-in fade-in duration-200">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="w-5 h-5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white flex items-center justify-center shrink-0">
+                      <div className="w-5 h-5 rounded-lg bg-gradient-to-r from-orange-600 to-amber-500 text-white flex items-center justify-center shrink-0">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                       </div>
                       <div className="min-w-0">
@@ -1519,7 +1519,7 @@ function CheckoutContent() {
                           <span className="text-xs font-black text-slate-950 uppercase tracking-wide">
                             {appliedCoupon.code}
                           </span>
-                          <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-rose-100 text-rose-800">
+                          <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-orange-100 text-orange-800">
                             -₹{couponDiscount} OFF
                           </span>
                         </div>
@@ -1528,7 +1528,7 @@ function CheckoutContent() {
                     <button
                       type="button"
                       onClick={handleRemoveCoupon}
-                      className="text-[11px] font-bold text-cyan-800 hover:text-red-600 px-2 py-0.5 rounded hover:bg-cyan-100/80 transition-colors shrink-0 cursor-pointer"
+                      className="text-[11px] font-bold text-orange-800 hover:text-red-600 px-2 py-0.5 rounded hover:bg-orange-100/80 transition-colors shrink-0 cursor-pointer"
                       title="Remove promo code"
                     >
                       Remove
@@ -1539,7 +1539,7 @@ function CheckoutContent() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(6,182,212,0.55)] hover:shadow-[0_0_36px_rgba(6,182,212,0.7)] border border-cyan-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
+                  className="w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
                 >
                   {isProcessing ? (
                     <span className="flex items-center gap-2">
@@ -1555,7 +1555,7 @@ function CheckoutContent() {
                 </button>
 
                 <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-[11px] text-slate-500 font-medium text-center">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                   <span>Instant Google Drive Delivery · 256-bit SSL Security</span>
                 </div>
               </div>
@@ -1577,8 +1577,8 @@ export default function CheckoutPage() {
       <Suspense
         fallback={
           <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4 bg-[#faf9f6]">
-            <div className="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 animate-pulse">
-              <div className="w-8 h-8 rounded-full border-4 border-cyan-500 border-t-transparent animate-spin" />
+            <div className="w-16 h-16 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-600 animate-pulse">
+              <div className="w-8 h-8 rounded-full border-4 border-orange-500 border-t-transparent animate-spin" />
             </div>
             <h2 className="text-xl font-black text-slate-950">Loading Checkout...</h2>
             <p className="text-xs text-slate-500 max-w-sm">

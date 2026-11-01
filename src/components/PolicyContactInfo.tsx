@@ -13,7 +13,7 @@ export default function PolicyContactInfo() {
   return (
     <div className="mt-6 rounded-2xl bg-slate-50 border border-slate-200/90 p-5 sm:p-6 text-slate-700 text-xs sm:text-sm space-y-4">
       <div className="flex items-center gap-2 pb-3 border-b border-slate-200/80">
-        <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+        <ShieldCheck className="w-4 h-4 text-orange-600 shrink-0" />
         <h4 className="font-black text-slate-900 text-sm sm:text-base">
           Official Merchant &amp; Grievance Redressal Desk
         </h4>
@@ -21,7 +21,7 @@ export default function PolicyContactInfo() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 flex items-center justify-center shrink-0 mt-0.5">
             <span className="font-black text-xs">🏢</span>
           </div>
           <div>
@@ -31,14 +31,14 @@ export default function PolicyContactInfo() {
         </div>
 
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 flex items-center justify-center shrink-0 mt-0.5">
             <Mail className="w-3.5 h-3.5" />
           </div>
           <div>
             <span className="font-bold text-slate-900 block">Customer Support Email</span>
             <a
               href={`mailto:${supportEmail}`}
-              className="text-amber-700 hover:text-amber-800 font-semibold underline underline-offset-2 break-all"
+              className="text-orange-700 hover:text-orange-800 font-semibold underline underline-offset-2 break-all"
             >
               {supportEmail}
             </a>
@@ -46,7 +46,7 @@ export default function PolicyContactInfo() {
         </div>
 
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
             <Phone className="w-3.5 h-3.5" />
           </div>
           <div>
@@ -56,7 +56,7 @@ export default function PolicyContactInfo() {
         </div>
 
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 flex items-center justify-center shrink-0 mt-0.5">
             <Clock className="w-3.5 h-3.5" />
           </div>
           <div>
@@ -66,7 +66,7 @@ export default function PolicyContactInfo() {
         </div>
 
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-rose-500/10 text-rose-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
             <MapPin className="w-3.5 h-3.5" />
           </div>
           <div>
@@ -76,7 +76,7 @@ export default function PolicyContactInfo() {
         </div>
 
         <div className="flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-700 flex items-center justify-center shrink-0 mt-0.5">
             <UserCheck className="w-3.5 h-3.5" />
           </div>
           <div>

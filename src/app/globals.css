@@ -4,15 +4,15 @@
 @import '../admin/index.css';
 
 :root {
-  --rb-bg: #f8fafc;
-  --rb-text: #0b132b;
-  --rb-muted: #64748b;
-  --rb-purple: #0066FF;
-  --rb-purple-light: #00D2FF;
-  --rb-purple-dark: #0047BA;
-  --rb-pink: #0ea5e9;
-  --rb-green: #0284c7;
-  --rb-line: #e2e8f0;
+  --rb-bg: #fffbf7;
+  --rb-text: #170d07;
+  --rb-muted: #786154;
+  --rb-purple: #ff6b00;
+  --rb-purple-light: #ff9500;
+  --rb-purple-dark: #e05300;
+  --rb-pink: #f97316;
+  --rb-green: #ea580c;
+  --rb-line: #f3e8e2;
 }
 
 html {
@@ -57,7 +57,7 @@ body {
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0066FF;
+  background: #ff6b00;
 }
 
 /* Mask gradient for continuous marquee */
@@ -102,52 +102,52 @@ body {
   display: inline-block;
   width: 3px;
   height: 1.1em;
-  background: #00D2FF;
+  background: #ff6b00;
   margin-left: 4px;
   vertical-align: middle;
   animation: blink 0.8s infinite;
 }
 
-/* Button glow - DigiHaven Ultra-Premium Electric Cyber Glow */
+/* Button glow - DigiHaven Ultra-Premium Electric Orange Glow */
 .btn-gradient-primary {
-  background: linear-gradient(105deg, #0052FF 0%, #0084FF 35%, #00D2FF 75%, #0052FF 100%);
+  background: linear-gradient(105deg, #e65100 0%, #ff6b00 40%, #ffa000 85%, #e65100 100%);
   background-size: 200% auto;
   color: #ffffff;
   font-weight: 900;
-  box-shadow: 0 0 25px rgba(0, 140, 255, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 26px rgba(255, 107, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.45);
   transition: all 0.25s ease-in-out;
 }
 .btn-gradient-primary:hover {
   transform: translateY(-2px);
   background-position: right center;
-  box-shadow: 0 0 35px rgba(0, 210, 255, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 38px rgba(255, 149, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 .btn-gradient-orange {
-  background: linear-gradient(105deg, #e11d48 0%, #f43f5e 40%, #fb923c 80%, #e11d48 100%);
+  background: linear-gradient(105deg, #ea580c 0%, #ff781f 45%, #ffb300 85%, #ea580c 100%);
   background-size: 200% auto;
   color: #ffffff;
   font-weight: 900;
-  box-shadow: 0 0 25px rgba(244, 63, 94, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(255, 120, 31, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
   transition: all 0.25s ease-in-out;
 }
 .btn-gradient-orange:hover {
   transform: translateY(-2px);
   background-position: right center;
-  box-shadow: 0 0 35px rgba(251, 146, 60, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 38px rgba(255, 160, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
-@keyframes pulseGlowCyan {
+@keyframes pulseGlowOrange {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 102, 255, 0.45);
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
   }
   50% {
-    box-shadow: 0 0 35px rgba(0, 210, 255, 0.85);
+    box-shadow: 0 0 38px rgba(255, 160, 0, 0.85);
   }
 }
 
 .animate-pulse-glow {
-  animation: pulseGlowCyan 2.4s ease-in-out infinite;
+  animation: pulseGlowOrange 2.4s ease-in-out infinite;
 }
 
 /* Glassmorphism */

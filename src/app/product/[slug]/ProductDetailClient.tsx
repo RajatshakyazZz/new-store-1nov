@@ -210,19 +210,19 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
   const getAudienceIcon = (icon: string) => {
     switch (icon) {
       case 'creator':
-        return <Video className="w-4 h-4 text-cyan-600" />;
+        return <Video className="w-4 h-4 text-orange-600" />;
       case 'affiliate':
         return <TrendingUp className="w-4 h-4 text-pink-600" />;
       case 'manager':
-        return <Layers className="w-4 h-4 text-blue-600" />;
+        return <Layers className="w-4 h-4 text-orange-600" />;
       case 'theme':
-        return <Sparkles className="w-4 h-4 text-sky-600" />;
+        return <Sparkles className="w-4 h-4 text-orange-600" />;
       case 'family':
         return <Heart className="w-4 h-4 text-orange-600" />;
       case 'agency':
-        return <Target className="w-4 h-4 text-blue-600" />;
+        return <Target className="w-4 h-4 text-orange-600" />;
       default:
-        return <Sparkles className="w-4 h-4 text-cyan-600" />;
+        return <Sparkles className="w-4 h-4 text-orange-600" />;
     }
   };
 
@@ -234,13 +234,13 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         {/* Navigation / Breadcrumb */}
         <div className="flex items-center justify-between gap-3 text-xs font-semibold text-slate-500">
           <nav aria-label="Breadcrumb" className="hidden sm:flex items-center gap-2">
-            <Link href="/" className="hover:text-cyan-600 transition-colors">Home</Link>
+            <Link href="/" className="hover:text-orange-600 transition-colors">Home</Link>
             <span className="text-slate-300">/</span>
-            <Link href="/shop" className="hover:text-cyan-600 transition-colors">Shop</Link>
+            <Link href="/shop" className="hover:text-orange-600 transition-colors">Shop</Link>
             <span className="text-slate-300">/</span>
             <Link
               href={`/category/${p.categorySlug || 'ai-reels'}`}
-              className="hover:text-cyan-600 transition-colors"
+              className="hover:text-orange-600 transition-colors"
             >
               {p.category || 'Reels Bundle'}
             </Link>
@@ -257,8 +257,8 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back to Store</span>
             </Link>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-50 text-orange-950 border border-orange-200 text-[11px] font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
               <span>Instant Delivery</span>
             </span>
           </div>
@@ -291,7 +291,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               </div>
 
               <div className="absolute top-3 right-3">
-                <span className="px-2.5 py-1 rounded-lg text-[11px] font-black uppercase tracking-wider bg-rose-600 text-white shadow-xs">
+                <span className="px-2.5 py-1 rounded-lg text-[11px] font-black uppercase tracking-wider bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-xs">
                   {discountPercent}% OFF
                 </span>
               </div>
@@ -307,7 +307,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     onClick={() => setSelectedImage(img)}
                     className={`w-16 h-16 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-slate-50 cursor-pointer ${
                       currentImage === img
-                        ? 'border-cyan-500 ring-2 ring-cyan-200'
+                        ? 'border-orange-500 ring-2 ring-orange-200'
                         : 'border-slate-200 opacity-70 hover:opacity-100'
                     }`}
                   >
@@ -328,16 +328,16 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             {hasVideoPreview && (
               <a
                 href="#view-samples"
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 hover:from-slate-900 hover:to-slate-800 text-cyan-300 border border-cyan-500/40 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-[0.99] group cursor-pointer"
+                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 hover:from-slate-900 hover:to-slate-800 text-orange-300 border border-orange-500/40 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-[0.99] group cursor-pointer"
               >
-                <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play className="w-3 h-3 fill-cyan-300 text-cyan-300 ml-0.5" />
+                <span className="w-5 h-5 rounded-full bg-orange-500/20 text-orange-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Play className="w-3 h-3 fill-orange-300 text-orange-300 ml-0.5" />
                 </span>
                 <span>
                   Watch Reel Samples & Video Preview{' '}
                   {parsedVideos.length > 1 ? `(${parsedVideos.length} Samples)` : '(1080P)'}
                 </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30">
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-orange-500/20 text-orange-300 font-bold border border-orange-500/30">
                   LIVE DEMO
                 </span>
               </a>
@@ -346,15 +346,15 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             {/* Clean Trust Reassurance Strip */}
             <div className="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-2xs text-center text-xs">
               <div className="flex items-center justify-center gap-1.5 py-1 font-semibold text-slate-700">
-                <FolderOpen className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                <FolderOpen className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                 <span className="text-[11px] sm:text-xs">Google Drive</span>
               </div>
               <div className="flex items-center justify-center gap-1.5 py-1 font-semibold text-slate-700 border-x border-slate-100">
-                <ShieldCheck className="w-3.5 h-3.5 text-sky-600 shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                 <span className="text-[11px] sm:text-xs">Safe UPI</span>
               </div>
               <div className="flex items-center justify-center gap-1.5 py-1 font-semibold text-slate-700">
-                <Sparkles className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                 <span className="text-[11px] sm:text-xs">No Watermark</span>
               </div>
             </div>
@@ -368,16 +368,16 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2 flex-wrap">
                   <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-900 font-extrabold text-[11px] uppercase tracking-wider border border-sky-200/60">
+                    <span className="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-950 font-extrabold text-[11px] uppercase tracking-wider border border-orange-200/60">
                       {p.category || 'Reels Bundle'}
                     </span>
                     <span className="text-slate-300">•</span>
-                    <div className="flex items-center gap-1 text-xs font-bold text-cyan-600">
+                    <div className="flex items-center gap-1 text-xs font-bold text-orange-600">
                       <span>★ 4.9</span>
                       <span className="text-slate-400 font-medium text-[11px]">({p.reviewCount || 200}+ verified reviews)</span>
                     </div>
                   </div>
-                  <span className="text-[11px] font-bold text-cyan-800 bg-cyan-50 px-2 py-0.5 rounded-md border border-cyan-200">
+                  <span className="text-[11px] font-bold text-orange-950 bg-orange-50 px-2 py-0.5 rounded-md border border-orange-200">
                     Verified Digital Bundle
                   </span>
                 </div>
@@ -409,7 +409,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                   </p>
                 </div>
                 <div className="text-right">
-                  <span className="inline-block px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-black">
+                  <span className="inline-block px-2.5 py-1 rounded-lg bg-orange-100 text-orange-800 text-xs font-black">
                     Save ₹{savingsAmount}
                   </span>
                 </div>
@@ -421,19 +421,19 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               {/* Key Highlights */}
               <div className="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700">
                 <div className="flex items-center gap-1.5 p-2 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <Check className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                   <span>{p.reelCount || 1000}+ HD Video Clips</span>
                 </div>
                 <div className="flex items-center gap-1.5 p-2 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <Check className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                   <span>100% Watermark-Free</span>
                 </div>
                 <div className="flex items-center gap-1.5 p-2 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <Check className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                   <span>9:16 Vertical (Reels/Shorts)</span>
                 </div>
                 <div className="flex items-center gap-1.5 p-2 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <Check className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                   <span>Instant Drive Link Access</span>
                 </div>
               </div>
@@ -443,21 +443,21 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 <button
                   type="button"
                   onClick={() => buyNow(p, 'personal')}
-                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-base shadow-[0_0_28px_rgba(6,182,212,0.55)] hover:shadow-[0_0_36px_rgba(6,182,212,0.7)] border border-cyan-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-base shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Zap className="w-4 h-4 fill-white" />
                   <span>Buy Now — ₹{activePrice}.00 (Instant Access)</span>
                 </button>
 
                 <p className="text-center text-[11px] text-slate-500 font-medium flex items-center justify-center gap-1.5">
-                  <FolderOpen className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <FolderOpen className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                   <span>Drive link appears on screen immediately & is sent to your email.</span>
                 </p>
 
                 {/* Indian UPI Payment Badges Strip */}
                 <div className="pt-2 border-t border-slate-100 space-y-1.5 text-center">
                   <div className="flex items-center justify-center gap-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                    <Lock className="w-3 h-3 text-cyan-600" />
+                    <Lock className="w-3 h-3 text-orange-600" />
                     <span>Instant UPI Checkout via PayU</span>
                   </div>
                   <div className="flex items-center justify-center gap-1.5 flex-wrap text-[11px] font-bold text-slate-600">
@@ -480,11 +480,11 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                         setIsAuthModalOpen(true);
                       }
                     }}
-                    className="w-full py-3 px-5 rounded-xl bg-white hover:bg-cyan-50/80 border border-cyan-300/80 text-cyan-950 font-black text-sm flex items-center justify-center gap-2 shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
+                    className="w-full py-3 px-5 rounded-xl bg-white hover:bg-orange-50/80 border border-orange-300/80 text-orange-950 font-black text-sm flex items-center justify-center gap-2 shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
                   >
-                    <Briefcase className="w-4 h-4 text-cyan-600" />
+                    <Briefcase className="w-4 h-4 text-orange-600" />
                     <span>Resell & Earn on This Bundle</span>
-                    <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-[10px] font-extrabold uppercase shadow-xs">
+                    <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-orange-600 to-amber-500 text-white text-[10px] font-extrabold uppercase shadow-xs">
                       Keep 100% Margin
                     </span>
                   </button>
@@ -503,25 +503,25 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         {hasVideoPreview && (
           <section
             id="view-samples"
-            className="bg-gradient-to-br from-slate-950 via-[#071933] to-slate-950 rounded-2xl sm:rounded-3xl border border-cyan-500/30 p-5 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.5)] text-white space-y-6 relative overflow-hidden [contain:layout_style]"
+            className="bg-gradient-to-br from-slate-950 via-[#1f0d05] to-slate-950 rounded-2xl sm:rounded-3xl border border-orange-500/30 p-5 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.5)] text-white space-y-6 relative overflow-hidden [contain:layout_style]"
           >
             {/* Ambient glow backgrounds */}
-            <div className="absolute -top-32 -right-32 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-32 -right-32 w-80 h-80 bg-orange-500/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
 
             {/* Header banner */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-5 relative z-10">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-[11px] font-extrabold uppercase tracking-wider">
-                  <Play className="w-3 h-3 fill-cyan-300" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/15 text-orange-300 border border-orange-500/30 text-[11px] font-extrabold uppercase tracking-wider">
+                  <Play className="w-3 h-3 fill-orange-300" />
                   <span>
                     Official Sample {parsedVideos.length > 1 ? `Reels (${parsedVideos.length} Available)` : 'Reel'}
                   </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
                 </div>
                 <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
                   <span>View Samples Before You Buy</span>
-                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold hidden sm:inline-block">
+                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-orange-500/20 text-orange-300 border border-orange-500/30 font-bold hidden sm:inline-block">
                     {p.resolution || '1080P'} Full HD
                   </span>
                 </h2>
@@ -536,7 +536,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 <button
                   type="button"
                   onClick={() => buyNow(p, 'personal')}
-                  className="w-full sm:w-auto py-3 px-5 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-xs sm:text-sm shadow-[0_0_24px_rgba(6,182,212,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0 border border-cyan-400/40"
+                  className="w-full sm:w-auto py-3 px-5 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm shadow-[0_0_24px_rgba(255,107,0,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0 border border-orange-400/40"
                 >
                   <Zap className="w-4 h-4 fill-white" />
                   <span>Buy This Bundle — ₹{activePrice}.00</span>
@@ -548,7 +548,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             {parsedVideos.length > 1 && (
               <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none relative z-10 pt-1">
                 <span className="text-xs font-bold text-slate-300 shrink-0 flex items-center gap-1.5 mr-1">
-                  <Film className="w-3.5 h-3.5 text-cyan-400" />
+                  <Film className="w-3.5 h-3.5 text-orange-400" />
                   <span>Select Sample:</span>
                 </span>
                 {parsedVideos.map((vid, idx) => {
@@ -560,14 +560,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                       onClick={() => setActiveSampleIdx(idx)}
                       className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold flex items-center gap-1.5 shrink-0 transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-cyan-500/25 scale-[1.03]'
+                          ? 'bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-md shadow-orange-500/25 scale-[1.03]'
                           : 'bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80'
                       }`}
                     >
                       <Play className={`w-3 h-3 ${isActive ? 'fill-white text-white' : 'fill-slate-400 text-slate-400'}`} />
                       <span>Sample #{idx + 1}</span>
                       {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse ml-0.5" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse ml-0.5" />
                       )}
                     </button>
                   );
@@ -728,7 +728,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
-              <div className="w-7 h-7 rounded-lg bg-amber-100 text-amber-900 font-black text-xs flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-orange-100 text-orange-950 font-black text-xs flex items-center justify-center">
                 1
               </div>
               <h3 className="text-xs sm:text-sm font-bold text-slate-900">30-Second Checkout</h3>
@@ -738,7 +738,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
-              <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 font-black text-xs flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-amber-100 text-amber-950 font-black text-xs flex items-center justify-center">
                 2
               </div>
               <h3 className="text-xs sm:text-sm font-bold text-slate-900">Instant Drive Link</h3>
@@ -748,7 +748,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
-              <div className="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-black text-xs flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-orange-100 text-orange-900 font-black text-xs flex items-center justify-center">
                 3
               </div>
               <h3 className="text-xs sm:text-sm font-bold text-slate-900">Download & Post</h3>
@@ -856,7 +856,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         <section className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 p-5 sm:p-7 shadow-xs space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
             <div>
-              <span className="text-xs font-black uppercase tracking-wider text-purple-700 block">
+              <span className="text-xs font-black uppercase tracking-wider text-orange-600 block">
                 Verified Reviews
               </span>
               <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight mt-0.5">
@@ -881,7 +881,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center">
+                        <div className="w-7 h-7 rounded-full bg-orange-600 text-white font-bold text-xs flex items-center justify-center">
                           {rev.author.charAt(0)}
                         </div>
                         <div>
@@ -901,8 +901,8 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                   </div>
 
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                    <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                      <Check className="w-3 h-3" />
+                    <span className="text-orange-800 font-semibold flex items-center gap-1">
+                      <Check className="w-3 h-3 text-orange-600" />
                       Verified Purchase
                     </span>
                     <button
@@ -923,7 +923,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         {/* SECTION 5: FREQUENTLY ASKED QUESTIONS */}
         <section className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 p-5 sm:p-7 shadow-xs space-y-4">
           <div>
-            <span className="text-xs font-black uppercase tracking-wider text-purple-700 block">
+            <span className="text-xs font-black uppercase tracking-wider text-orange-600 block">
               FAQ
             </span>
             <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight mt-0.5">
@@ -945,7 +945,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     className="w-full p-3.5 text-left font-bold text-xs sm:text-sm text-slate-900 flex justify-between items-center gap-3 hover:bg-slate-50 cursor-pointer"
                   >
                     <span>{faq.question}</span>
-                    <span className="text-purple-600 font-black text-sm shrink-0">
+                    <span className="text-orange-600 font-black text-sm shrink-0">
                       {isOpen ? '−' : '+'}
                     </span>
                   </button>
@@ -961,28 +961,28 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         </section>
 
         {/* SECTION 6: WHATSAPP DIRECT SUPPORT ASSISTANCE */}
-        <section className="rounded-2xl p-4 sm:p-5 bg-emerald-50/80 border border-emerald-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <section className="rounded-2xl p-4 sm:p-5 bg-orange-50/80 border border-orange-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-center sm:text-left">
-            <span className="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+            <span className="w-9 h-9 rounded-full bg-orange-500 text-white flex items-center justify-center shrink-0">
               <MessageCircle className="w-4 h-4 fill-white" />
             </span>
             <div>
-              <h3 className="text-xs sm:text-sm font-bold text-emerald-950">
+              <h3 className="text-xs sm:text-sm font-bold text-orange-950">
                 Need any help or have a question before buying?
               </h3>
-              <p className="text-[11px] text-emerald-800">
+              <p className="text-[11px] text-orange-800">
                 Our support team is available on WhatsApp to assist you immediately.
               </p>
             </div>
           </div>
 
           <a
-            href={`https://wa.me/${((settings.supportWhatsapp || '7330482005').replace(/[^0-9]/g, '').length === 10 ? '91' + (settings.supportWhatsapp || '7330482005').replace(/[^0-9]/g, '') : (settings.supportWhatsapp || '7330482005').replace(/[^0-9]/g, ''))}?text=${encodeURIComponent(
-              `Hi ${settings.storeName || 'InstaReel'} Support! I have a question regarding: "${p.title}"`
+            href={`https://wa.me/${((settings.supportWhatsapp || '7015281360').replace(/[^0-9]/g, '').length === 10 ? '91' + (settings.supportWhatsapp || '7015281360').replace(/[^0-9]/g, '') : (settings.supportWhatsapp || '7015281360').replace(/[^0-9]/g, ''))}?text=${encodeURIComponent(
+              `Hi ${settings.storeName || 'DigiHaven'} Support! I have a question regarding: "${p.title}"`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-2xs transition-all flex items-center gap-1.5 active:scale-95 shrink-0"
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white text-xs font-bold shadow-2xs transition-all flex items-center gap-1.5 active:scale-95 shrink-0"
           >
             <span>Chat on WhatsApp</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -997,7 +997,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             </h2>
             <Link
               href="/shop"
-              className="text-xs font-bold text-purple-700 hover:underline flex items-center gap-0.5"
+              className="text-xs font-bold text-orange-600 hover:underline flex items-center gap-0.5"
             >
               <span>View All</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -1041,7 +1041,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     <button
                       type="button"
                       onClick={() => buyNow(rel, 'personal')}
-                      className="px-2.5 py-1 rounded-md bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 text-[10px] font-black shadow-2xs active:scale-95 transition-transform cursor-pointer"
+                      className="px-2.5 py-1 rounded-md bg-gradient-to-r from-orange-600 to-amber-500 text-white text-[10px] font-black shadow-2xs active:scale-95 transition-transform cursor-pointer"
                     >
                       Buy Now
                     </button>
@@ -1057,13 +1057,13 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       {/* MOBILE STICKY BOTTOM BAR (Locked Directly Above MobileBottomNav) */}
       <aside
         aria-label="Sticky Buy Now Bar"
-        className="fixed bottom-[74px] left-2.5 right-2.5 z-40 md:hidden bg-slate-950/95 backdrop-blur-xl border border-cyan-500/40 rounded-2xl px-3.5 py-2.5 shadow-[0_0_25px_rgba(6,182,212,0.3)]"
+        className="fixed bottom-[74px] left-2.5 right-2.5 z-40 md:hidden bg-slate-950/95 backdrop-blur-xl border border-orange-500/40 rounded-2xl px-3.5 py-2.5 shadow-[0_0_25px_rgba(255,107,0,0.3)]"
       >
         <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
           {/* Price */}
           <div className="flex flex-col shrink-0 min-w-0">
-            <span className="text-[9px] font-bold text-cyan-400 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-[9px] font-bold text-orange-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
               Instant Access
             </span>
             <div className="flex items-baseline gap-1.5 mt-0.5">
@@ -1077,7 +1077,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             <button
               type="button"
               onClick={() => buyNow(p, 'personal')}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-sm shadow-[0_0_24px_rgba(6,182,212,0.6)] active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-cyan-400/40"
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm shadow-[0_0_24px_rgba(255,107,0,0.6)] active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-orange-400/40"
             >
               <Zap className="w-4 h-4 fill-white" />
               <span>Buy Now — ₹{activePrice}</span>
@@ -1191,7 +1191,7 @@ function ReelDirectVideoPlayer({
       {/* Paused state subtle indicator */}
       {!isPlaying && !showAnimation && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 bg-black/35">
-          <div className="w-14 h-14 rounded-full bg-cyan-500/95 text-white flex items-center justify-center shadow-lg shadow-cyan-500/40">
+          <div className="w-14 h-14 rounded-full bg-orange-500/95 text-white flex items-center justify-center shadow-lg shadow-orange-500/40">
             <Play className="w-7 h-7 fill-white ml-1" />
           </div>
         </div>
@@ -1206,7 +1206,7 @@ function ReelDirectVideoPlayer({
           title={isMuted ? 'Unmute sound' : 'Mute sound'}
         >
           {isMuted ? (
-            <VolumeX className="w-4 h-4 text-cyan-400" />
+            <VolumeX className="w-4 h-4 text-orange-400" />
           ) : (
             <Volume2 className="w-4 h-4 text-white" />
           )}
@@ -1216,7 +1216,7 @@ function ReelDirectVideoPlayer({
       {/* Bottom Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
         <div
-          className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-[width] duration-100"
+          className="h-full bg-gradient-to-r from-orange-600 to-amber-400 transition-[width] duration-100"
           style={{ width: `${progress}%` }}
         />
       </div>

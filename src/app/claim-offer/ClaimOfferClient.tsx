@@ -105,13 +105,13 @@ export default function ClaimOfferClient() {
         <div className="max-w-5xl mx-auto space-y-4 relative z-10 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#34246d] border border-[#523d9b] text-[#c9b4ff] text-xs font-black uppercase tracking-wider">
-                <Gift className="w-3.5 h-3.5 text-amber-300" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-200 text-xs font-black uppercase tracking-wider">
+                <Gift className="w-3.5 h-3.5 text-orange-400" />
                 <span>Special Promotion</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
-                Add minimum <span className="text-amber-400">₹{minCart}</span> value in cart to claim{' '}
-                <span className="text-purple-300">{freeQty} free {freeQty === 1 ? 'bundle' : 'bundles'}</span>
+                Add minimum <span className="text-orange-400">₹{minCart}</span> value in cart to claim{' '}
+                <span className="text-orange-300">{freeQty} free {freeQty === 1 ? 'bundle' : 'bundles'}</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 max-w-2xl font-medium">
                 Add any bundles to reach ₹{minCart}. As soon as your cart reaches ₹{minCart}, you will get a popup to unlock and choose any {freeQty} bundles for 100% FREE!
@@ -124,9 +124,9 @@ export default function ClaimOfferClient() {
                 <button
                   type="button"
                   onClick={() => setIsFreeBundleModalOpen(true)}
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-black text-xs sm:text-sm shadow-xl shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm shadow-[0_0_24px_rgba(255,107,0,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-200" />
+                  <Sparkles className="w-4 h-4 text-white" />
                   <span>
                     {claimedCount > 0 ? `Change Free Bundles (${claimedCount}/${freeQty})` : `🎉 Claim ${freeQty} Free Bundles (₹0)`}
                   </span>
@@ -135,9 +135,9 @@ export default function ClaimOfferClient() {
                 <button
                   type="button"
                   onClick={() => setIsCartOpen(true)}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
                 >
-                  <ShoppingCart className="w-4 h-4 text-purple-300" />
+                  <ShoppingCart className="w-4 h-4 text-orange-300" />
                   <span>View Cart (₹{subtotal})</span>
                 </button>
               )}
@@ -148,17 +148,17 @@ export default function ClaimOfferClient() {
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/15 space-y-2.5">
             <div className="flex flex-wrap items-center justify-between text-xs sm:text-sm font-bold gap-2">
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping" />
                 <span>Cart Value: <strong className="text-white text-base">₹{subtotal}</strong> / ₹149</span>
               </span>
               <span>
                 {isQualifiedForFreeOffer ? (
-                  <span className="text-emerald-400 font-extrabold flex items-center gap-1.5">
+                  <span className="text-orange-400 font-extrabold flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4" />
                     Offer Unlocked! (2 Free Bundles Ready)
                   </span>
                 ) : (
-                  <span className="text-amber-300 font-extrabold">
+                  <span className="text-orange-300 font-extrabold">
                     Add ₹{remainingToQualify} more to unlock 2 free bundles!
                   </span>
                 )}
@@ -170,22 +170,22 @@ export default function ClaimOfferClient() {
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   isQualifiedForFreeOffer
-                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400'
-                    : 'bg-gradient-to-r from-amber-400 to-purple-400'
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-400'
+                    : 'bg-gradient-to-r from-orange-600 to-amber-500'
                 }`}
                 style={{ width: `${freeOfferProgress}%` }}
               />
             </div>
 
             {claimedCount > 0 && (
-              <div className="pt-1 flex items-center justify-between text-xs text-purple-200">
+              <div className="pt-1 flex items-center justify-between text-xs text-orange-200">
                 <span>
                   🎁 Claimed Free Gifts: <strong className="text-white">{claimedCount} of 2</strong> ({freeBundles.map(b => b.title).join(', ')})
                 </span>
                 <button
                   type="button"
                   onClick={() => setIsFreeBundleModalOpen(true)}
-                  className="underline text-amber-300 hover:text-white font-bold"
+                  className="underline text-orange-300 hover:text-white font-bold cursor-pointer"
                 >
                   Edit Selection
                 </button>

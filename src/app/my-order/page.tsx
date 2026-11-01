@@ -177,7 +177,7 @@ function MyOrdersContent() {
                   placeholder="e.g. yourname@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500 transition-all font-medium"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all font-medium"
                 />
               </div>
             </div>
@@ -185,7 +185,7 @@ function MyOrdersContent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 active:scale-95 disabled:opacity-60 transition-all cursor-pointer"
+              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] active:scale-95 disabled:opacity-60 transition-all cursor-pointer"
             >
               {loading ? (
                 <span>Fetching Your Downloads...</span>
@@ -335,7 +335,7 @@ function MyOrdersContent() {
                                   <h4 className="font-extrabold text-sm sm:text-base text-slate-950">
                                     {item.title || item.name}
                                   </h4>
-                                  <span className="text-[11px] text-purple-700 font-bold">
+                                  <span className="text-[11px] text-orange-700 font-bold">
                                     License:{' '}
                                     {item.license === 'reseller'
                                       ? 'Reseller & Commercial Rights Included'
@@ -348,7 +348,7 @@ function MyOrdersContent() {
                                     href={primaryDrive}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-xs shadow-md shadow-amber-500/20 active:scale-95 transition-all shrink-0 cursor-pointer"
+                                    className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-xs shadow-md shadow-orange-500/25 active:scale-95 transition-all shrink-0 cursor-pointer"
                                   >
                                     <FolderOpen className="w-3.5 h-3.5" />
                                     <span>Open Google Drive Folder</span>

@@ -53,10 +53,10 @@ export default function CartDrawer() {
       <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
         
         {/* Header */}
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-[#f0f9ff]">
+        <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-[#fff8f2]">
           <div className="flex items-center gap-2">
             <h3 className="font-extrabold text-lg text-slate-950">Your Cart</h3>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-100 text-cyan-800 border border-cyan-200">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-950 border border-orange-200">
               {items.length + (orderBumpAdded ? 1 : 0)} items
             </span>
           </div>
@@ -73,7 +73,7 @@ export default function CartDrawer() {
         <div className="flex-1 overflow-y-auto p-5 pb-16 space-y-4">
           {items.length === 0 && !orderBumpAdded ? (
             <div className="text-center py-16 space-y-4">
-              <div className="w-16 h-16 mx-auto rounded-full bg-cyan-50 border border-cyan-200/60 flex items-center justify-center text-cyan-600 text-2xl shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+              <div className="w-16 h-16 mx-auto rounded-full bg-orange-50 border border-orange-200/60 flex items-center justify-center text-orange-600 text-2xl shadow-[0_0_20px_rgba(255,107,0,0.2)]">
                 🛒
               </div>
               <h4 className="font-bold text-lg text-slate-950">Your cart is empty</h4>
@@ -83,7 +83,7 @@ export default function CartDrawer() {
               <Link
                 href="/shop"
                 onClick={() => setIsCartOpen(false)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 text-white font-black shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:from-blue-500 hover:to-cyan-400 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white font-black shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:from-orange-500 hover:to-amber-400 transition-all cursor-pointer"
               >
                 Browse All Bundles →
               </Link>
@@ -115,7 +115,7 @@ export default function CartDrawer() {
                           <span
                             className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
                               item.license === 'reseller'
-                                ? 'bg-cyan-100 text-cyan-900 border border-cyan-200'
+                                ? 'bg-orange-100 text-orange-900 border border-orange-200'
                                 : 'bg-slate-100 text-slate-800 border border-slate-200'
                             }`}
                           >
@@ -132,7 +132,7 @@ export default function CartDrawer() {
                         </span>
                         <button
                           onClick={() => removeFromCart(item.product.id, item.license)}
-                          className="text-slate-400 hover:text-red-500 p-1 transition-colors cursor-pointer"
+                          className="text-slate-400 hover:text-orange-600 p-1 transition-colors cursor-pointer"
                           aria-label="Remove item"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -147,16 +147,16 @@ export default function CartDrawer() {
               {isOfferActive && (
                 <>
                   {freeBundles.length > 0 ? (
-                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-blue-50 to-cyan-50 border border-cyan-200 space-y-2.5 mt-3">
-                      <div className="flex items-center justify-between text-blue-900 text-[11px] font-black uppercase tracking-wider">
+                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 space-y-2.5 mt-3">
+                      <div className="flex items-center justify-between text-orange-950 text-[11px] font-black uppercase tracking-wider">
                         <span className="flex items-center gap-1.5">
-                          <Gift className="w-3.5 h-3.5 text-cyan-600" />
+                          <Gift className="w-3.5 h-3.5 text-orange-600" />
                           Free Bonus Bundles ({freeBundles.length}/{offerMaxQuantity} Claimed)
                         </span>
                         <button
                           type="button"
                           onClick={() => setIsFreeBundleModalOpen(true)}
-                          className="text-[10px] font-bold text-blue-700 underline hover:text-blue-900 cursor-pointer"
+                          className="text-[10px] font-bold text-orange-700 underline hover:text-orange-900 cursor-pointer"
                         >
                           Change
                         </button>
@@ -164,7 +164,7 @@ export default function CartDrawer() {
                       {freeBundles.map((fb) => (
                         <div
                           key={fb.id}
-                          className="flex items-center justify-between gap-2.5 bg-white p-2 rounded-xl border border-cyan-200/80"
+                          className="flex items-center justify-between gap-2.5 bg-white p-2 rounded-xl border border-orange-200/80"
                         >
                           <img
                             src={optimizeImageUrl(fb.thumbnail, 64, 70)}
@@ -177,14 +177,14 @@ export default function CartDrawer() {
                             <p className="text-xs font-bold text-slate-900 truncate leading-tight">
                               {fb.title}
                             </p>
-                            <span className="text-[10px] font-black text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded mt-0.5 inline-block">
+                            <span className="text-[10px] font-black text-orange-800 bg-orange-100 px-1.5 py-0.5 rounded mt-0.5 inline-block">
                               FREE BONUS (₹0)
                             </span>
                           </div>
                           <button
                             type="button"
                             onClick={() => removeFreeBundle(fb.id)}
-                            className="text-slate-400 hover:text-red-500 p-1 transition-colors cursor-pointer"
+                            className="text-slate-400 hover:text-orange-600 p-1 transition-colors cursor-pointer"
                             aria-label="Remove free bundle"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -193,26 +193,26 @@ export default function CartDrawer() {
                       ))}
                     </div>
                   ) : isQualifiedForFreeOffer ? (
-                    <div className="p-3 rounded-2xl bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 border border-cyan-300/60 flex items-center justify-between gap-2 mt-3 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-                      <div className="flex items-center gap-2 text-xs font-black text-blue-950">
-                        <Gift className="w-4 h-4 shrink-0 text-cyan-600" />
+                    <div className="p-3 rounded-2xl bg-gradient-to-r from-orange-500/10 via-amber-500/10 to-orange-500/10 border border-orange-300/60 flex items-center justify-between gap-2 mt-3 shadow-[0_0_15px_rgba(255,107,0,0.15)]">
+                      <div className="flex items-center gap-2 text-xs font-black text-orange-950">
+                        <Gift className="w-4 h-4 shrink-0 text-orange-600" />
                         <span>🎉 {offerMaxQuantity} Free Bundles Unlocked!</span>
                       </div>
                       <button
                         type="button"
                         onClick={() => setIsFreeBundleModalOpen(true)}
-                        className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-black hover:opacity-95 shadow-[0_0_12px_rgba(6,182,212,0.4)] cursor-pointer"
+                        className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 text-white text-xs font-black hover:opacity-95 shadow-[0_0_12px_rgba(255,107,0,0.4)] cursor-pointer"
                       >
                         Select Now
                       </button>
                     </div>
                   ) : subtotal > 0 ? (
-                    <div className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200/80 flex items-center justify-between text-xs text-blue-900 font-bold mt-3">
+                    <div className="p-2.5 rounded-xl bg-orange-50/70 border border-orange-200/80 flex items-center justify-between text-xs text-orange-950 font-bold mt-3">
                       <span>Add ₹{Math.max(1, offerMinCart - subtotal)} more to claim {offerMaxQuantity} Free Bundles!</span>
                       <Link
                         href="/claim-offer"
                         onClick={() => setIsCartOpen(false)}
-                        className="underline hover:text-blue-700 shrink-0 font-extrabold"
+                        className="underline hover:text-orange-700 shrink-0 font-extrabold"
                       >
                         View Offer
                       </Link>
@@ -223,9 +223,9 @@ export default function CartDrawer() {
 
               {/* Order Bump In-Cart Offer */}
               {isBumpEnabled && (
-                <div className="p-3.5 rounded-2xl border-2 border-dashed border-cyan-400 bg-cyan-50/50 mt-4 relative">
-                  <div className="flex items-center gap-1.5 text-blue-900 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
-                    <Zap className="w-3.5 h-3.5 fill-cyan-500 text-cyan-500" />
+                <div className="p-3.5 rounded-2xl border-2 border-dashed border-orange-400 bg-orange-50/50 mt-4 relative">
+                  <div className="flex items-center gap-1.5 text-orange-950 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
+                    <Zap className="w-3.5 h-3.5 fill-orange-500 text-orange-500" />
                     Exclusive 1-Click Order Bump
                   </div>
                   <div className="flex gap-3 items-center">
@@ -243,13 +243,13 @@ export default function CartDrawer() {
                         {bumpTitle}
                       </p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="font-extrabold text-xs text-blue-700">
+                        <span className="font-extrabold text-xs text-orange-600">
                           ₹{bumpPrice}
                         </span>
                         <span className="text-[10px] text-slate-400 line-through">
                           ₹{bumpRegPrice}
                         </span>
-                        <span className="text-[10px] font-bold px-1.5 py-0.5 bg-rose-100 text-rose-800 rounded">
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 bg-orange-100 text-orange-800 rounded">
                           {bumpDiscount}% OFF
                         </span>
                       </div>
@@ -258,8 +258,8 @@ export default function CartDrawer() {
                       onClick={toggleOrderBump}
                       className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
                         orderBumpAdded
-                          ? 'bg-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.4)]'
-                          : 'bg-white border border-cyan-300 text-blue-900 hover:bg-cyan-50'
+                          ? 'bg-orange-600 text-white shadow-[0_0_12px_rgba(255,107,0,0.4)]'
+                          : 'bg-white border border-orange-300 text-orange-950 hover:bg-orange-50'
                       }`}
                     >
                       {orderBumpAdded ? '✓ Added' : `+ Add ₹${bumpPrice}`}
@@ -276,21 +276,21 @@ export default function CartDrawer() {
                     <span className="font-bold text-slate-700">₹{subtotal}.00</span>
                   </div>
                   {orderBumpAdded && isBumpEnabled && (
-                    <div className="flex justify-between text-blue-600 text-xs font-bold">
+                    <div className="flex justify-between text-orange-600 text-xs font-bold">
                       <span>Bonus Upsell Pack ({bumpDiscount}% Off)</span>
                       <span>+₹{bumpPrice}.00</span>
                     </div>
                   )}
                   <div className="flex justify-between text-sm sm:text-base font-extrabold text-slate-950 pt-2 border-t border-slate-200">
                     <span>Total Amount</span>
-                    <span className="text-xl font-black text-blue-600">₹{total}.00</span>
+                    <span className="text-xl font-black text-orange-600">₹{total}.00</span>
                   </div>
                 </div>
 
                 <Link
                   href="/checkout"
                   onClick={() => setIsCartOpen(false)}
-                  className="w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(6,182,212,0.55)] hover:shadow-[0_0_38px_rgba(6,182,212,0.85)] active:scale-[0.99] transition-all cursor-pointer"
+                  className="w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_38px_rgba(255,149,0,0.85)] active:scale-[0.99] transition-all cursor-pointer"
                 >
                   <Lock className="w-4 h-4 fill-white/20" />
                   <span>Pay Now • Instant Checkout (₹{total})</span>
@@ -298,13 +298,13 @@ export default function CartDrawer() {
                 </Link>
 
                 <div className="flex items-center justify-center gap-3 text-[11px] font-semibold text-slate-500 pt-0.5">
-                  <span className="flex items-center gap-1 text-blue-700 font-bold">
-                    <ShieldCheck className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <span className="flex items-center gap-1 text-orange-800 font-bold">
+                    <ShieldCheck className="w-3.5 h-3.5 text-orange-600 shrink-0" />
                     Instant Drive Link
                   </span>
                   <span>•</span>
                   <span className="flex items-center gap-1 text-slate-600">
-                    <Zap className="w-3.5 h-3.5 text-cyan-500 fill-cyan-500 shrink-0" />
+                    <Zap className="w-3.5 h-3.5 text-orange-500 fill-orange-500 shrink-0" />
                     Zero Delay Access
                   </span>
                 </div>

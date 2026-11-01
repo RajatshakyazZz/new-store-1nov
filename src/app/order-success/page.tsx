@@ -316,13 +316,13 @@ function OrderSuccessContent() {
 
         {/* 1. STATE: VERIFYING PAYMENT */}
         {status === 'verifying' && (
-          <div className="bg-white rounded-3xl p-8 sm:p-14 border border-purple-100 shadow-[0_12px_36px_rgba(95,57,220,0.08)] text-center space-y-6 max-w-2xl mx-auto my-12">
-            <div className="w-20 h-20 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto shadow-inner animate-pulse">
+          <div className="bg-white rounded-3xl p-8 sm:p-14 border border-orange-100 shadow-[0_12px_36px_rgba(255,107,0,0.1)] text-center space-y-6 max-w-2xl mx-auto my-12">
+            <div className="w-20 h-20 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center mx-auto shadow-inner animate-pulse">
               <Lock className="w-10 h-10 stroke-[2.2]" />
             </div>
 
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-purple-100 text-purple-800">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-orange-100 text-orange-800">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 Security Verification
               </div>
@@ -335,8 +335,8 @@ function OrderSuccessContent() {
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-100 inline-flex items-center gap-2 text-xs font-mono font-bold text-purple-700">
-              <RefreshCw className="w-4 h-4 animate-spin text-purple-600" />
+            <div className="p-4 rounded-2xl bg-orange-50/70 border border-orange-100 inline-flex items-center gap-2 text-xs font-mono font-bold text-orange-700">
+              <RefreshCw className="w-4 h-4 animate-spin text-orange-600" />
               <span>Verifying Order: {orderId}</span>
             </div>
           </div>
@@ -396,15 +396,15 @@ function OrderSuccessContent() {
         {status === 'paid' && isResellerOrder && (
           <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8 animate-fadeIn">
             {/* Top Minimal Brand Bar */}
-            <div className="flex items-center justify-between pb-4 border-b border-purple-100 text-xs text-slate-500">
+            <div className="flex items-center justify-between pb-4 border-b border-orange-100 text-xs text-slate-500">
               <span className="font-bold text-slate-700">VaultWorld Order Confirmation</span>
-              <span className="font-mono text-[11px] bg-purple-50 text-purple-700 px-2.5 py-1 rounded-full font-bold">
+              <span className="font-mono text-[11px] bg-orange-50 text-orange-700 px-2.5 py-1 rounded-full font-bold">
                 Order #{verifiedData?.orderNumber || orderId}
               </span>
             </div>
 
             {/* Celebratory Hero Card */}
-            <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-emerald-50 via-white to-purple-50/40 border border-emerald-200/80 shadow-lg text-center space-y-4">
+            <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-emerald-50 via-white to-orange-50/40 border border-emerald-200/80 shadow-lg text-center space-y-4">
               <div className="relative w-20 h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/25">
                 <Check className="w-10 h-10 stroke-[3.5]" />
                 <div className="absolute -inset-1 rounded-full border-2 border-emerald-400/50 animate-ping pointer-events-none" />
@@ -491,7 +491,7 @@ function OrderSuccessContent() {
                           {item.title}
                         </h4>
                         <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500">
-                          <span className="bg-purple-100 text-purple-700 font-bold px-2 py-0.5 rounded">
+                          <span className="bg-orange-100 text-orange-700 font-bold px-2 py-0.5 rounded">
                             1080x1920 HD
                           </span>
                           <span className="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">
@@ -510,7 +510,7 @@ function OrderSuccessContent() {
                       href={item.googleDriveLink || 'https://drive.google.com'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 transition-colors"
+                      className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 transition-colors"
                     >
                       <FolderOpen className="w-4 h-4" />
                       <span>Open Folder</span>
@@ -535,7 +535,7 @@ function OrderSuccessContent() {
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 col-span-2 sm:col-span-1">
                   <span className="text-[11px] text-slate-400 font-bold block">License Type</span>
-                  <strong className="text-xs font-bold text-purple-700">
+                  <strong className="text-xs font-bold text-orange-700">
                     Lifetime Commercial
                   </strong>
                 </div>
@@ -548,16 +548,16 @@ function OrderSuccessContent() {
                 How to use your reels
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div className="p-3 rounded-xl bg-purple-50/60 border border-purple-100 space-y-1">
-                  <span className="text-purple-700 font-black block">1. Open Google Drive</span>
+                <div className="p-3 rounded-xl bg-orange-50/60 border border-orange-100 space-y-1">
+                  <span className="text-orange-700 font-black block">1. Open Google Drive</span>
                   <p className="text-slate-600 text-[11px]">Click the button above to view your folder of high quality vertical videos.</p>
                 </div>
-                <div className="p-3 rounded-xl bg-purple-50/60 border border-purple-100 space-y-1">
-                  <span className="text-purple-700 font-black block">2. Save to Phone/PC</span>
+                <div className="p-3 rounded-xl bg-orange-50/60 border border-orange-100 space-y-1">
+                  <span className="text-orange-700 font-black block">2. Save to Phone/PC</span>
                   <p className="text-slate-600 text-[11px]">Download individual reels or entire folders with 1 click without watermarks.</p>
                 </div>
-                <div className="p-3 rounded-xl bg-purple-50/60 border border-purple-100 space-y-1">
-                  <span className="text-purple-700 font-black block">3. Post & Grow</span>
+                <div className="p-3 rounded-xl bg-orange-50/60 border border-orange-100 space-y-1">
+                  <span className="text-orange-700 font-black block">3. Post & Grow</span>
                   <p className="text-slate-600 text-[11px]">Upload to Instagram, YouTube Shorts, or Facebook. Edit or add trending audio as desired.</p>
                 </div>
               </div>
@@ -625,7 +625,7 @@ function OrderSuccessContent() {
                     {verifiedData?.customer?.email && (
                       <>
                         {' '}and have also been sent to{' '}
-                        <strong className="text-slate-900 font-bold underline decoration-purple-300">
+                        <strong className="text-slate-900 font-bold underline decoration-orange-300">
                           {verifiedData.customer.email}
                         </strong>.
                       </>
@@ -640,7 +640,7 @@ function OrderSuccessContent() {
                     <div className="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 shadow-inner">
                       <Download className="w-6 h-6 text-white stroke-[2.5]" />
                     </div>
-                    <span className="text-[11px] font-black uppercase tracking-wider text-purple-200">
+                    <span className="text-[11px] font-black uppercase tracking-wider text-orange-200">
                       Cloud Delivery
                     </span>
                     <strong className="text-xs font-extrabold text-white">
@@ -656,7 +656,7 @@ function OrderSuccessContent() {
             <section className="rounded-2xl border border-[#e7e4f3] bg-white p-4 sm:p-5 shadow-[0_6px_22px_rgba(39,35,92,0.04)]">
               <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-slate-100">
                 <h3 className="text-xs font-black uppercase tracking-wider text-[#17214a] flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-purple-600" />
+                  <Award className="w-4 h-4 text-orange-600" />
                   <span>Order Summary &amp; Verification Details</span>
                 </h3>
                 <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
@@ -668,7 +668,7 @@ function OrderSuccessContent() {
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
                 {/* 1. Order Number */}
                 <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-xs shrink-0">
                     #
                   </div>
                   <div className="min-w-0">
@@ -681,7 +681,7 @@ function OrderSuccessContent() {
 
                 {/* 2. Date */}
                 <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
                     <Calendar className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -698,7 +698,7 @@ function OrderSuccessContent() {
 
                 {/* 3. Customer Email */}
                 <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3 col-span-2 sm:col-span-1">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -739,7 +739,7 @@ function OrderSuccessContent() {
                 <div className="flex items-center justify-end col-span-2 sm:col-span-3 lg:col-span-1">
                   <Link
                     href="/my-order"
-                    className="w-full h-full min-h-[46px] px-3 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 text-xs font-black flex items-center justify-center gap-1.5 transition-colors"
+                    className="w-full h-full min-h-[46px] px-3 rounded-xl bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-700 text-xs font-black flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <FolderOpen className="w-3.5 h-3.5" />
                     <span>My Orders</span>
@@ -764,7 +764,7 @@ function OrderSuccessContent() {
                     <h2 className="text-xl sm:text-3xl font-black text-white tracking-tight">
                       You Have Unlocked Every Reels Bundle in the Store!
                     </h2>
-                    <p className="text-xs sm:text-sm text-purple-100 max-w-2xl font-medium leading-relaxed">
+                    <p className="text-xs sm:text-sm text-orange-100 max-w-2xl font-medium leading-relaxed">
                       Congratulations! You now have lifetime master access to all 129+ published reels bundles (over 222,000+ viral HD videos), future upcoming releases, and commercial reseller rights.
                     </p>
                   </div>
@@ -772,19 +772,19 @@ function OrderSuccessContent() {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
                     <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15">
                       <strong className="block text-base sm:text-lg font-black text-white">129+</strong>
-                      <span className="text-[11px] text-purple-200 font-bold">Categories Included</span>
+                      <span className="text-[11px] text-orange-200 font-bold">Categories Included</span>
                     </div>
                     <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15">
                       <strong className="block text-base sm:text-lg font-black text-white">222,000+</strong>
-                      <span className="text-[11px] text-purple-200 font-bold">Ready-to-Post Reels</span>
+                      <span className="text-[11px] text-orange-200 font-bold">Ready-to-Post Reels</span>
                     </div>
                     <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15">
                       <strong className="block text-base sm:text-lg font-black text-white">Reseller</strong>
-                      <span className="text-[11px] text-purple-200 font-bold">Commercial License</span>
+                      <span className="text-[11px] text-orange-200 font-bold">Commercial License</span>
                     </div>
                     <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15">
                       <strong className="block text-base sm:text-lg font-black text-white">Lifetime</strong>
-                      <span className="text-[11px] text-purple-200 font-bold">Cloud Drive Updates</span>
+                      <span className="text-[11px] text-orange-200 font-bold">Cloud Drive Updates</span>
                     </div>
                   </div>
                 </div>
@@ -808,7 +808,7 @@ function OrderSuccessContent() {
                   </div>
                 </div>
 
-                <span className="text-xs font-black text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
+                <span className="text-xs font-black text-orange-700 bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
                   {verifiedData?.items?.length || 1} Item(s) Ready
                 </span>
               </div>
@@ -878,7 +878,7 @@ function OrderSuccessContent() {
 
                           <div className="flex items-center gap-4 text-xs font-bold text-slate-600 pt-1">
                             <span className="flex items-center gap-1.5">
-                              <Zap className="w-3.5 h-3.5 text-purple-600" />
+                              <Zap className="w-3.5 h-3.5 text-orange-600" />
                               <span>Instant Delivery</span>
                             </span>
                             <span>•</span>
@@ -925,7 +925,7 @@ function OrderSuccessContent() {
                                         <button
                                           type="button"
                                           onClick={() => handleCopyLink(fUrl, fCopyKey)}
-                                          className="text-[10px] font-bold text-slate-500 hover:text-purple-700 shrink-0"
+                                          className="text-[10px] font-bold text-slate-500 hover:text-orange-700 shrink-0"
                                         >
                                           {copiedKey === fCopyKey ? 'Copied' : 'Copy'}
                                         </button>
@@ -961,7 +961,7 @@ function OrderSuccessContent() {
                                   <button
                                     type="button"
                                     onClick={() => handleCopyLink(driveUrl, copyKey)}
-                                    className="text-[11px] font-bold text-slate-500 hover:text-purple-700 flex items-center gap-1 transition-colors"
+                                    className="text-[11px] font-bold text-slate-500 hover:text-orange-700 flex items-center gap-1 transition-colors"
                                   >
                                     {copiedKey === copyKey ? (
                                       <>
@@ -980,7 +980,7 @@ function OrderSuccessContent() {
                                     href={driveUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[11px] font-bold text-purple-600 hover:underline flex items-center gap-1"
+                                    className="text-[11px] font-bold text-orange-600 hover:underline flex items-center gap-1"
                                   >
                                     <span>Direct Link</span>
                                     <ExternalLink className="w-3 h-3" />
@@ -1059,7 +1059,7 @@ function OrderSuccessContent() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {/* Step 1 */}
-                  <div className="relative rounded-2xl border border-purple-100 bg-purple-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
+                  <div className="relative rounded-2xl border border-orange-100 bg-orange-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
                     <span className="absolute top-2 left-2 w-5 h-5 rounded-full bg-[#6e42ff] text-white text-[11px] font-black flex items-center justify-center">
                       1
                     </span>
@@ -1069,7 +1069,7 @@ function OrderSuccessContent() {
                   </div>
 
                   {/* Step 2 */}
-                  <div className="relative rounded-2xl border border-purple-100 bg-purple-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
+                  <div className="relative rounded-2xl border border-orange-100 bg-orange-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
                     <span className="absolute top-2 left-2 w-5 h-5 rounded-full bg-[#6e42ff] text-white text-[11px] font-black flex items-center justify-center">
                       2
                     </span>
@@ -1079,7 +1079,7 @@ function OrderSuccessContent() {
                   </div>
 
                   {/* Step 3 */}
-                  <div className="relative rounded-2xl border border-purple-100 bg-purple-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
+                  <div className="relative rounded-2xl border border-orange-100 bg-orange-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
                     <span className="absolute top-2 left-2 w-5 h-5 rounded-full bg-[#6e42ff] text-white text-[11px] font-black flex items-center justify-center">
                       3
                     </span>
@@ -1089,7 +1089,7 @@ function OrderSuccessContent() {
                   </div>
 
                   {/* Step 4 */}
-                  <div className="relative rounded-2xl border border-purple-100 bg-purple-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
+                  <div className="relative rounded-2xl border border-orange-100 bg-orange-50/40 p-4 text-center flex flex-col items-center justify-center space-y-2">
                     <span className="absolute top-2 left-2 w-5 h-5 rounded-full bg-[#6e42ff] text-white text-[11px] font-black flex items-center justify-center">
                       4
                     </span>
@@ -1350,16 +1350,16 @@ function OrderSuccessContent() {
               {/* 2. My Orders Portal */}
               <Link
                 href="/my-order"
-                className="rounded-2xl border border-purple-200/80 bg-[#f8f6ff] p-4 space-y-2 hover:shadow-md transition-shadow"
+                className="rounded-2xl border border-orange-200/80 bg-[#fffaf5] p-4 space-y-2 hover:shadow-md transition-shadow"
               >
-                <div className="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold">
                   <FolderOpen className="w-5 h-5" />
                 </div>
                 <h4 className="text-sm font-black text-[#17214a]">My Orders Portal</h4>
                 <p className="text-xs text-[#5e6888] font-medium leading-relaxed">
                   Access past orders and download folders anytime using your Gmail.
                 </p>
-                <div className="pt-1 text-xs font-black text-purple-700 flex items-center gap-1">
+                <div className="pt-1 text-xs font-black text-orange-700 flex items-center gap-1">
                   <span>Open Portal</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
@@ -1388,16 +1388,16 @@ function OrderSuccessContent() {
               {/* 4. Continue Shopping */}
               <Link
                 href="/shop"
-                className="rounded-2xl border border-purple-200/80 bg-[#fbf9ff] p-4 space-y-2 hover:shadow-md transition-shadow"
+                className="rounded-2xl border border-orange-200/80 bg-[#fffdfa] p-4 space-y-2 hover:shadow-md transition-shadow"
               >
-                <div className="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold">
                   <Flame className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-black text-[#17214a]">Browse 48+ Categories</h4>
                 <p className="text-xs text-[#5e6888] font-medium leading-relaxed">
                   Discover AI influencers, luxury lifestyle, fitness, spiritual &amp; trending reels.
                 </p>
-                <div className="pt-1 text-xs font-black text-purple-700 flex items-center gap-1">
+                <div className="pt-1 text-xs font-black text-orange-700 flex items-center gap-1">
                   <span>Explore Shop</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
@@ -1551,7 +1551,7 @@ export default function OrderSuccessPage() {
       <Suspense
         fallback={
           <div className="min-h-screen py-24 text-center space-y-4">
-            <div className="w-12 h-12 rounded-full border-4 border-purple-600 border-t-transparent animate-spin mx-auto" />
+            <div className="w-12 h-12 rounded-full border-4 border-orange-600 border-t-transparent animate-spin mx-auto" />
             <p className="text-sm font-bold text-slate-500">Loading order verification...</p>
           </div>
         }

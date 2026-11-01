@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Heart,
   ArrowRight,
-  PlaySquare,
 } from 'lucide-react';
 import { useStoreSettings } from '@/context/StoreSettingsContext';
 import { useCart } from '@/context/CartContext';
@@ -51,13 +50,13 @@ export default function Footer() {
       title: 'Instant Access',
       subtitle: 'Get files after payment',
       icon: Zap,
-      bg: 'bg-amber-100/80 text-amber-700',
+      bg: 'bg-blue-100/80 text-blue-700',
     },
     {
       title: 'High Quality',
       subtitle: 'Curated 1080P reels',
       icon: Sparkles,
-      bg: 'bg-yellow-100/80 text-yellow-800',
+      bg: 'bg-cyan-100/80 text-cyan-800',
     },
     {
       title: 'Regular Updates',
@@ -67,15 +66,15 @@ export default function Footer() {
     },
     {
       title: 'Secure Checkout',
-      subtitle: 'Verified PayU Gateway',
+      subtitle: 'Verified RBI PayU Gateway',
       icon: ShieldCheck,
-      bg: 'bg-emerald-100/80 text-emerald-700',
+      bg: 'bg-sky-100/80 text-sky-700',
     },
     {
       title: 'Creator Friendly',
       subtitle: 'Ready to post & monetize',
       icon: Heart,
-      bg: 'bg-amber-100/80 text-amber-700',
+      bg: 'bg-rose-100/80 text-rose-700',
     },
   ];
 
@@ -133,7 +132,7 @@ export default function Footer() {
             {/* Brand Left Column */}
             <div className="lg:col-span-5 space-y-3">
               <Link href="/" prefetch={false} className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-black border border-amber-500/30 overflow-hidden flex items-center justify-center shadow-md shadow-amber-500/20 shrink-0">
+                <div className="w-11 h-11 rounded-full bg-slate-950 border border-cyan-500/40 overflow-hidden flex items-center justify-center shadow-[0_0_16px_rgba(6,182,212,0.35)] shrink-0">
                   <img
                     src="/logo.webp?v=2"
                     alt={`${settings.storeName || 'DigiHaven'} Logo`}
@@ -176,24 +175,24 @@ export default function Footer() {
                       key={link.label}
                       type="button"
                       onClick={() => setIsCartOpen(true)}
-                      className="p-3.5 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 shadow-sm flex items-center justify-between group transition-all text-left"
+                      className="p-3.5 rounded-2xl bg-white border border-slate-200 hover:border-cyan-400 shadow-sm flex items-center justify-between group transition-all text-left cursor-pointer"
                     >
-                      <span className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-amber-600 transition-colors">
+                      <span className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
                         {link.label}
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-amber-600 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:translate-x-0.5 transition-transform" />
                     </button>
                   ) : (
                     <Link
                       key={link.label}
                       href={link.href}
                       prefetch={false}
-                      className="p-3.5 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 shadow-sm flex items-center justify-between group transition-all"
+                      className="p-3.5 rounded-2xl bg-white border border-slate-200 hover:border-cyan-400 shadow-sm flex items-center justify-between group transition-all"
                     >
-                      <span className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-amber-600 transition-colors">
+                      <span className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
                         {link.label}
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-amber-600 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   )
                 )}
@@ -202,16 +201,16 @@ export default function Footer() {
 
           </div>
 
-          {/* "Want a high-converting digital store like VaultWorld Store?" WhatsApp CTA Banner */}
-          <div className="relative rounded-2xl sm:rounded-3xl bg-slate-950 border border-amber-500/20 p-4 sm:p-6 shadow-xl overflow-hidden">
-            {/* Ambient gold glow in the background */}
-            <div className="pointer-events-none absolute -top-16 left-1/3 w-80 h-32 bg-amber-500/10 rounded-full blur-3xl" />
+          {/* "Want a high-converting digital store like DigiHaven?" CTA Banner */}
+          <div className="relative rounded-2xl sm:rounded-3xl bg-slate-950 border border-cyan-500/25 p-4 sm:p-6 shadow-xl overflow-hidden">
+            {/* Ambient Cyan glow in the background */}
+            <div className="pointer-events-none absolute -top-16 left-1/3 w-80 h-32 bg-cyan-500/10 rounded-full blur-3xl" />
 
             <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4">
               
               {/* Left Side: Brand Icon + Text */}
               <div className="flex items-center gap-3.5 sm:gap-4">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black border border-amber-500/30 flex items-center justify-center shrink-0 shadow-lg overflow-hidden p-1">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black border border-cyan-500/40 flex items-center justify-center shrink-0 shadow-lg overflow-hidden p-1">
                   <img
                     src="/vaultzet-logo.jpg"
                     alt="Vaultzet"
@@ -223,7 +222,7 @@ export default function Footer() {
                 <div>
                   <h4 className="text-sm sm:text-base font-extrabold text-white tracking-tight flex flex-wrap items-center gap-2">
                     <span>Want a high-converting digital store like {settings.storeName || 'DigiHaven'}?</span>
-                    <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
                       Designed by Vaultzet
                     </span>
                   </h4>
@@ -233,7 +232,7 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Right Side: Glowing Amber WhatsApp CTA Button */}
+              {/* Right Side: Glowing Electric Cyan CTA Button */}
               <a
                 href={`https://wa.me/917895317940?text=${encodeURIComponent(`Hi Vaultzet, I want to build a high-converting digital store like ${settings.storeName || 'DigiHaven'}.`)}`}
                 target="_blank"
@@ -244,9 +243,9 @@ export default function Footer() {
                     phone: '7895317940',
                   });
                 }}
-                className="w-full md:w-auto inline-flex items-center justify-center gap-3 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-black text-xs sm:text-sm shadow-[0_0_24px_rgba(245,158,11,0.35)] hover:shadow-[0_0_32px_rgba(245,158,11,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 cursor-pointer"
+                className="w-full md:w-auto inline-flex items-center justify-center gap-3 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-xs sm:text-sm shadow-[0_0_24px_rgba(6,182,212,0.45)] hover:shadow-[0_0_36px_rgba(6,182,212,0.75)] hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 cursor-pointer"
               >
-                <div className="w-5 h-5 rounded-full bg-black/80 border border-amber-500/30 flex items-center justify-center overflow-hidden shrink-0 p-0.5">
+                <div className="w-5 h-5 rounded-full bg-black/80 border border-cyan-500/30 flex items-center justify-center overflow-hidden shrink-0 p-0.5">
                   <img
                     src="/vaultzet-logo.jpg"
                     alt="Vaultzet"
@@ -256,7 +255,7 @@ export default function Footer() {
                   />
                 </div>
                 <span>Build Your Own Store</span>
-                <ArrowRight className="w-4 h-4 text-slate-950 stroke-[2.5]" />
+                <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
               </a>
 
             </div>
@@ -264,23 +263,23 @@ export default function Footer() {
 
           {/* Legal Links Bar with Mail, Phone & WhatsApp */}
           <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-600">
-            <Link href="/privacy-policy" prefetch={false} className="hover:text-amber-600 transition-colors">
+            <Link href="/privacy-policy" prefetch={false} className="hover:text-blue-600 transition-colors">
               Privacy Policy
             </Link>
             <span className="text-slate-300">•</span>
-            <Link href="/terms-and-conditions" prefetch={false} className="hover:text-amber-600 transition-colors">
+            <Link href="/terms-and-conditions" prefetch={false} className="hover:text-blue-600 transition-colors">
               Terms &amp; Conditions
             </Link>
             <span className="text-slate-300">•</span>
-            <Link href="/refund-policy" prefetch={false} className="hover:text-amber-600 transition-colors">
+            <Link href="/refund-policy" prefetch={false} className="hover:text-blue-600 transition-colors">
               Refund &amp; Cancellation Policy
             </Link>
             <span className="text-slate-300">•</span>
-            <Link href="/shipping-policy" prefetch={false} className="hover:text-amber-600 transition-colors">
+            <Link href="/shipping-policy" prefetch={false} className="hover:text-blue-600 transition-colors">
               Shipping &amp; Delivery Policy
             </Link>
             <span className="text-slate-300">•</span>
-            <Link href="/contact-us" prefetch={false} className="hover:text-amber-600 transition-colors font-bold text-amber-700">
+            <Link href="/contact-us" prefetch={false} className="hover:text-blue-600 transition-colors font-bold text-blue-700">
               Contact Us
             </Link>
             <span className="text-slate-300">•</span>
@@ -291,16 +290,16 @@ export default function Footer() {
                   window.dispatchEvent(new CustomEvent('vaultworld:open_cookie_consent'));
                 }
               }}
-              className="hover:text-amber-600 transition-colors text-xs font-semibold cursor-pointer underline-offset-2 hover:underline"
+              className="hover:text-blue-600 transition-colors text-xs font-semibold cursor-pointer underline-offset-2 hover:underline"
             >
               Cookie Preferences
             </button>
             <span className="text-slate-300">•</span>
-            <a href={`mailto:${settings.supportEmail || 'Shaul.official1993@gmail.com'}`} className="hover:text-amber-600 transition-colors font-medium">
+            <a href={`mailto:${settings.supportEmail || 'Shaul.official1993@gmail.com'}`} className="hover:text-blue-600 transition-colors font-medium">
               ✉️ {settings.supportEmail || 'Shaul.official1993@gmail.com'}
             </a>
             <span className="text-slate-300">•</span>
-            <a href={`tel:${settings.supportPhone || '+917015281360'}`} className="hover:text-amber-600 transition-colors font-bold text-slate-800">
+            <a href={`tel:${settings.supportPhone || '+917015281360'}`} className="hover:text-blue-600 transition-colors font-bold text-slate-800">
               📞 {settings.supportPhone || '+91 7015281360'}
             </a>
             <span className="text-slate-300">•</span>
@@ -308,7 +307,7 @@ export default function Footer() {
               href={`https://wa.me/${(settings.supportWhatsapp || '917015281360').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi ${settings.storeName || 'DigiHaven'} Support! I need quick assistance.`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-emerald-600 text-emerald-700 transition-colors font-black inline-flex items-center gap-1"
+              className="hover:text-cyan-500 text-cyan-600 transition-colors font-black inline-flex items-center gap-1"
             >
               💬 WhatsApp Support
             </a>
@@ -324,7 +323,7 @@ export default function Footer() {
                 href="https://wa.me/917895317940?text=Hi%20Vaultzet%2C%20I%20want%20to%20build%20a%20high-converting%20digital%20store%20like%20this."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-slate-900 hover:text-amber-600 transition-colors font-extrabold"
+                className="inline-flex items-center gap-1 text-slate-900 hover:text-blue-600 transition-colors font-extrabold"
               >
                 <img
                   src="/vaultzet-logo.jpg"

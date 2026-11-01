@@ -5,13 +5,13 @@
 
 :root {
   --rb-bg: #f8fafc;
-  --rb-text: #0f172a;
+  --rb-text: #0b132b;
   --rb-muted: #64748b;
-  --rb-purple: #d97706;
-  --rb-purple-light: #f59e0b;
-  --rb-purple-dark: #b45309;
-  --rb-pink: #eab308;
-  --rb-green: #059669;
+  --rb-purple: #0066FF;
+  --rb-purple-light: #00D2FF;
+  --rb-purple-dark: #0047BA;
+  --rb-pink: #0ea5e9;
+  --rb-green: #0284c7;
   --rb-line: #e2e8f0;
 }
 
@@ -57,7 +57,7 @@ body {
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d97706;
+  background: #0066FF;
 }
 
 /* Mask gradient for continuous marquee */
@@ -102,35 +102,52 @@ body {
   display: inline-block;
   width: 3px;
   height: 1.1em;
-  background: #d97706;
+  background: #00D2FF;
   margin-left: 4px;
   vertical-align: middle;
   animation: blink 0.8s infinite;
 }
 
-/* Button glow - VaultWorld Signature Gold Luxe */
+/* Button glow - DigiHaven Ultra-Premium Electric Cyber Glow */
 .btn-gradient-primary {
-  background: linear-gradient(105deg, #d97706 0%, #f59e0b 45%, #eab308 80%, #d97706 100%);
-  color: #020617;
-  font-weight: 800;
-  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.28);
-  transition: all 0.2s ease-in-out;
+  background: linear-gradient(105deg, #0052FF 0%, #0084FF 35%, #00D2FF 75%, #0052FF 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 0 25px rgba(0, 140, 255, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.25s ease-in-out;
 }
 .btn-gradient-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(245, 158, 11, 0.42);
+  background-position: right center;
+  box-shadow: 0 0 35px rgba(0, 210, 255, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .btn-gradient-orange {
-  background: linear-gradient(105deg, #d97706 0%, #f59e0b 45%, #eab308 80%, #d97706 100%);
-  color: #020617;
-  font-weight: 800;
-  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.28);
-  transition: all 0.2s ease-in-out;
+  background: linear-gradient(105deg, #e11d48 0%, #f43f5e 40%, #fb923c 80%, #e11d48 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.25s ease-in-out;
 }
 .btn-gradient-orange:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(245, 158, 11, 0.42);
+  background-position: right center;
+  box-shadow: 0 0 35px rgba(251, 146, 60, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes pulseGlowCyan {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 210, 255, 0.85);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlowCyan 2.4s ease-in-out infinite;
 }
 
 /* Glassmorphism */

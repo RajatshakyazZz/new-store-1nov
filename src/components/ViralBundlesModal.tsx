@@ -279,18 +279,18 @@ export default function ViralBundlesModal() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="group px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-slate-950 via-[#1a0c30] to-slate-900 text-white border-2 border-amber-400 hover:border-yellow-300 shadow-[0_6px_25px_rgba(245,158,11,0.5)] flex items-center gap-2 transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md"
+            className="group px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-slate-950 via-[#071933] to-slate-900 text-white border-2 border-cyan-400 hover:border-cyan-300 shadow-[0_0_24px_rgba(6,182,212,0.5)] flex items-center gap-2 transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md"
             aria-label="Open Viral Bundles Spotlight"
           >
-            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 flex items-center justify-center shrink-0 shadow-md">
-              <Flame className="w-3.5 h-3.5 fill-slate-950 animate-pulse" />
+            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 text-white flex items-center justify-center shrink-0 shadow-md">
+              <Flame className="w-3.5 h-3.5 fill-white animate-pulse" />
             </div>
 
             <div className="text-left flex items-center gap-1.5">
-              <span className="text-xs sm:text-sm font-black text-amber-300 tracking-tight drop-shadow-xs">
+              <span className="text-xs sm:text-sm font-black text-cyan-300 tracking-tight drop-shadow-xs">
                 {popupTitle}
               </span>
-              <span className="px-1.5 py-0.2 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">
+              <span className="px-1.5 py-0.2 rounded-full bg-cyan-400 text-slate-950 text-[10px] font-black">
                 {pinnedBundles.length}
               </span>
             </div>
@@ -315,16 +315,16 @@ export default function ViralBundlesModal() {
           {/* Modal Card - Sized for Mobile & PC */}
           <div
             ref={modalRef}
-            className="relative w-full max-w-lg sm:max-w-xl max-h-[85vh] rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#140b24] via-[#0d071a] to-[#080410] border border-amber-500/40 text-white shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(245,158,11,0.25)] flex flex-col overflow-hidden z-10 my-auto"
+            className="relative w-full max-w-lg sm:max-w-xl max-h-[85vh] rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#071933] via-[#051124] to-[#020617] border border-cyan-500/40 text-white shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(6,182,212,0.25)] flex flex-col overflow-hidden z-10 my-auto"
           >
-            {/* Top Glowing Amber Line */}
-            <div className="h-1 w-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 shadow-[0_0_12px_rgba(251,191,36,0.8)]" />
+            {/* Top Glowing Cyan Line */}
+            <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 shadow-[0_0_12px_rgba(6,182,212,0.8)]" />
 
             {/* Header: Compact & Elegant */}
             <div className="p-3.5 sm:p-5 pb-2.5 sm:pb-3 border-b border-white/10 flex items-center justify-between gap-3 relative">
               <div className="space-y-0.5 min-w-0 flex-1 pr-2">
-                <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[10px] font-black uppercase tracking-wider">
-                  <Flame className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[10px] font-black uppercase tracking-wider">
+                  <Flame className="w-3 h-3 fill-cyan-400 text-cyan-400" />
                   <span>{badgeText}</span>
                 </div>
 
@@ -333,7 +333,7 @@ export default function ViralBundlesModal() {
                   className="text-base sm:text-xl font-black text-white tracking-tight flex items-center gap-2 truncate"
                 >
                   <span className="truncate">{popupTitle}</span>
-                  <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-black shrink-0">
+                  <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black shrink-0">
                     {pinnedBundles.length} Packs
                   </span>
                 </h2>
@@ -367,7 +367,7 @@ export default function ViralBundlesModal() {
                 return (
                   <div
                     key={bundle.id || bundle.slug || index}
-                    className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/80 border border-amber-500/20 hover:border-amber-400/50 transition-all flex items-center gap-2.5 sm:gap-3.5 shadow-sm group"
+                    className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/80 border border-cyan-500/20 hover:border-cyan-400/50 transition-all flex items-center gap-2.5 sm:gap-3.5 shadow-sm group"
                   >
                     {/* Thumbnail: Sleek 64px on mobile, 80px on desktop */}
                     <Link
@@ -386,7 +386,7 @@ export default function ViralBundlesModal() {
                           }
                         }}
                       />
-                      <div className="absolute top-1 left-1 px-1 py-0.2 rounded bg-black/85 text-amber-300 text-[8px] font-black border border-amber-400/40">
+                      <div className="absolute top-1 left-1 px-1 py-0.2 rounded bg-black/85 text-cyan-300 text-[8px] font-black border border-cyan-400/40">
                         #{index + 1}
                       </div>
                     </Link>
@@ -396,21 +396,21 @@ export default function ViralBundlesModal() {
                       <Link
                         href={`/product/${bundle.slug}`}
                         onClick={handleClose}
-                        className="font-bold text-xs sm:text-sm text-white hover:text-amber-400 transition-colors line-clamp-1 block leading-snug"
+                        className="font-bold text-xs sm:text-sm text-white hover:text-cyan-400 transition-colors line-clamp-1 block leading-snug"
                       >
                         {bundle.title}
                       </Link>
 
                       <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] text-slate-400 flex-wrap">
-                        <span className="px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-300 font-bold border border-amber-500/20">
+                        <span className="px-1.5 py-0.2 rounded bg-cyan-500/10 text-cyan-300 font-bold border border-cyan-500/20">
                           {bundle.reelCount}+ Reels
                         </span>
-                        <span className="text-emerald-400 font-bold">{discount}% OFF</span>
+                        <span className="text-rose-400 font-bold">{discount}% OFF</span>
                       </div>
 
                       {/* Price */}
                       <div className="flex items-baseline gap-1.5 pt-0.5">
-                        <span className="text-xs sm:text-sm font-black text-amber-400">
+                        <span className="text-xs sm:text-sm font-black text-cyan-400">
                           ₹{currPrice}
                         </span>
                         {origPrice > currPrice && (
@@ -418,7 +418,7 @@ export default function ViralBundlesModal() {
                             ₹{origPrice}
                           </span>
                         )}
-                        <span className="text-[9px] text-emerald-400 font-medium hidden sm:inline">
+                        <span className="text-[9px] text-cyan-400 font-medium hidden sm:inline">
                           • Instant Drive Access
                         </span>
                       </div>
@@ -429,9 +429,9 @@ export default function ViralBundlesModal() {
                       <button
                         type="button"
                         onClick={() => handleBuyNowClick(bundle)}
-                        className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-[11px] sm:text-xs flex items-center justify-center gap-1 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+                        className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-400 text-white font-black text-[11px] sm:text-xs flex items-center justify-center gap-1 shadow-[0_0_15px_rgba(6,182,212,0.4)] active:scale-95 transition-all cursor-pointer whitespace-nowrap border border-cyan-400/30"
                       >
-                        <Zap className="w-3 h-3 fill-slate-950" />
+                        <Zap className="w-3 h-3 fill-white" />
                         <span>Buy ₹{currPrice}</span>
                       </button>
 
@@ -452,7 +452,7 @@ export default function ViralBundlesModal() {
 
             {/* Footer: Compact Reassurance */}
             <div className="p-2.5 sm:p-3.5 border-t border-white/10 bg-black/40 flex items-center justify-between text-[10px] sm:text-xs text-slate-400">
-              <div className="flex items-center gap-2 text-emerald-400 font-semibold truncate pr-2">
+              <div className="flex items-center gap-2 text-cyan-400 font-semibold truncate pr-2">
                 <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
                 <span className="truncate">Google Drive • Instant Download</span>
               </div>
@@ -460,7 +460,7 @@ export default function ViralBundlesModal() {
               <Link
                 href="/shop"
                 onClick={handleClose}
-                className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 hover:underline shrink-0"
+                className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 hover:underline shrink-0"
               >
                 <span>View All Shop</span>
                 <ArrowRight className="w-3 h-3" />

@@ -148,12 +148,12 @@ export default function FreeBundlesModal() {
           </button>
 
           <div className="flex items-start gap-3.5 pr-8">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 text-slate-950 flex items-center justify-center shrink-0 shadow-md shadow-amber-500/25">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-cyan-500/25">
               <Gift className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200 text-[11px] font-black uppercase tracking-wider mb-1">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-900 border border-cyan-200 text-[11px] font-black uppercase tracking-wider mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
                 <span>Special Offer Unlocked</span>
               </div>
               <h2
@@ -179,7 +179,7 @@ export default function FreeBundlesModal() {
                   key={slotIdx}
                   className={`p-2.5 rounded-xl border flex items-center gap-2.5 transition-all ${
                     item
-                      ? 'bg-white border-amber-500 shadow-[0_2px_10px_rgba(245,158,11,0.12)]'
+                      ? 'bg-white border-cyan-500 shadow-[0_2px_10px_rgba(6,182,212,0.18)]'
                       : 'bg-white/60 border-dashed border-slate-300 text-slate-400'
                   }`}
                 >
@@ -193,7 +193,7 @@ export default function FreeBundlesModal() {
                         className="w-10 h-10 rounded-lg object-cover shrink-0"
                       />
                       <div className="min-w-0 flex-1">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#076647] bg-[#e6f7f0] px-1.5 py-0.2 rounded">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-700 bg-cyan-100 px-1.5 py-0.2 rounded">
                           Free Gift {slotIdx + 1}
                         </span>
                         <p className="text-xs font-bold text-slate-950 truncate leading-tight mt-0.5">
@@ -231,7 +231,7 @@ export default function FreeBundlesModal() {
               placeholder="Search reels bundles (e.g. AI, Horror, Gym, Motivation)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-9 py-2 rounded-xl text-xs sm:text-sm bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500 text-slate-900 placeholder:text-slate-400"
+              className="w-full pl-9 pr-9 py-2 rounded-xl text-xs sm:text-sm bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-900 placeholder:text-slate-400"
             />
             {searchQuery && (
               <button
@@ -252,8 +252,8 @@ export default function FreeBundlesModal() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3 py-1 rounded-full font-bold whitespace-nowrap transition-colors capitalize ${
                   activeCategory === cat
-                    ? 'bg-slate-950 text-amber-400 border border-amber-500/40'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-amber-400'
+                    ? 'bg-slate-950 text-cyan-400 border border-cyan-500/40'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:border-cyan-400'
                 }`}
               >
                 {cat === 'all' ? 'All Bundles' : cat}
@@ -280,7 +280,7 @@ export default function FreeBundlesModal() {
                   key={bundle.id}
                   className={`pt-2.5 first:pt-0 flex items-center justify-between gap-3 p-2.5 rounded-2xl transition-all ${
                     isSelected
-                      ? 'bg-amber-50/70 border border-amber-400/60'
+                      ? 'bg-cyan-50/70 border border-cyan-400/60'
                       : 'hover:bg-slate-50'
                   }`}
                 >
@@ -297,13 +297,13 @@ export default function FreeBundlesModal() {
                         {bundle.title}
                       </h4>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200/50">
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-900 border border-sky-200/50">
                           {bundle.reelCount}+ Reels
                         </span>
                         <span className="text-[11px] text-slate-400 line-through tabular-nums">
                           ₹{bundle.personalPrice}
                         </span>
-                        <span className="text-[11px] font-black text-emerald-700 tabular-nums">
+                        <span className="text-[11px] font-black text-cyan-700 tabular-nums">
                           FREE ₹0
                         </span>
                       </div>
@@ -315,10 +315,10 @@ export default function FreeBundlesModal() {
                     onClick={() => handleToggleSelect(bundle)}
                     className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-black transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
                       isSelected
-                        ? 'bg-emerald-700 text-white shadow-sm'
+                        ? 'bg-cyan-700 text-white shadow-sm'
                         : isMaxSelected
-                        ? 'bg-slate-100 text-slate-400 hover:bg-amber-100 hover:text-amber-900'
-                        : 'bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/20'
+                        ? 'bg-slate-100 text-slate-400 hover:bg-cyan-100 hover:text-cyan-900'
+                        : 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-cyan-500/20'
                     }`}
                   >
                     {isSelected ? (
@@ -346,7 +346,7 @@ export default function FreeBundlesModal() {
             </span>{' '}
             free bundles selected.{' '}
             {selected.length < freeQty && (
-              <span className="text-amber-800 font-bold">
+              <span className="text-cyan-800 font-bold">
                 (You can choose {freeQty - selected.length} more)
               </span>
             )}
@@ -364,9 +364,9 @@ export default function FreeBundlesModal() {
               type="button"
               disabled={selected.length === 0}
               onClick={handleClaim}
-              className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-slate-950 font-black text-xs sm:text-[13px] transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-black text-xs sm:text-[13px] transition-all cursor-pointer ${
                 selected.length > 0
-                  ? 'bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 shadow-lg shadow-amber-500/25 hover:from-amber-400 hover:to-yellow-400 active:scale-[0.98]'
+                  ? 'bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/25 hover:from-blue-500 hover:to-cyan-400 active:scale-[0.98]'
                   : 'bg-slate-200 cursor-not-allowed text-slate-400'
               }`}
             >

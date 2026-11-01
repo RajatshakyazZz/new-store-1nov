@@ -307,7 +307,7 @@ function OrderSuccessContent() {
         (typeof it?.title === 'string' && it.title.toLowerCase().includes('all bundles'))
     );
 
-  const rawWa = (settings?.supportWhatsapp || '9142408286').replace(/[^0-9]/g, '');
+  const rawWa = (settings?.supportWhatsapp || '7015281360').replace(/[^0-9]/g, '');
   const cleanWhatsappNumber = rawWa.length === 10 ? '91' + rawWa : rawWa;
 
   return (
@@ -1476,7 +1476,7 @@ class OrderSuccessErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      let waPhone = '919142408286';
+      let waPhone = '917015281360';
       if (typeof window !== 'undefined') {
         try {
           const waCached = localStorage.getItem('rb_portal_settings_whatsapp');

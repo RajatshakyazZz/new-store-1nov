@@ -136,7 +136,7 @@ export default function Footer() {
                 <div className="w-11 h-11 rounded-full bg-black border border-amber-500/30 overflow-hidden flex items-center justify-center shadow-md shadow-amber-500/20 shrink-0">
                   <img
                     src="/logo.webp?v=2"
-                    alt="VaultWorld Store Logo"
+                    alt={`${settings.storeName || 'DigiHaven'} Logo`}
                     width={44}
                     height={44}
                     loading="lazy"
@@ -146,7 +146,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <span className="font-extrabold text-lg text-slate-900 tracking-tight block">
-                    {settings.storeName || 'VaultWorld Store'}
+                    {settings.storeName || 'DigiHaven'}
                   </span>
                   <span className="text-[11px] font-semibold text-slate-500 block">
                     {settings.tagline || 'Everything You Need, All in One Place.'}
@@ -154,7 +154,7 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-sm">
-                Premium ready-to-use reels bundles for creators, pages and digital businesses by {settings.storeName || 'VaultWorld Store'}.
+                Premium ready-to-use reels bundles for creators, pages and digital businesses by {settings.storeName || 'DigiHaven'}.
               </p>
             </div>
 
@@ -222,7 +222,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <h4 className="text-sm sm:text-base font-extrabold text-white tracking-tight flex flex-wrap items-center gap-2">
-                    <span>Want a high-converting digital store like VaultWorld Store?</span>
+                    <span>Want a high-converting digital store like {settings.storeName || 'DigiHaven'}?</span>
                     <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
                       Designed by Vaultzet
                     </span>
@@ -235,7 +235,7 @@ export default function Footer() {
 
               {/* Right Side: Glowing Amber WhatsApp CTA Button */}
               <a
-                href={`https://wa.me/917895317940?text=${encodeURIComponent('Hi Vaultzet, I want to build a high-converting digital store like VaultWorld Store.')}`}
+                href={`https://wa.me/917895317940?text=${encodeURIComponent(`Hi Vaultzet, I want to build a high-converting digital store like ${settings.storeName || 'DigiHaven'}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -262,7 +262,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Legal Links Bar with Mail */}
+          {/* Legal Links Bar with Mail, Phone & WhatsApp */}
           <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-600">
             <Link href="/privacy-policy" prefetch={false} className="hover:text-amber-600 transition-colors">
               Privacy Policy
@@ -280,7 +280,7 @@ export default function Footer() {
               Shipping &amp; Delivery Policy
             </Link>
             <span className="text-slate-300">•</span>
-            <Link href="/contact-us" prefetch={false} className="hover:text-amber-600 transition-colors">
+            <Link href="/contact-us" prefetch={false} className="hover:text-amber-600 transition-colors font-bold text-amber-700">
               Contact Us
             </Link>
             <span className="text-slate-300">•</span>
@@ -296,14 +296,27 @@ export default function Footer() {
               Cookie Preferences
             </button>
             <span className="text-slate-300">•</span>
-            <a href={`mailto:${settings.supportEmail || 'support.vaultworld.shop@gmail.com'}`} className="hover:text-amber-600 transition-colors">
-              {settings.supportEmail || 'support.vaultworld.shop@gmail.com'}
+            <a href={`mailto:${settings.supportEmail || 'Shaul.official1993@gmail.com'}`} className="hover:text-amber-600 transition-colors font-medium">
+              ✉️ {settings.supportEmail || 'Shaul.official1993@gmail.com'}
+            </a>
+            <span className="text-slate-300">•</span>
+            <a href={`tel:${settings.supportPhone || '+917015281360'}`} className="hover:text-amber-600 transition-colors font-bold text-slate-800">
+              📞 {settings.supportPhone || '+91 7015281360'}
+            </a>
+            <span className="text-slate-300">•</span>
+            <a
+              href={`https://wa.me/${(settings.supportWhatsapp || '917015281360').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi ${settings.storeName || 'DigiHaven'} Support! I need quick assistance.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-600 text-emerald-700 transition-colors font-black inline-flex items-center gap-1"
+            >
+              💬 WhatsApp Support
             </a>
           </div>
 
           {/* Bottom Copyright Row */}
           <div className="pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-slate-500 font-medium">
-            <p>© {new Date().getFullYear()} {settings.storeName || 'VaultWorld Store'}. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} {settings.storeName || 'DigiHaven'}. All rights reserved.</p>
             <span className="hidden sm:inline text-slate-300">•</span>
             <p className="flex items-center gap-1.5 font-semibold text-slate-600">
               <span>Designed by</span>

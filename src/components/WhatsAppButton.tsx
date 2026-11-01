@@ -61,7 +61,7 @@ export default function WhatsAppButton({
   }
 
   // Resolve dynamic phone number: prop > admin settings > fallback
-  const rawPhone = phoneNumber || settings?.supportWhatsapp || '9142408286';
+  const rawPhone = phoneNumber || settings?.supportWhatsapp || '7015281360';
 
   let cleanPhone = rawPhone.replace(/[^0-9]/g, '');
   if (cleanPhone.length === 10) {
@@ -70,7 +70,7 @@ export default function WhatsAppButton({
     cleanPhone = '91' + cleanPhone.slice(1);
   }
 
-  const effectiveStoreName = storeName || settings?.storeName || 'VaultWorld Store';
+  const effectiveStoreName = storeName || settings?.storeName || 'DigiHaven';
   const effectiveDefaultMessage = defaultMessage || settings?.whatsappDefaultMessage;
 
   // Determine intelligent positioning based on current route

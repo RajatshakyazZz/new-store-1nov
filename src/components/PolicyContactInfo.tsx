@@ -6,9 +6,9 @@ import { useStoreSettings } from '@/context/StoreSettingsContext';
 
 export default function PolicyContactInfo() {
   const { settings } = useStoreSettings();
-  const storeName = settings?.storeName || 'VaultWorld Store';
-  const supportEmail = settings?.supportEmail || 'support.vaultworld.shop@gmail.com';
-  const supportPhone = settings?.supportPhone || settings?.supportWhatsapp || '+91 8051017331';
+  const storeName = settings?.storeName || 'DigiHaven';
+  const supportEmail = settings?.supportEmail || 'Shaul.official1993@gmail.com';
+  const supportPhone = settings?.supportPhone || settings?.supportWhatsapp || '+91 7015281360';
 
   return (
     <div className="mt-6 rounded-2xl bg-slate-50 border border-slate-200/90 p-5 sm:p-6 text-slate-700 text-xs sm:text-sm space-y-4">

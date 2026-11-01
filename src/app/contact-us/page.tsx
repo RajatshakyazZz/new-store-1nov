@@ -2,72 +2,108 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, Clock, FolderOpen, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MessageSquare, Clock, FolderOpen, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useStoreSettings } from '@/context/StoreSettingsContext';
+import PolicyContactInfo from '@/components/PolicyContactInfo';
 
 export default function ContactUsPage() {
   const { settings } = useStoreSettings();
 
-  const supportEmail = settings?.supportEmail || 'support.vaultworld.shop@gmail.com';
+  const storeName = settings?.storeName || 'DigiHaven';
+  const supportEmail = settings?.supportEmail || 'Shaul.official1993@gmail.com';
+  const supportPhone = settings?.supportPhone || '+91 7015281360';
+  const supportWhatsapp = settings?.supportWhatsapp || '+91 7015281360';
+  const cleanWaNumber = supportWhatsapp.replace(/[^0-9]/g, '');
+  const waTarget = cleanWaNumber.startsWith('91') && cleanWaNumber.length === 12 
+    ? cleanWaNumber 
+    : `91${cleanWaNumber.slice(-10)}`;
 
   return (
     <div className="py-12 sm:py-20 bg-slate-50 min-h-[85vh]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="text-center space-y-3">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[11px] font-black uppercase text-amber-700 tracking-wider">
             <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
-            <span>OFFICIAL SUPPORT HELPLINE</span>
+            <span>OFFICIAL {storeName.toUpperCase()} HELPLINE</span>
           </span>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Contact Customer Support
           </h1>
-          <p className="text-sm text-slate-600 font-medium max-w-md mx-auto leading-relaxed">
-            Need help with your Google Drive download link, payment verification, or bundle access? Our support desk responds within 2–4 hours.
+          <p className="text-sm text-slate-600 font-medium max-w-lg mx-auto leading-relaxed">
+            Need help with your Google Drive download link, payment verification, or bundle access? We are available via WhatsApp, Phone, and Email.
           </p>
         </div>
 
-        {/* 3 Contact Info Cards (Email, Instant Orders, Working Hours) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {/* Email Us */}
+        {/* Support Channels Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          {/* WhatsApp Support */}
+          <a
+            href={`https://wa.me/${waTarget}?text=${encodeURIComponent(`Hi ${storeName} Support! I need quick help regarding my order.`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-5 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all text-center space-y-2.5 block group"
+          >
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/60 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+              <MessageSquare className="w-6 h-6" />
+            </div>
+            <h3 className="font-extrabold text-base text-slate-900">WhatsApp Support</h3>
+            <p className="text-xs font-bold text-slate-800">
+              {supportWhatsapp}
+            </p>
+            <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-black pt-1 group-hover:underline">
+              <span>Chat on WhatsApp</span>
+              <ArrowRight className="w-3 h-3 stroke-[3]" />
+            </span>
+          </a>
+
+          {/* Call / Phone Helpline */}
+          <a
+            href={`tel:${supportPhone}`}
+            className="p-5 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-sky-400/60 transition-all text-center space-y-2.5 block group"
+          >
+            <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 border border-sky-200/60 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+              <Phone className="w-6 h-6" />
+            </div>
+            <h3 className="font-extrabold text-base text-slate-900">Call Helpline</h3>
+            <p className="text-xs font-bold text-slate-800">
+              {supportPhone}
+            </p>
+            <span className="inline-flex items-center gap-1 text-[11px] text-sky-700 font-black pt-1 group-hover:underline">
+              <span>Call Us Directly</span>
+              <ArrowRight className="w-3 h-3 stroke-[3]" />
+            </span>
+          </a>
+
+          {/* Email Support */}
           <a
             href={`mailto:${supportEmail}`}
-            className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400/50 transition-all text-center space-y-2.5 block group"
+            className="p-5 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400/60 transition-all text-center space-y-2.5 block group"
           >
             <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200/60 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
               <Mail className="w-6 h-6" />
             </div>
-            <h3 className="font-extrabold text-base text-slate-900">Email Support</h3>
-            <p className="text-xs font-semibold text-slate-600 break-all">
+            <h3 className="font-extrabold text-base text-slate-900">Email Desk</h3>
+            <p className="text-xs font-semibold text-slate-700 break-all">
               {supportEmail}
             </p>
-            <p className="text-[11px] text-amber-600 font-bold pt-1">Direct Email Assistance</p>
+            <span className="inline-flex items-center gap-1 text-[11px] text-amber-700 font-black pt-1 group-hover:underline">
+              <span>Send An Email</span>
+              <ArrowRight className="w-3 h-3 stroke-[3]" />
+            </span>
           </a>
 
-          {/* Instant Order Access */}
-          <Link
-            href="/my-order"
-            className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400/50 transition-all text-center space-y-2.5 block group"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/60 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
-              <FolderOpen className="w-6 h-6" />
-            </div>
-            <h3 className="font-extrabold text-base text-slate-900">Order Downloads</h3>
-            <p className="text-xs font-semibold text-slate-600">
-              Instant Google Drive Access
-            </p>
-            <p className="text-[11px] text-emerald-600 font-bold pt-1">Self-Service Portal</p>
-          </Link>
-
           {/* Working Hours */}
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm text-center space-y-2.5">
+          <div className="p-5 rounded-3xl bg-white border border-slate-200/90 shadow-sm text-center space-y-2.5">
             <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center mx-auto">
               <Clock className="w-6 h-6" />
             </div>
             <h3 className="font-extrabold text-base text-slate-900">Working Hours</h3>
-            <p className="text-xs font-semibold text-slate-600">10:00 AM – 8:00 PM IST</p>
-            <p className="text-[11px] text-slate-400 font-medium pt-1">Monday to Sunday</p>
+            <p className="text-xs font-bold text-slate-800">10:00 AM – 8:00 PM IST</p>
+            <p className="text-[11px] text-slate-500 font-medium pt-1">Monday to Sunday</p>
           </div>
+
         </div>
 
         {/* Instant Self-Service Order Portal Card */}
@@ -94,6 +130,9 @@ export default function ContactUsPage() {
             <ArrowRight className="w-4 h-4 text-slate-950 stroke-[2.5]" />
           </Link>
         </div>
+
+        {/* Statutory Policy & Grievance Desk Info */}
+        <PolicyContactInfo />
 
       </div>
     </div>

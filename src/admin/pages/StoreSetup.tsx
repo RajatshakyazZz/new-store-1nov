@@ -15,9 +15,9 @@ export default function StoreSetup() {
   });
 
   const [form, setForm] = useState<StoreSetupConfig>({
-    store_name: 'VaultWorld Store',
-    contact_email: 'support.vaultworld.shop@gmail.com',
-    support_whatsapp: '+91 8051017331',
+    store_name: 'DigiHaven',
+    contact_email: 'Shaul.official1993@gmail.com',
+    support_whatsapp: '+91 7015281360',
     currency: 'INR',
     currency_symbol: '₹',
     price_format: '₹%s',
@@ -93,7 +93,7 @@ export default function StoreSetup() {
             <label className="text-xs font-bold text-slate-300 block">Helpline / Support Phone</label>
             <input
               type="text"
-              placeholder="+91 8051017331"
+              placeholder="+91 7015281360"
               value={form.support_whatsapp}
               onChange={(e) => setForm({ ...form, support_whatsapp: e.target.value, support_phone: e.target.value })}
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-mono"

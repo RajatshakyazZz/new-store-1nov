@@ -24,15 +24,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'VaultWorld Store | Buy Viral Reels Bundles in India – 222,000+ Ready-to-Post Reels',
-    template: '%s | VaultWorld Store',
+    default: 'DigiHaven | Buy Viral Reels Bundles in India – 222,000+ Ready-to-Post Reels',
+    template: '%s | DigiHaven',
   },
   description:
     'Download 222,000+ viral ready-to-post vertical reels bundles for Instagram Reels, YouTube Shorts & Facebook across 129+ niches. Zero watermarks, commercial & reseller rights, and instant Google Drive access.',
   keywords: [
-    'vaultworld',
-    'vaultworld store',
-    'vaultzet',
+    'digihaven',
+    'digihaven store',
     'viral reels bundle',
     'ai reels bundle',
     'instagram reels bundle india',
@@ -44,9 +43,9 @@ export const metadata: Metadata = {
     'digital products resell india',
     'watermark free reels download',
   ],
-  authors: [{ name: 'VaultWorld Store', url: SITE_URL }],
-  creator: 'VaultWorld Store',
-  publisher: 'VaultWorld Store',
+  authors: [{ name: 'DigiHaven', url: SITE_URL }],
+  creator: 'DigiHaven',
+  publisher: 'DigiHaven',
   alternates: {
     canonical: SITE_URL,
   },
@@ -110,7 +109,7 @@ export default function RootLayout({
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
         url: SITE_URL,
-        name: 'VaultWorld Store',
+        name: 'DigiHaven',
         description:
           'India’s #1 marketplace for ready-to-post viral Instagram Reels & YouTube Shorts bundles with instant Google Drive delivery.',
         potentialAction: {
@@ -122,17 +121,16 @@ export default function RootLayout({
       {
         '@type': 'Organization',
         '@id': `${SITE_URL}/#organization`,
-        name: 'VaultWorld Store',
+        name: 'DigiHaven',
         url: SITE_URL,
         logo: `${SITE_URL}/logo.webp`,
         sameAs: [
-          'https://instagram.com/vaultworld.shop',
-          'https://youtube.com/@vaultworld',
+          'https://instagram.com/digihaven.shop',
         ],
         contactPoint: {
           '@type': 'ContactPoint',
-          email: 'support.vaultworld.shop@gmail.com',
-          telephone: '+91-8051017331',
+          email: 'Shaul.official1993@gmail.com',
+          telephone: '+91-7015281360',
           contactType: 'customer support',
           areaServed: 'IN',
           availableLanguage: ['English', 'Hindi'],

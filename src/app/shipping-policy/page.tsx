@@ -7,8 +7,8 @@ import PolicyContactInfo from '@/components/PolicyContactInfo';
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://vaultworld.shop').replace(/\/+$/, '');
 
 export const metadata: Metadata = {
-  title: 'Shipping & Delivery Policy | VaultWorld Store',
-  description: 'Instant Digital Delivery and Shipping Policy for VaultWorld Store. Explains our 60-second cloud delivery via Google Drive with zero shipping charges.',
+  title: 'Shipping & Delivery Policy | DigiHaven',
+  description: 'Instant Digital Delivery and Shipping Policy for DigiHaven. Explains our 60-second cloud delivery via Google Drive with zero shipping charges.',
   alternates: {
     canonical: `${siteUrl}/shipping-policy`,
   },
@@ -65,7 +65,7 @@ export default function ShippingPolicyPage() {
               <span>100% Digital Intangible Products (No Physical Shipping)</span>
             </h2>
             <p>
-              VaultWorld Store operates exclusively as a retailer of <strong>downloadable digital content</strong> (including pre-rendered 1080p vertical video reels bundles, social media creative packs, AI reel clips, and editing assets).
+              DigiHaven operates exclusively as a retailer of <strong>downloadable digital content</strong> (including pre-rendered 1080p vertical video reels bundles, social media creative packs, AI reel clips, and editing assets).
             </p>
             <p>
               <strong>We do not sell, package, or ship any physical goods or parcels.</strong> Consequently, physical postal shipping, courier transit times, delivery addresses, and courier tracking numbers are not applicable to any orders on our platform.
@@ -79,7 +79,7 @@ export default function ShippingPolicyPage() {
               <span>Shipping &amp; Delivery Charges</span>
             </h2>
             <p>
-              All digital products sold on VaultWorld Store carry <strong>Zero Shipping Charges (₹0.00 / Free Delivery)</strong>. The price displayed on the product page and checkout is the total final price you pay. There are no shipping, handling, fuel surcharge, or packaging fees added to your order.
+              All digital products sold on DigiHaven carry <strong>Zero Shipping Charges (₹0.00 / Free Delivery)</strong>. The price displayed on the product page and checkout is the total final price you pay. There are no shipping, handling, fuel surcharge, or packaging fees added to your order.
             </p>
           </section>
 
@@ -190,7 +190,7 @@ export default function ShippingPolicyPage() {
         {/* Footer Navigation Back to Store */}
         <div className="flex items-center justify-between text-xs font-semibold text-slate-500 pt-2">
           <Link href="/" className="hover:text-amber-600 transition-colors">
-            ← Return to VaultWorld Store Home
+            ← Return to DigiHaven Home
           </Link>
           <div className="flex gap-4">
             <Link href="/terms-and-conditions" className="hover:text-amber-600 transition-colors">

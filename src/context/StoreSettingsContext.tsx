@@ -33,24 +33,24 @@ const DEFAULT_SITE_MODE: SiteModeData = {
 };
 
 const DEFAULT_SETTINGS: StoreSettings = {
-  storeName: 'VaultWorld Store',
-  ownerName: 'VaultWorld Team',
+  storeName: 'DigiHaven',
+  ownerName: 'DigiHaven Team',
   tagline: 'Everything You Need, All in One Place.',
-  supportEmail: 'support.vaultworld.shop@gmail.com',
-  supportPhone: '+91 8051017331',
-  supportWhatsapp: '+91 8051017331',
+  supportEmail: 'Shaul.official1993@gmail.com',
+  supportPhone: '+91 7015281360',
+  supportWhatsapp: '+91 7015281360',
   currency: 'INR',
   currencySymbol: '₹',
   whatsappButtonEnabled: true,
-  whatsappDefaultMessage: 'Hi VaultWorld Support! I need quick help regarding my VaultWorld Store order.',
+  whatsappDefaultMessage: 'Hi DigiHaven Support! I need quick help regarding my DigiHaven order.',
   whatsappPopupText: 'Need help? Chat on WhatsApp',
   siteMode: DEFAULT_SITE_MODE,
 };
 
-function sanitizeStoreName(name?: string, fallback = 'VaultWorld Store'): string {
+function sanitizeStoreName(name?: string, fallback = 'DigiHaven'): string {
   if (!name || !name.trim()) return fallback;
-  if (/reels\s*bundles?/i.test(name) || /digonest/i.test(name) || /vaultzet/i.test(name)) {
-    return 'VaultWorld Store';
+  if (/reels\s*bundles?/i.test(name) || /digonest/i.test(name) || /vaultzet/i.test(name) || /vaultworld/i.test(name)) {
+    return 'DigiHaven';
   }
   return name.trim();
 }
@@ -71,19 +71,20 @@ function sanitizeLogoUrl(url?: string, fallback = '/logo.webp?v=2'): string {
   return url.trim();
 }
 
-function sanitizeEmail(email?: string, fallback = 'support.vaultworld.shop@gmail.com'): string {
+function sanitizeEmail(email?: string, fallback = 'Shaul.official1993@gmail.com'): string {
   if (!email || !email.trim()) return fallback;
   if (
     /reelsbundles/i.test(email) ||
     /digonest/i.test(email) ||
-    /rajattracozegaming/i.test(email)
+    /rajattracozegaming/i.test(email) ||
+    /vaultworld/i.test(email)
   ) {
     return fallback;
   }
   return email.trim();
 }
 
-function sanitizePhone(phone?: string, fallback = '+91 8051017331'): string {
+function sanitizePhone(phone?: string, fallback = '+91 7015281360'): string {
   if (!phone || !phone.trim()) return fallback;
   if (/98765\s*43210/.test(phone)) {
     return fallback;
@@ -140,7 +141,7 @@ export function StoreSettingsProvider({ children }: { children: React.ReactNode 
           waData?.phone_number ||
           parsed.supportPhone ||
           parsed.supportWhatsapp ||
-          '+91 8051017331'
+          '+91 7015281360'
         );
         const resolvedEmail = sanitizeEmail(genData?.contact_email || parsed.supportEmail);
 
@@ -162,7 +163,7 @@ export function StoreSettingsProvider({ children }: { children: React.ReactNode 
         setSettings(cleaned);
       } else if (genData || waData || siteModeData) {
         const resolvedPhone = sanitizePhone(
-          genData?.support_whatsapp || genData?.support_phone || waData?.phone_number || '+91 8051017331'
+          genData?.support_whatsapp || genData?.support_phone || waData?.phone_number || '+91 7015281360'
         );
         const resolvedEmail = sanitizeEmail(genData?.contact_email);
         setSettings((prev) => ({

@@ -691,10 +691,10 @@ export default function ResellerLandingClient({
       {listing.whatsappButtonEnabled !== false && (
         <WhatsAppButton
           isResellerPage={true}
-          phoneNumber={listing.whatsappNumber || '919142408286'}
-          storeName={listing.resellerName ? `${listing.resellerName} • VaultWorld Partner` : 'VaultWorld Support'}
+          phoneNumber={listing.whatsappNumber || '917015281360'}
+          storeName={listing.resellerName ? `${listing.resellerName} • DigiHaven Partner` : 'DigiHaven Support'}
           productTitle={listing.customTitle}
-          defaultMessage={`Hi! I am browsing "${listing.customTitle}" on VaultWorld. Can you please assist me?`}
+          defaultMessage={`Hi! I am browsing "${listing.customTitle}" on DigiHaven. Can you please assist me?`}
           positionClassName="bottom-20 md:bottom-6 right-4 sm:right-6"
         />
       )}

@@ -16,8 +16,8 @@ export default function WhatsappButton() {
 
   const [form, setForm] = useState<WhatsappButtonConfig>({
     enabled: true,
-    phone_number: '919142408286',
-    default_message: 'Hi VaultWorld Support! I have a question regarding the bundles.',
+    phone_number: '917015281360',
+    default_message: 'Hi DigiHaven Support! I have a question regarding the bundles.',
     position: 'bottom-right',
     show_popup_badge: true,
     popup_text: 'Need help? Chat on WhatsApp',

@@ -10193,9 +10193,9 @@ export const initialSiteMode: SiteModeConfig = {
 };
 
 export const initialStoreSetup: StoreSetupConfig = {
-  store_name: 'VaultWorld Store',
-  contact_email: 'support.vaultworld.shop@gmail.com',
-  support_whatsapp: '+91 8051017331',
+  store_name: 'DigiHaven',
+  contact_email: 'Shaul.official1993@gmail.com',
+  support_whatsapp: '+91 7015281360',
   currency: 'INR',
   currency_symbol: '₹',
   price_format: '₹%s',
@@ -10220,8 +10220,8 @@ export const initialMetaPixel: MetaPixelConfig = {
 
 export const initialWhatsappButton: WhatsappButtonConfig = {
   enabled: true,
-  phone_number: '919142408286',
-  default_message: 'Hi VaultWorld Support! I need quick help regarding my VaultWorld Store order.',
+  phone_number: '917015281360',
+  default_message: 'Hi DigiHaven Support! I need quick help regarding my DigiHaven order.',
   position: 'bottom-right',
   show_popup_badge: true,
   popup_text: 'Need help? Chat on WhatsApp',

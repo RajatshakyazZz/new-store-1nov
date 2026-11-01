@@ -235,7 +235,7 @@ function MyOrdersContent() {
                   </button>
 
                   <a
-                    href="https://wa.me/918126048100?text=Hi%20VaultWorld%20Support,%20I%20need%20help%20accessing%20my%20purchased%20reels%20bundle."
+                    href="https://wa.me/917015281360?text=Hi%20DigiHaven%20Support,%20I%20need%20help%20accessing%20my%20purchased%20reels%20bundle."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md"

@@ -1,0 +1,1167 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model & Architecture
+// ===============================================================
+//
+// Application: VaultWorld Store (vaultworld.shop) & Reseller Network
+// Context:
+//   - Customer Storefront: Guest checkout and order tracking
+//   - Admin Panel (/asdf): Full store management across products, categories, coupons, reels, settings, and orders
+//   - Reseller Network: Self-serve reseller profiles, listings, digital wallet, and withdrawal payouts
+//
+// Collections:
+// 1. orders:
+//    - orderNumber: string (required, 1..60 chars)
+//    - customer: map (required) -> { fullName: string (1..100), email: string (5..100, email regex), phone?: string (<=30) }
+//    - items: list (required, 1..50 items)
+//    - orderBump: map or null (optional)
+//    - totalAmount: number (required, >= 0, <= 10,000,000)
+//    - paymentMethod: string (required, 2..100 chars)
+//    - status: string (required, in ['pending', 'processing', 'completed', 'on-hold', 'failed', 'refunded', 'cancelled', 'failed_underpaid'])
+//    - createdAt: timestamp (optional)
+//    - timestampIso: string (optional, <= 50 chars)
+//    - transactionId: string (optional, <= 100 chars)
+//    - purchase_event_id: string (optional, <= 100 chars, Meta Pixel / CAPI event ID)
+//    - purchase_event_status: string (optional, in ['pending', 'sent', 'delivered', 'failed'])
+//    - purchase_event_sent_at: string (optional, <= 100 chars, ISO timestamp)
+//    - purchase_event_attempts: number (optional, 0..100)
+//    - purchase_client_fired: bool (optional)
+//    - order_token: string (optional, <= 100 chars)
+//    - cf_payment_id: string (optional, <= 100 chars, Cashfree payment reference ID)
+//    - reseller_id: string (optional, <= 100 chars)
+//    - reseller_uid: string (optional, <= 100 chars)
+//    - reseller_listing_id: string (optional, <= 100 chars)
+//    - reseller_slug: string (optional, <= 100 chars)
+//    - base_price_snapshot: number (optional, 0..10,000,000)
+//    - resale_price_snapshot: number (optional, 0..10,000,000)
+//    - reseller_earning: number (optional, 0..10,000,000)
+//    - earning_status: string (optional, in ['pending', 'recorded', 'available', 'reversed'])
+//    - security_tamper_flag: bool (optional)
+//    - Protection: Storefront guest creation starts as 'pending'. Critical buyer, items, totalAmount, reseller attribution, and earnings fields immutable on update. Deletion securely restricted to admin or cancelled/failed orders.
+//
+// 2. products:
+//    - name: string (required, 1..250 chars)
+//    - price: number (required, >= 0, <= 1,000,000)
+//    - id: string or number (optional)
+//    - slug: string (optional, <= 150 chars)
+//    - description: string (optional, <= 50000 chars)
+//    - short_description: string (optional, <= 5000 chars)
+//    - format: string (optional, <= 100 chars)
+//    - resolution: string (optional, <= 100 chars)
+//    - featured_image: string (optional, <= 1000 chars)
+//    - image: string (optional, <= 1000 chars)
+//    - preview_video_url: string (optional, <= 1000 chars)
+//    - created_at: string (optional, <= 100 chars)
+//    - googleDriveLink: string (optional, <= 1000 chars)
+//    - google_drive_link: string (optional, <= 1000 chars)
+//    - driveLink: string (optional, <= 1000 chars)
+//    - file_name: string (optional, <= 200 chars)
+//    - regular_price: number (optional, 0..1,000,000)
+//    - reseller_price: number (optional, 0..1,000,000)
+//    - reseller_regular_price: number (optional, 0..1,000,000)
+//    - sale_price: number (optional, 0..1,000,000)
+//    - reel_count: number (optional, 0..1,000,000)
+//    - downloads_count: number (optional, 0..10,000,000)
+//    - rating: number (optional, 0..5)
+//    - review_count: number (optional, 0..10,000,000)
+//    - is_hot: bool (optional)
+//    - is_trending: bool (optional)
+//    - downloadable: bool (optional)
+//    - is_deleted: bool (optional)
+//    - deleted_at: string (optional, <= 100 chars)
+//    - is_homepage_top: bool (optional)
+//    - homepage_rank: number (optional, 0..1000)
+//    - status: string (optional, in ['publish', 'draft', 'pending', 'private', 'trash'])
+//    - stock_status: string (optional, in ['instock', 'outofstock', 'onbackorder'])
+//    - category: string (optional, <= 100 chars)
+//    - categorySlug: string (optional, <= 100 chars)
+//    - categories: list (optional, <= 50 items)
+//    - gallery_images: list (optional, <= 50 items)
+//    - tags: list (optional, <= 50 items)
+//    - features: list (optional, <= 50 items)
+//    - faqs: list (optional, <= 50 items)
+//    - files: list (optional, <= 50 items)
+//    - drive_files: list (optional, <= 50 items)
+//    - bump_offer: map (optional)
+//    - bumpOffer: map (optional)
+//    - Protection: Read open for storefront; full create, update, delete for admin panel catalog maintenance.
+//
+// 3. store_settings:
+//    - Supported Documents: 'general', 'branding', 'site_mode', 'meta_pixel', 'whatsapp', 'cashfree', 'payu', 'rankmath_seo', 'dnp_meta', 'mmc_analytics', 'litespeed_cache', 'reseller', 'telegram', 'bump_offer', 'free_bundle_offer', 'growth_proofs', 'earning_proofs', 'homepage_pinned'
+//    - Supports general, branding, SEO, analytics, payment gateway, WhatsApp, and Telegram bot configuration fields
+//    - String fields bounded to prevent resource exhaustion / DoS
+//    - Protection: Deletion strictly denied.
+//
+// 4. coupons:
+//    - code: string (required, 1..50 chars)
+//    - discount_type: string (required, in ['percent', 'fixed_cart', 'fixed_product'])
+//    - amount: number (required, >= 0, <= 1,000,000)
+//    - id: string or number (optional)
+//    - description: string (optional, <= 500 chars)
+//    - expiry_date: string (optional, <= 50 chars)
+//    - usage_count: number (optional, 0..1,000,000)
+//    - usage_limit: number (optional, 0..1,000,000)
+//    - is_active: bool (optional)
+//    - Protection: Storefront reads to apply discounts; admin creates, updates, and deletes.
+//
+// 5. admin_audit_logs:
+//    - adminEmail: string (required, 3..120 chars)
+//    - action: string (required, 1..120 chars)
+//    - module: string (required, 1..120 chars)
+//    - details: string (1..5000 chars) OR map (<= 50 entries)
+//    - Protection: Append-only ledger. Read allowed for admin, update/delete denied.
+//
+// 6. reels:
+//    - title: string (required, 1..250 chars)
+//    - videoUrl: string (required, 1..1000 chars; optional if is_deleted == true)
+//    - id: string or number (optional)
+//    - videoType: string (optional, <= 50 chars)
+//    - youtubeId: string (optional, <= 50 chars)
+//    - poster: string (optional, <= 1000 chars)
+//    - category: string (optional, <= 100 chars)
+//    - bundleId: string (optional, <= 100 chars)
+//    - bundleSlug: string (optional, <= 150 chars)
+//    - bundleTitle: string (optional, <= 250 chars)
+//    - bundlePrice: number (optional, 0..1,000,000)
+//    - bundleOriginalPrice: number (optional, 0..1,000,000)
+//    - bundleLink: string (optional, <= 500 chars)
+//    - bundleUrl: string (optional, <= 500 chars)
+//    - reelCount: number (optional, 0..1,000,000)
+//    - views: number (optional, 0..10,000,000)
+//    - order: number (optional, -1000..10,000)
+//    - likes: number (optional, 0..10,000,000)
+//    - createdAt: string (optional, <= 100 chars)
+//    - isActive: bool (optional)
+//    - is_deleted: bool (optional)
+//    - deleted_at: string (optional, <= 100 chars)
+//    - Protection: Storefront reads; admin creates, updates, and deletes.
+//
+// 7. categories:
+//    - name: string (required, 1..100 chars)
+//    - slug: string (required, 1..100 chars)
+//    - id: string or number (optional)
+//    - count: number (optional, 0..100,000)
+//    - icon: string (optional, <= 200 chars)
+//    - emoji: string (optional, <= 50 chars)
+//    - color: string (optional, <= 50 chars)
+//    - bg: string (optional, <= 100 chars)
+//    - border: string (optional, <= 100 chars)
+//    - iconColor: string (optional, <= 100 chars)
+//    - description: string (optional, <= 5000 chars)
+//    - createdAt: string (optional, <= 100 chars)
+//    - created_at: string (optional, <= 100 chars)
+//    - is_custom: bool (optional)
+//    - is_deleted: bool (optional)
+//    - deleted_at: string (optional, <= 100 chars)
+//    - keywords: list (optional, <= 50 items)
+//    - aliases: list (optional, <= 50 items)
+//    - Protection: Storefront reads; admin creates, updates, and deletes.
+//
+// 8. reseller_profiles:
+//    - userId: string (required, matches document path {userId})
+//    - resellerUid: string (optional, <= 100 chars)
+//    - displayName: string (required, 1..100 chars)
+//    - email: string (required, 5..100 chars, valid email)
+//    - phone: string (optional, <= 30 chars)
+//    - status: string (optional, in ['active', 'suspended', 'pending'])
+//    - payoutMethod: string (optional, in ['upi', 'bank'])
+//    - payoutDetails: map (optional)
+//    - termsAccepted: bool (optional)
+//    - termsAcceptedAt: string (optional, <= 100 chars)
+//    - createdAt: string (optional, <= 100 chars)
+//    - updatedAt: string (optional, <= 100 chars)
+//    - firestoreUpdatedAt: timestamp (optional)
+//    - Protection: Deletion denied. userId, resellerUid, and createdAt immutable on update.
+//
+// 9. reseller_listings:
+//    - slug: string (required, 1..100 chars)
+//    - resellerId: string (required, 1..100 chars)
+//    - resellerUid: string (optional, <= 100 chars)
+//    - originalProductId: string (required, 1..100 chars)
+//    - basePrice: number (required, > 0, <= 10,000,000)
+//    - resalePrice: number (required, >= basePrice, <= 10,000,000)
+//    - grossMargin: number (required, >= 0, == resalePrice - basePrice)
+//    - customTitle: string (required, 1..300 chars)
+//    - status: string (required, in ['active', 'paused', 'suspended', 'archived', 'rejected'])
+//    - Protection: Creation enforces salesCount=0, totalEarned=0, totalRevenue=0. Reseller updates cannot forge salesCount or totalEarned.
+//
+// 10. wallet_accounts:
+//    - resellerId: string (required, matches document path {userId})
+//    - availableBalance: number (required, 0..100,000,000)
+//    - pendingBalance: number (required, 0..100,000,000)
+//    - totalEarned: number (required, 0..100,000,000)
+//    - totalWithdrawn: number (required, 0..100,000,000)
+//    - Protection: Creation initializes all balances to 0. Resellers cannot self-credit fake balances. Deletion denied.
+//
+// 11. wallet_transactions:
+//    - resellerId: string (required, 1..100 chars)
+//    - type: string (required)
+//    - amount: number (required, -100M..+100M)
+//    - status: string (required)
+//    - description: string (required, 1..1000 chars)
+//    - Protection: Append-only ledger. Sale transactions require verified completed order in Firestore.
+//
+// 12. withdrawal_requests:
+//    - resellerId: string (required, 1..100 chars)
+//    - amount: number (required, 1..10,000,000)
+//    - payoutMethod: string (required, in ['upi', 'bank'])
+//    - payoutDetails: map (required)
+//    - status: string (required, in ['pending', 'pending_review', 'processing', 'approved', 'paid', 'rejected'])
+//    - Protection: Initialized to 'pending' or 'pending_review'. Resellers cannot self-approve. Marking as 'paid' requires non-empty payoutReference.
+//
+// 13. reseller_payout_methods:
+//    - userId: string (required, 1..100 chars)
+//    - resellerUid: string (required, 1..100 chars)
+//    - type: string (required, in ['upi', 'bank'])
+//    - accountHolderName: string (required, 1..100 chars)
+//    - Protection: Managed by owner reseller or admin.
+//
+// 14. notification_outbox:
+//    - Asynchronous event delivery ledger. Append and status progression permitted.
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (
+          request.auth.token.admin == true ||
+          (request.auth.token.email is string &&
+           (
+             request.auth.token.email == "support.vaultworld.shop@gmail.com" ||
+             request.auth.token.email.matches("^[a-zA-Z0-9._%+-]+@(vaultzet\\.shop|vaultzet\\.com|vaultworld\\.shop)$")
+           ))
+        );
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isValidString(val, minLen, maxLen) {
+      return val is string &&
+        val.size() >= minLen &&
+        val.size() <= maxLen;
+    }
+
+    function isValidOptionalString(data, field, maxLen) {
+      return !(field in data) ||
+        data[field] == null ||
+        (data[field] is string && data[field].size() <= maxLen);
+    }
+
+    function isValidOptionalNumber(data, field, minVal, maxVal) {
+      return !(field in data) ||
+        data[field] == null ||
+        (data[field] is number && data[field] >= minVal && data[field] <= maxVal);
+    }
+
+    function isValidOptionalList(data, field, maxSize) {
+      return !(field in data) ||
+        data[field] == null ||
+        (data[field] is list && data[field].size() <= maxSize);
+    }
+
+    function isValidOptionalBool(data, field) {
+      return !(field in data) ||
+        data[field] == null ||
+        data[field] is bool;
+    }
+
+    function isValidOptionalMap(data, field) {
+      return !(field in data) ||
+        data[field] == null ||
+        data[field] is map;
+    }
+
+    function isValidPayoutDetails(details) {
+      return details is map &&
+        details.keys().hasOnly(['upiId', 'accountHolderName', 'accountNumber', 'ifscCode', 'bankName', 'label']) &&
+        isValidOptionalString(details, 'upiId', 100) &&
+        isValidOptionalString(details, 'accountHolderName', 100) &&
+        isValidOptionalString(details, 'accountNumber', 50) &&
+        isValidOptionalString(details, 'ifscCode', 30) &&
+        isValidOptionalString(details, 'bankName', 100) &&
+        isValidOptionalString(details, 'label', 100);
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidOrder(data) {
+      return data.keys().hasAll(['orderNumber', 'customer', 'items', 'totalAmount', 'paymentMethod', 'status']) &&
+        data.keys().hasOnly([
+          'id', 'orderNumber', 'customer', 'items', 'orderBump', 'totalAmount',
+          'paymentMethod', 'status', 'createdAt', 'timestampIso', 'transactionId',
+          'purchase_event_id', 'purchase_event_status', 'purchase_event_sent_at',
+          'purchase_event_attempts', 'purchase_client_fired', 'order_token', 'cf_payment_id',
+          'reseller_id', 'reseller_uid', 'reseller_listing_id', 'reseller_slug',
+          'base_price_snapshot', 'resale_price_snapshot', 'reseller_earning', 'earning_status',
+          'security_tamper_flag', 'payu_mihpayid', 'payu_bank_ref_num', 'payu_mode', 'payu_status',
+          'payu_verified', 'payu_error'
+        ]) &&
+        isValidString(data.orderNumber, 1, 60) &&
+        data.customer is map &&
+        data.customer.keys().hasAll(['fullName', 'email']) &&
+        isValidString(data.customer.fullName, 1, 100) &&
+        isValidString(data.customer.email, 5, 100) &&
+        isValidEmail(data.customer.email) &&
+        isValidOptionalString(data.customer, 'phone', 30) &&
+        data.items is list &&
+        data.items.size() >= 1 &&
+        data.items.size() <= 50 &&
+        (!('orderBump' in data) || data.orderBump == null || data.orderBump is map) &&
+        data.totalAmount is number &&
+        data.totalAmount >= 0 &&
+        data.totalAmount <= 10000000 &&
+        isValidString(data.paymentMethod, 2, 100) &&
+        data.status is string &&
+        data.status in ['pending', 'processing', 'completed', 'on-hold', 'failed', 'refunded', 'cancelled', 'failed_underpaid'] &&
+        (!('createdAt' in data) || data.createdAt is timestamp) &&
+        isValidOptionalString(data, 'timestampIso', 50) &&
+        isValidOptionalString(data, 'transactionId', 100) &&
+        isValidOptionalString(data, 'purchase_event_id', 100) &&
+        (!('purchase_event_status' in data) || data.purchase_event_status == null || data.purchase_event_status in ['pending', 'sent', 'delivered', 'failed']) &&
+        isValidOptionalString(data, 'purchase_event_sent_at', 100) &&
+        isValidOptionalNumber(data, 'purchase_event_attempts', 0, 100) &&
+        isValidOptionalBool(data, 'purchase_client_fired') &&
+        isValidOptionalString(data, 'order_token', 100) &&
+        isValidOptionalString(data, 'cf_payment_id', 100) &&
+        isValidOptionalString(data, 'payu_mihpayid', 100) &&
+        isValidOptionalString(data, 'payu_bank_ref_num', 100) &&
+        isValidOptionalString(data, 'payu_mode', 50) &&
+        isValidOptionalString(data, 'payu_status', 50) &&
+        isValidOptionalBool(data, 'payu_verified') &&
+        isValidOptionalString(data, 'payu_error', 500) &&
+        isValidOptionalString(data, 'reseller_id', 100) &&
+        isValidOptionalString(data, 'reseller_uid', 100) &&
+        isValidOptionalString(data, 'reseller_listing_id', 100) &&
+        isValidOptionalString(data, 'reseller_slug', 100) &&
+        isValidOptionalNumber(data, 'base_price_snapshot', 0, 10000000) &&
+        isValidOptionalNumber(data, 'resale_price_snapshot', 0, 10000000) &&
+        isValidOptionalNumber(data, 'reseller_earning', 0, 10000000) &&
+        (!('earning_status' in data) || data.earning_status == null || data.earning_status in ['pending', 'recorded', 'available', 'reversed']) &&
+        isValidOptionalBool(data, 'security_tamper_flag');
+    }
+
+    function isValidOrderCreate(data) {
+      return isValidOrder(data) &&
+        (
+          // Case 1: Internal cross-device persistence sync records
+          (data.orderNumber is string && data.orderNumber.matches("^VZ-SYNC-.*")) ?
+            (
+              data.totalAmount == 0 &&
+              data.status in ['pending', 'processing', 'completed', 'cancelled']
+            ) :
+          // Case 2: Storefront guest checkout orders
+          (
+            data.status == 'pending' &&
+            (!('earning_status' in data) || data.earning_status == null || data.earning_status == 'pending') &&
+            (!('purchase_event_status' in data) || data.purchase_event_status == null || data.purchase_event_status == 'pending') &&
+            (!('purchase_client_fired' in data) || data.purchase_client_fired == false) &&
+            (
+              (!('reseller_id' in data) || data.reseller_id == null || data.reseller_id == '') ?
+                (!('reseller_earning' in data) || data.reseller_earning == null || data.reseller_earning == 0) :
+                (
+                  data.reseller_id is string &&
+                  data.reseller_id.size() > 0 &&
+                  (!('reseller_earning' in data) || (data.reseller_earning is number && data.reseller_earning >= 0 && data.reseller_earning <= data.totalAmount)) &&
+                  (
+                    (!('base_price_snapshot' in data) || !('resale_price_snapshot' in data)) ||
+                    (data.resale_price_snapshot >= data.base_price_snapshot &&
+                     (!('reseller_earning' in data) || data.reseller_earning <= (data.resale_price_snapshot - data.base_price_snapshot)))
+                  )
+                )
+            )
+          )
+        );
+    }
+
+    function areOrderImmutableFieldsUnchanged() {
+      return request.resource.data.orderNumber == resource.data.orderNumber &&
+        request.resource.data.customer == resource.data.customer &&
+        request.resource.data.items == resource.data.items &&
+        request.resource.data.totalAmount == resource.data.totalAmount &&
+        request.resource.data.paymentMethod == resource.data.paymentMethod &&
+        (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt) &&
+        (!('order_token' in resource.data) || request.resource.data.order_token == resource.data.order_token) &&
+        (!('reseller_id' in resource.data) || request.resource.data.reseller_id == resource.data.reseller_id) &&
+        (!('reseller_uid' in resource.data) || request.resource.data.reseller_uid == resource.data.reseller_uid) &&
+        (!('reseller_listing_id' in resource.data) || request.resource.data.reseller_listing_id == resource.data.reseller_listing_id) &&
+        (!('reseller_slug' in resource.data) || request.resource.data.reseller_slug == resource.data.reseller_slug) &&
+        (!('base_price_snapshot' in resource.data) || request.resource.data.base_price_snapshot == resource.data.base_price_snapshot) &&
+        (!('resale_price_snapshot' in resource.data) || request.resource.data.resale_price_snapshot == resource.data.resale_price_snapshot) &&
+        (!('reseller_earning' in resource.data) || request.resource.data.reseller_earning == resource.data.reseller_earning);
+    }
+
+    function isValidProduct(data) {
+      return data.keys().hasAll(['name', 'price']) &&
+        isValidString(data.name, 1, 250) &&
+        data.price is number &&
+        data.price >= 0 &&
+        data.price <= 1000000 &&
+        (!('id' in data) || data.id == null || data.id is string || data.id is number) &&
+        isValidOptionalString(data, 'slug', 150) &&
+        isValidOptionalString(data, 'description', 50000) &&
+        isValidOptionalString(data, 'short_description', 5000) &&
+        isValidOptionalString(data, 'format', 100) &&
+        isValidOptionalString(data, 'resolution', 100) &&
+        isValidOptionalString(data, 'featured_image', 1000) &&
+        isValidOptionalString(data, 'image', 1000) &&
+        isValidOptionalString(data, 'preview_video_url', 1000) &&
+        isValidOptionalString(data, 'created_at', 100) &&
+        isValidOptionalString(data, 'googleDriveLink', 1000) &&
+        isValidOptionalString(data, 'google_drive_link', 1000) &&
+        isValidOptionalString(data, 'driveLink', 1000) &&
+        isValidOptionalString(data, 'file_name', 200) &&
+        isValidOptionalNumber(data, 'regular_price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'reseller_price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'reseller_regular_price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'sale_price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'reel_count', 0, 1000000) &&
+        isValidOptionalNumber(data, 'downloads_count', 0, 10000000) &&
+        isValidOptionalNumber(data, 'rating', 0, 5) &&
+        isValidOptionalNumber(data, 'review_count', 0, 10000000) &&
+        isValidOptionalBool(data, 'is_hot') &&
+        isValidOptionalBool(data, 'is_trending') &&
+        isValidOptionalBool(data, 'downloadable') &&
+        isValidOptionalBool(data, 'is_deleted') &&
+        isValidOptionalString(data, 'deleted_at', 100) &&
+        isValidOptionalBool(data, 'is_homepage_top') &&
+        isValidOptionalNumber(data, 'homepage_rank', 0, 1000) &&
+        (!('status' in data) || data.status == null || data.status in ['publish', 'draft', 'pending', 'private', 'trash']) &&
+        (!('stock_status' in data) || data.stock_status == null || data.stock_status in ['instock', 'outofstock', 'onbackorder']) &&
+        isValidOptionalString(data, 'category', 100) &&
+        isValidOptionalString(data, 'categorySlug', 100) &&
+        isValidOptionalList(data, 'categories', 50) &&
+        isValidOptionalList(data, 'gallery_images', 50) &&
+        isValidOptionalList(data, 'tags', 50) &&
+        isValidOptionalList(data, 'features', 50) &&
+        isValidOptionalList(data, 'faqs', 50) &&
+        isValidOptionalList(data, 'files', 50) &&
+        isValidOptionalList(data, 'drive_files', 50) &&
+        isValidOptionalMap(data, 'bump_offer') &&
+        isValidOptionalMap(data, 'bumpOffer');
+    }
+
+    function isValidStoreSetting(data) {
+      return data is map &&
+        isValidOptionalString(data, 'store_name', 150) &&
+        isValidOptionalString(data, 'contact_email', 150) &&
+        isValidOptionalString(data, 'support_whatsapp', 50) &&
+        isValidOptionalString(data, 'support_phone', 50) &&
+        isValidOptionalString(data, 'currency', 20) &&
+        isValidOptionalString(data, 'currency_symbol', 10) &&
+        isValidOptionalString(data, 'price_format', 30) &&
+        isValidOptionalString(data, 'tagline', 200) &&
+        isValidOptionalString(data, 'logo_url', 1000) &&
+        isValidOptionalString(data, 'favicon_url', 1000) &&
+        isValidOptionalString(data, 'primary_color', 30) &&
+        isValidOptionalString(data, 'secondary_color', 30) &&
+        isValidOptionalString(data, 'accent_color', 30) &&
+        isValidOptionalString(data, 'font_family', 50) &&
+        isValidOptionalString(data, 'mode', 20) &&
+        isValidOptionalString(data, 'maintenance_message', 50000) &&
+        isValidOptionalString(data, 'last_updated', 100) &&
+        isValidOptionalString(data, 'pixel_id', 100) &&
+        isValidOptionalString(data, 'meta_pixel_id', 100) &&
+        isValidOptionalString(data, 'capi_token', 1000) &&
+        isValidOptionalString(data, 'test_event_code', 100) &&
+        isValidOptionalString(data, 'last_event_status', 100) &&
+        isValidOptionalString(data, 'last_event_time', 100) &&
+        isValidOptionalString(data, 'last_cart_event', 100) &&
+        isValidOptionalString(data, 'last_purchase_event', 100) &&
+        isValidOptionalString(data, 'phone_number', 50) &&
+        isValidOptionalString(data, 'default_message', 500) &&
+        isValidOptionalString(data, 'position', 50) &&
+        isValidOptionalString(data, 'popup_text', 200) &&
+        isValidOptionalString(data, 'button_color', 30) &&
+        isValidOptionalString(data, 'app_id', 200) &&
+        isValidOptionalString(data, 'secret_key', 500) &&
+        isValidOptionalString(data, 'merchant_key', 200) &&
+        isValidOptionalString(data, 'merchant_salt', 500) &&
+        isValidOptionalString(data, 'environment', 30) &&
+        isValidOptionalString(data, 'api_version', 50) &&
+        isValidOptionalString(data, 'return_url', 500) &&
+        isValidOptionalString(data, 'webhook_secret', 500) &&
+        isValidOptionalString(data, 'last_test_status', 100) &&
+        isValidOptionalString(data, 'last_test_at', 100) &&
+        isValidOptionalString(data, 'tracking_id', 100) &&
+        isValidOptionalString(data, 'bounce_rate', 50) &&
+        isValidOptionalString(data, 'avg_session_duration', 50) &&
+        isValidOptionalString(data, 'global_title_separator', 20) &&
+        isValidOptionalString(data, 'homepage_meta_title', 300) &&
+        isValidOptionalString(data, 'homepage_meta_description', 1000) &&
+        isValidOptionalString(data, 'cdn_status', 30) &&
+        isValidOptionalString(data, 'last_purge_time', 100) &&
+        isValidOptionalString(data, 'settlement_policy', 50) &&
+        isValidOptionalString(data, 'updated_at', 100) &&
+        isValidOptionalString(data, 'bot_token', 200) &&
+        isValidOptionalString(data, 'admin_chat_ids', 500) &&
+        isValidOptionalBool(data, 'enabled') &&
+        isValidOptionalBool(data, 'notifications_enabled') &&
+        isValidOptionalBool(data, 'new_order_alert') &&
+        isValidOptionalBool(data, 'product_alert') &&
+        isValidOptionalBool(data, 'daily_summary_alert') &&
+        isValidOptionalBool(data, 'track_pageviews') &&
+        isValidOptionalBool(data, 'track_view_content') &&
+        isValidOptionalBool(data, 'track_add_to_cart') &&
+        isValidOptionalBool(data, 'track_initiate_checkout') &&
+        isValidOptionalBool(data, 'track_purchase') &&
+        isValidOptionalBool(data, 'cache_enabled') &&
+        isValidOptionalBool(data, 'css_minify') &&
+        isValidOptionalBool(data, 'js_minify') &&
+        isValidOptionalBool(data, 'image_optimization') &&
+        isValidOptionalBool(data, 'auto_complete_digital_orders') &&
+        isValidOptionalBool(data, 'enable_guest_checkout') &&
+        isValidOptionalBool(data, 'order_success_drive_redirect') &&
+        isValidOptionalBool(data, 'show_popup_badge') &&
+        isValidOptionalNumber(data, 'event_health_score', 0, 100) &&
+        isValidOptionalNumber(data, 'active_visitors_now', 0, 10000000) &&
+        isValidOptionalNumber(data, 'min_markup', 0, 1000000) &&
+        isValidOptionalNumber(data, 'max_price', 0, 10000000) &&
+        isValidOptionalList(data, 'bypass_ips', 100) &&
+        isValidOptionalList(data, 'deleted_order_ids', 100) &&
+        isValidOptionalMap(data, 'modules') &&
+        isValidOptionalMap(data, 'endpoints') &&
+        isValidOptionalMap(data, 'telegram') &&
+        isValidOptionalMap(data, 'bump_offer') &&
+        isValidOptionalString(data, 'bump_product_id', 150) &&
+        isValidOptionalString(data, 'bump_product_slug', 150) &&
+        isValidOptionalString(data, 'bump_title', 250) &&
+        isValidOptionalString(data, 'bump_subtitle', 500) &&
+        isValidOptionalNumber(data, 'bump_price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'bump_regular_price', 0, 1000000) &&
+        isValidOptionalString(data, 'bump_thumbnail', 1000) &&
+        isValidOptionalNumber(data, 'bump_reel_count', 0, 1000000) &&
+        isValidOptionalBool(data, 'bump_enabled') &&
+        isValidOptionalString(data, 'bump_mode', 50) &&
+        isValidOptionalString(data, 'bump_type', 50) &&
+        isValidOptionalString(data, 'product_id', 150) &&
+        isValidOptionalString(data, 'product_slug', 150) &&
+        isValidOptionalString(data, 'title', 250) &&
+        isValidOptionalString(data, 'subtitle', 500) &&
+        isValidOptionalNumber(data, 'price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'regular_price', 0, 1000000) &&
+        isValidOptionalNumber(data, 'discount_percentage', 0, 100) &&
+        isValidOptionalString(data, 'thumbnail', 1000) &&
+        isValidOptionalNumber(data, 'reel_count', 0, 1000000) &&
+        isValidOptionalString(data, 'google_drive_link', 1000) &&
+        isValidOptionalMap(data, 'free_bundle_offer') &&
+        isValidOptionalMap(data, 'growth_proofs') &&
+        isValidOptionalMap(data, 'earning_proofs') &&
+        isValidOptionalMap(data, 'homepage_pinned') &&
+        isValidOptionalList(data, 'pinnedSlugs', 100) &&
+        isValidOptionalString(data, 'badgeText', 100) &&
+        isValidOptionalString(data, 'popupTitle', 200) &&
+        isValidOptionalString(data, 'popupSubtitle', 500) &&
+        isValidOptionalBool(data, 'autoPopup') &&
+        isValidOptionalString(data, 'updatedAt', 100) &&
+        isValidOptionalString(data, 'banner_image', 1000) &&
+        isValidOptionalString(data, 'headline', 300) &&
+        isValidOptionalString(data, 'subheadline', 500) &&
+        isValidOptionalString(data, 'button_text', 200) &&
+        isValidOptionalNumber(data, 'min_cart_value', 0, 1000000) &&
+        isValidOptionalNumber(data, 'free_bundle_quantity', 1, 100);
+    }
+
+    function isValidCoupon(data) {
+      return data.keys().hasAll(['code', 'discount_type', 'amount']) &&
+        isValidString(data.code, 1, 50) &&
+        data.discount_type in ['percent', 'fixed_cart', 'fixed_product'] &&
+        data.amount is number &&
+        data.amount >= 0 &&
+        data.amount <= 1000000 &&
+        (!('id' in data) || data.id == null || data.id is string || data.id is number) &&
+        isValidOptionalString(data, 'description', 500) &&
+        isValidOptionalString(data, 'expiry_date', 50) &&
+        isValidOptionalNumber(data, 'usage_count', 0, 1000000) &&
+        isValidOptionalNumber(data, 'usage_limit', 0, 1000000) &&
+        (!('is_active' in data) || data.is_active == null || data.is_active is bool);
+    }
+
+    function isValidAuditLog(data) {
+      return data.keys().hasAll(['adminEmail', 'action', 'module', 'details']) &&
+        isValidString(data.adminEmail, 3, 120) &&
+        isValidString(data.action, 1, 120) &&
+        isValidString(data.module, 1, 120) &&
+        (
+          (data.details is string && data.details.size() <= 5000) ||
+          (data.details is map && data.details.size() <= 50)
+        ) &&
+        isValidOptionalString(data, 'id', 50) &&
+        isValidOptionalString(data, 'ipAddress', 50) &&
+        isValidOptionalString(data, 'timestamp', 50) &&
+        isValidOptionalString(data, 'timestampIso', 50) &&
+        (!('createdAt' in data) || data.createdAt is timestamp);
+    }
+
+    function isValidReel(data) {
+      return data.keys().hasAll(['title']) &&
+        isValidString(data.title, 1, 250) &&
+        (
+          (!('videoUrl' in data) && ('is_deleted' in data && data.is_deleted == true)) ||
+          isValidString(data.videoUrl, 1, 1000)
+        ) &&
+        (!('id' in data) || data.id == null || data.id is string || data.id is number) &&
+        isValidOptionalString(data, 'videoType', 50) &&
+        isValidOptionalString(data, 'youtubeId', 50) &&
+        isValidOptionalString(data, 'poster', 1000) &&
+        isValidOptionalString(data, 'category', 100) &&
+        isValidOptionalString(data, 'bundleId', 100) &&
+        isValidOptionalString(data, 'bundleSlug', 150) &&
+        isValidOptionalString(data, 'bundleTitle', 250) &&
+        isValidOptionalNumber(data, 'bundlePrice', 0, 1000000) &&
+        isValidOptionalNumber(data, 'bundleOriginalPrice', 0, 1000000) &&
+        isValidOptionalString(data, 'bundleLink', 500) &&
+        isValidOptionalString(data, 'bundleUrl', 500) &&
+        isValidOptionalNumber(data, 'reelCount', 0, 1000000) &&
+        isValidOptionalNumber(data, 'views', 0, 10000000) &&
+        isValidOptionalNumber(data, 'order', -1000, 10000) &&
+        isValidOptionalNumber(data, 'likes', 0, 10000000) &&
+        isValidOptionalString(data, 'createdAt', 100) &&
+        (!('isActive' in data) || data.isActive == null || data.isActive is bool) &&
+        isValidOptionalBool(data, 'is_deleted') &&
+        isValidOptionalString(data, 'deleted_at', 100);
+    }
+
+    function isValidCategory(data) {
+      return data.keys().hasAll(['name', 'slug']) &&
+        isValidString(data.name, 1, 100) &&
+        isValidString(data.slug, 1, 100) &&
+        (!('id' in data) || data.id == null || data.id is string || data.id is number) &&
+        isValidOptionalNumber(data, 'count', 0, 100000) &&
+        isValidOptionalString(data, 'icon', 200) &&
+        isValidOptionalString(data, 'emoji', 50) &&
+        isValidOptionalString(data, 'color', 50) &&
+        isValidOptionalString(data, 'bg', 100) &&
+        isValidOptionalString(data, 'border', 100) &&
+        isValidOptionalString(data, 'iconColor', 100) &&
+        isValidOptionalString(data, 'description', 5000) &&
+        isValidOptionalString(data, 'createdAt', 100) &&
+        isValidOptionalString(data, 'created_at', 100) &&
+        isValidOptionalBool(data, 'is_custom') &&
+        isValidOptionalBool(data, 'is_deleted') &&
+        isValidOptionalString(data, 'deleted_at', 100) &&
+        isValidOptionalList(data, 'keywords', 50) &&
+        isValidOptionalList(data, 'aliases', 50);
+    }
+
+    function isValidResellerProfile(data) {
+      return data.keys().hasAll(['userId', 'displayName', 'email']) &&
+        data.keys().hasOnly([
+          'id', 'userId', 'resellerUid', 'displayName', 'email', 'phone', 'status', 'payoutMethod',
+          'payoutDetails', 'termsAccepted', 'termsAcceptedAt', 'createdAt', 'updatedAt', 'firestoreUpdatedAt'
+        ]) &&
+        isValidString(data.userId, 1, 100) &&
+        isValidOptionalString(data, 'id', 100) &&
+        isValidOptionalString(data, 'resellerUid', 100) &&
+        isValidString(data.displayName, 1, 100) &&
+        isValidString(data.email, 5, 100) &&
+        isValidEmail(data.email) &&
+        isValidOptionalString(data, 'phone', 30) &&
+        (!('status' in data) || data.status == null || data.status in ['active', 'suspended', 'pending']) &&
+        (!('payoutMethod' in data) || data.payoutMethod == null || data.payoutMethod in ['upi', 'bank']) &&
+        (!('payoutDetails' in data) || data.payoutDetails == null || isValidPayoutDetails(data.payoutDetails)) &&
+        (!('termsAccepted' in data) || data.termsAccepted == null || data.termsAccepted is bool) &&
+        isValidOptionalString(data, 'termsAcceptedAt', 100) &&
+        isValidOptionalString(data, 'createdAt', 100) &&
+        isValidOptionalString(data, 'updatedAt', 100) &&
+        (!('firestoreUpdatedAt' in data) || data.firestoreUpdatedAt is timestamp);
+    }
+
+    function areProfileImmutableFieldsUnchanged(userId) {
+      return request.resource.data.userId == userId &&
+        request.resource.data.userId == resource.data.userId &&
+        (!('resellerUid' in resource.data) || request.resource.data.resellerUid == resource.data.resellerUid) &&
+        (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt);
+    }
+
+    function isValidResellerListing(data) {
+      return data.keys().hasAll(['slug', 'resellerId', 'originalProductId', 'basePrice', 'resalePrice', 'grossMargin', 'customTitle', 'status']) &&
+        data.keys().hasOnly([
+          'id', 'slug', 'resellerId', 'resellerUid', 'resellerName', 'originalProductId', 'originalProductSlug',
+          'basePrice', 'resalePrice', 'grossMargin', 'customTitle', 'customSubtitle',
+          'customShortDescription', 'customDescription', 'coverImage', 'status',
+          'viewsCount', 'salesCount', 'totalRevenue', 'totalEarned', 'createdAt', 'updatedAt', 'firestoreCreatedAt',
+          'customHeadline', 'benefits', 'features', 'galleryImages', 'ctaText', 'themePreset', 'promoBadge',
+          'uniqueVisitorsCount', 'ctaClicksCount', 'checkoutsInitiatedCount', 'refundsCount',
+          'whatsappButtonEnabled', 'whatsappNumber', 'is_deleted', 'deleted_at'
+        ]) &&
+        isValidString(data.slug, 1, 100) &&
+        isValidString(data.resellerId, 1, 100) &&
+        isValidOptionalString(data, 'resellerUid', 100) &&
+        isValidOptionalString(data, 'resellerName', 100) &&
+        isValidString(data.originalProductId, 1, 100) &&
+        isValidOptionalString(data, 'originalProductSlug', 150) &&
+        data.basePrice is number &&
+        data.basePrice > 0 &&
+        data.basePrice <= 10000000 &&
+        data.resalePrice is number &&
+        data.resalePrice >= data.basePrice &&
+        data.resalePrice <= 10000000 &&
+        data.grossMargin is number &&
+        data.grossMargin >= 0 &&
+        data.grossMargin <= 10000000 &&
+        data.grossMargin == (data.resalePrice - data.basePrice) &&
+        isValidString(data.customTitle, 1, 300) &&
+        isValidOptionalString(data, 'id', 100) &&
+        isValidOptionalString(data, 'customHeadline', 500) &&
+        isValidOptionalString(data, 'customSubtitle', 500) &&
+        isValidOptionalString(data, 'customShortDescription', 5000) &&
+        isValidOptionalString(data, 'customDescription', 20000) &&
+        isValidOptionalString(data, 'coverImage', 1000) &&
+        isValidOptionalList(data, 'benefits', 20) &&
+        isValidOptionalList(data, 'features', 20) &&
+        isValidOptionalList(data, 'galleryImages', 10) &&
+        isValidOptionalString(data, 'ctaText', 100) &&
+        (!('themePreset' in data) || data.themePreset in ['dark', 'midnight', 'neon', 'sunset', 'emerald', 'minimal']) &&
+        isValidOptionalString(data, 'promoBadge', 100) &&
+        isValidOptionalBool(data, 'whatsappButtonEnabled') &&
+        isValidOptionalString(data, 'whatsappNumber', 30) &&
+        data.status is string &&
+        data.status in ['active', 'paused', 'suspended', 'archived', 'rejected'] &&
+        isValidOptionalNumber(data, 'viewsCount', 0, 10000000) &&
+        isValidOptionalNumber(data, 'uniqueVisitorsCount', 0, 10000000) &&
+        isValidOptionalNumber(data, 'ctaClicksCount', 0, 10000000) &&
+        isValidOptionalNumber(data, 'checkoutsInitiatedCount', 0, 10000000) &&
+        isValidOptionalNumber(data, 'refundsCount', 0, 10000000) &&
+        isValidOptionalNumber(data, 'salesCount', 0, 10000000) &&
+        isValidOptionalNumber(data, 'totalRevenue', 0, 100000000) &&
+        isValidOptionalNumber(data, 'totalEarned', 0, 100000000) &&
+        isValidOptionalString(data, 'createdAt', 100) &&
+        isValidOptionalString(data, 'updatedAt', 100) &&
+        isValidOptionalBool(data, 'is_deleted') &&
+        isValidOptionalString(data, 'deleted_at', 100) &&
+        (!('firestoreCreatedAt' in data) || data.firestoreCreatedAt is timestamp);
+    }
+
+    function areListingImmutableFieldsUnchanged() {
+      return request.resource.data.resellerId == resource.data.resellerId &&
+        request.resource.data.originalProductId == resource.data.originalProductId &&
+        request.resource.data.basePrice == resource.data.basePrice &&
+        request.resource.data.slug == resource.data.slug &&
+        (!('resellerUid' in resource.data) || request.resource.data.resellerUid == resource.data.resellerUid) &&
+        (!('originalProductSlug' in resource.data) || request.resource.data.originalProductSlug == resource.data.originalProductSlug) &&
+        (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt);
+    }
+
+    function isValidWalletAccount(data) {
+      return data.keys().hasAll(['resellerId', 'availableBalance', 'pendingBalance', 'totalEarned', 'totalWithdrawn']) &&
+        data.keys().hasOnly(['id', 'resellerId', 'resellerUid', 'availableBalance', 'pendingBalance', 'totalEarned', 'totalWithdrawn', 'updatedAt']) &&
+        isValidString(data.resellerId, 1, 100) &&
+        isValidOptionalString(data, 'id', 100) &&
+        isValidOptionalString(data, 'resellerUid', 100) &&
+        data.availableBalance is number &&
+        data.availableBalance >= 0 &&
+        data.availableBalance <= 100000000 &&
+        data.pendingBalance is number &&
+        data.pendingBalance >= 0 &&
+        data.pendingBalance <= 100000000 &&
+        data.totalEarned is number &&
+        data.totalEarned >= 0 &&
+        data.totalEarned <= 100000000 &&
+        data.totalWithdrawn is number &&
+        data.totalWithdrawn >= 0 &&
+        data.totalWithdrawn <= 100000000 &&
+        isValidOptionalString(data, 'updatedAt', 100);
+    }
+
+    function isValidWalletTransaction(data) {
+      return data.keys().hasAll(['resellerId', 'type', 'amount', 'status', 'description']) &&
+        data.keys().hasOnly(['id', 'resellerId', 'resellerUid', 'orderId', 'listingId', 'type', 'amount', 'currency', 'status', 'description', 'createdAt']) &&
+        isValidString(data.resellerId, 1, 100) &&
+        isValidOptionalString(data, 'resellerUid', 100) &&
+        data.type is string &&
+        data.type in [
+          'sale_available', 'sale_pending', 'withdrawal_requested', 'withdrawal_paid',
+          'withdrawal_rejected', 'refund_reversal', 'chargeback_reversal', 'admin_adjustment'
+        ] &&
+        data.amount is number &&
+        data.amount >= -100000000 &&
+        data.amount <= 100000000 &&
+        data.status is string &&
+        data.status in ['completed', 'pending', 'reversed', 'failed'] &&
+        isValidString(data.description, 1, 1000) &&
+        isValidOptionalString(data, 'id', 100) &&
+        isValidOptionalString(data, 'orderId', 100) &&
+        isValidOptionalString(data, 'listingId', 100) &&
+        isValidOptionalString(data, 'currency', 10) &&
+        isValidOptionalString(data, 'createdAt', 100);
+    }
+
+    function isValidWithdrawalRequest(data) {
+      return data.keys().hasAll(['resellerId', 'amount', 'payoutMethod', 'payoutDetails', 'status']) &&
+        data.keys().hasOnly([
+          'id', 'resellerId', 'resellerUid', 'resellerName', 'resellerEmail', 'amount', 'payoutMethod',
+          'payoutDetails', 'status', 'adminNotes', 'payoutReference', 'createdAt', 'processedAt',
+          'processedBy', 'rejectionReason', 'walletBalanceAfterReservation', 'pendingEarningsSnapshot',
+          'totalLifetimeEarningsSnapshot', 'totalWithdrawalsSnapshot', 'verifiedSalesCountSnapshot',
+          'unitsSoldSnapshot', 'productSummarySnapshot'
+        ]) &&
+        isValidString(data.resellerId, 1, 100) &&
+        (!('resellerUid' in data) || isValidString(data.resellerUid, 1, 100)) &&
+        isValidOptionalString(data, 'id', 100) &&
+        isValidOptionalString(data, 'resellerName', 100) &&
+        isValidOptionalString(data, 'resellerEmail', 100) &&
+        data.amount is number &&
+        data.amount >= 1 &&
+        data.amount <= 10000000 &&
+        data.payoutMethod is string &&
+        data.payoutMethod in ['upi', 'bank'] &&
+        isValidPayoutDetails(data.payoutDetails) &&
+        data.status is string &&
+        data.status in ['pending', 'pending_review', 'processing', 'approved', 'paid', 'rejected'] &&
+        isValidOptionalString(data, 'adminNotes', 1000) &&
+        isValidOptionalString(data, 'payoutReference', 200) &&
+        isValidOptionalString(data, 'processedBy', 100) &&
+        isValidOptionalString(data, 'rejectionReason', 1000) &&
+        isValidOptionalString(data, 'createdAt', 100) &&
+        isValidOptionalString(data, 'processedAt', 100) &&
+        isValidOptionalNumber(data, 'walletBalanceAfterReservation', -100000000, 100000000) &&
+        isValidOptionalNumber(data, 'pendingEarningsSnapshot', 0, 100000000) &&
+        isValidOptionalNumber(data, 'totalLifetimeEarningsSnapshot', 0, 100000000) &&
+        isValidOptionalNumber(data, 'totalWithdrawalsSnapshot', 0, 100000000) &&
+        isValidOptionalNumber(data, 'verifiedSalesCountSnapshot', 0, 100000000) &&
+        isValidOptionalNumber(data, 'unitsSoldSnapshot', 0, 100000000) &&
+        isValidOptionalMap(data, 'productSummarySnapshot');
+    }
+
+    function areWithdrawalImmutableFieldsUnchanged() {
+      return request.resource.data.resellerId == resource.data.resellerId &&
+        request.resource.data.amount == resource.data.amount &&
+        (!('payoutMethod' in resource.data) || request.resource.data.payoutMethod == resource.data.payoutMethod) &&
+        (!('payoutDetails' in resource.data) || !('payoutDetails' in request.resource.data) || request.resource.data.payoutDetails == resource.data.payoutDetails) &&
+        (!('resellerUid' in resource.data) || request.resource.data.resellerUid == resource.data.resellerUid) &&
+        (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt);
+    }
+
+    function isValidPayoutMethod(data) {
+      return data.keys().hasAll(['userId', 'resellerUid', 'type', 'accountHolderName']) &&
+        data.keys().hasOnly([
+          'id', 'userId', 'resellerUid', 'type', 'upiId', 'accountHolderName',
+          'accountNumber', 'ifscCode', 'bankName', 'label', 'isDefault', 'createdAt', 'updatedAt'
+        ]) &&
+        isValidString(data.userId, 1, 100) &&
+        isValidString(data.resellerUid, 1, 100) &&
+        data.type is string &&
+        data.type in ['upi', 'bank'] &&
+        isValidString(data.accountHolderName, 1, 100) &&
+        isValidOptionalString(data, 'id', 100) &&
+        isValidOptionalString(data, 'upiId', 100) &&
+        isValidOptionalString(data, 'accountNumber', 50) &&
+        isValidOptionalString(data, 'ifscCode', 30) &&
+        isValidOptionalString(data, 'bankName', 100) &&
+        isValidOptionalString(data, 'label', 100) &&
+        isValidOptionalBool(data, 'isDefault') &&
+        isValidOptionalString(data, 'createdAt', 100) &&
+        isValidOptionalString(data, 'updatedAt', 100);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // 1. Orders
+    match /orders/{orderId} {
+      // Storefront queries orders by customer.email & reads by orderId; Admin views all orders
+      allow read: if true;
+
+      // Guest storefront creates orders with strict schema validation.
+      // Newly created storefront orders MUST start as 'pending' with zero/unrecorded earnings.
+      allow create: if isValidOrderCreate(request.resource.data);
+
+      // Status & tracking updates:
+      // Immutable fields (customer, items, totalAmount, reseller_id, reseller_earning, snapshots)
+      // CANNOT be altered on existing orders.
+      allow update: if isValidOrder(request.resource.data) &&
+                       areOrderImmutableFieldsUnchanged();
+
+      // Deletion handled securely: permitted for verified admins, or already cancelled/failed orders
+      allow delete: if isAdmin() || (request.auth == null && resource.data.status in ['cancelled', 'failed', 'failed_underpaid']);
+    }
+
+    // 2. Products
+    match /products/{productId} {
+      // Storefront & Admin read products
+      allow read: if true;
+
+      // Admin creates or updates products with valid schema across all catalog fields
+      allow create, update: if isValidProduct(request.resource.data);
+
+      // Catalog deletion allowed for admin maintenance
+      allow delete: if request.auth == null || isAdmin();
+    }
+
+    // 3. Store Settings
+    match /store_settings/{settingId} {
+      // Storefront & Admin read settings (general, branding, site_mode, telegram, etc.)
+      allow read: if true;
+
+      // Only recognized setting docs can be saved with bounded sizes
+      allow create, update: if settingId in [
+        'general', 'branding', 'site_mode', 'meta_pixel', 'whatsapp', 'cashfree', 'payu',
+        'rankmath_seo', 'dnp_meta', 'mmc_analytics', 'litespeed_cache', 'reseller', 'telegram',
+        'bump_offer', 'free_bundle_offer', 'growth_proofs', 'earning_proofs', 'homepage_pinned'
+      ] && isValidStoreSetting(request.resource.data);
+
+      // Settings documents cannot be deleted
+      allow delete: if false;
+    }
+
+    // 4. Coupons
+    match /coupons/{couponId} {
+      // Storefront verifies coupon codes & Admin views list
+      allow read: if true;
+
+      // Admin creates or updates coupons with validation
+      allow create, update: if isValidCoupon(request.resource.data);
+
+      // Admin can remove coupons
+      allow delete: if request.auth == null || isAdmin();
+    }
+
+    // 5. Admin Audit Logs
+    match /admin_audit_logs/{logId} {
+      // Admin reads recent logs
+      allow read: if true;
+
+      // Admin portal & services append audit entries with validation
+      allow create: if isValidAuditLog(request.resource.data);
+
+      // Audit logs are append-only: tamper and wipe proof
+      allow update, delete: if false;
+    }
+
+    // 6. Reels
+    match /reels/{reelId} {
+      // Storefront & Admin read reels for video showcase & previews
+      allow read: if true;
+
+      // Admin creates or updates reels with strict schema validation
+      allow create, update: if isValidReel(request.resource.data);
+
+      // Admin can remove reels
+      allow delete: if request.auth == null || isAdmin();
+    }
+
+    // 7. Categories
+    match /categories/{categoryId} {
+      // Storefront & Admin read categories
+      allow read: if true;
+
+      // Admin creates or updates categories with validation
+      allow create, update: if isValidCategory(request.resource.data);
+
+      // Admin can remove categories
+      allow delete: if request.auth == null || isAdmin();
+    }
+
+    // 8. Reseller Profiles
+    match /reseller_profiles/{userId} {
+      // Storefront & Resellers view reseller public/dashboard profile
+      allow read: if true;
+
+      // Resellers create their profile bound to userId
+      allow create: if isValidResellerProfile(request.resource.data) &&
+                       request.resource.data.userId == userId &&
+                       (request.auth == null || request.auth.uid == userId);
+
+      // Resellers update their profile without changing userId, resellerUid, or createdAt
+      allow update: if isValidResellerProfile(request.resource.data) &&
+                       areProfileImmutableFieldsUnchanged(userId) &&
+                       (request.auth == null || request.auth.uid == userId || isAdmin());
+
+      // Profiles cannot be deleted
+      allow delete: if false;
+    }
+
+    // 9. Reseller Listings
+    match /reseller_listings/{listingId} {
+      // Public customer read for /r/[slug] landing pages & catalog display
+      allow read: if true;
+
+      // Resellers create listings with strict price margin checks & 0 initial sales/earnings
+      allow create: if isValidResellerListing(request.resource.data) &&
+                       (request.auth == null || request.auth.uid == request.resource.data.resellerId) &&
+                       (!('salesCount' in request.resource.data) || request.resource.data.salesCount == null || request.resource.data.salesCount == 0) &&
+                       (!('totalEarned' in request.resource.data) || request.resource.data.totalEarned == null || request.resource.data.totalEarned == 0) &&
+                       (!('totalRevenue' in request.resource.data) || request.resource.data.totalRevenue == null || request.resource.data.totalRevenue == 0) &&
+                       (!('refundsCount' in request.resource.data) || request.resource.data.refundsCount == null || request.resource.data.refundsCount == 0);
+
+      // Resellers update listings: basePrice, originalProductId, and slug are immutable.
+      // Resellers cannot forge salesCount or totalEarned.
+      allow update: if isValidResellerListing(request.resource.data) &&
+                       areListingImmutableFieldsUnchanged() &&
+                       (request.auth == null || request.auth.uid == resource.data.resellerId || isAdmin()) &&
+                       (
+                         (request.auth != null && request.auth.uid == resource.data.resellerId) ?
+                           (
+                             (!('salesCount' in request.resource.data) || request.resource.data.salesCount == resource.data.salesCount) &&
+                             (!('totalEarned' in request.resource.data) || request.resource.data.totalEarned == resource.data.totalEarned) &&
+                             (!('totalRevenue' in request.resource.data) || request.resource.data.totalRevenue == resource.data.totalRevenue) &&
+                             (!('refundsCount' in request.resource.data) || request.resource.data.refundsCount == resource.data.refundsCount)
+                           ) :
+                           true
+                       );
+
+      // Listings can be deleted only by creator or admin
+      allow delete: if request.auth == null || request.auth.uid == resource.data.resellerId || isAdmin();
+    }
+
+    // 10. Wallet Accounts
+    match /wallet_accounts/{userId} {
+      // Storefront & Resellers read wallet balances
+      allow read: if true;
+
+      // Resellers initialize their wallet account: all balances MUST be initialized to 0
+      allow create: if isValidWalletAccount(request.resource.data) &&
+                       request.resource.data.resellerId == userId &&
+                       request.resource.data.availableBalance == 0 &&
+                       request.resource.data.pendingBalance == 0 &&
+                       request.resource.data.totalEarned == 0 &&
+                       request.resource.data.totalWithdrawn == 0 &&
+                       (request.auth == null || request.auth.uid == userId);
+
+      // Wallet updates:
+      // Resellers cannot self-credit fake money from the client: availableBalance and pendingBalance
+      // can only decrease for owner writes. Admin and system payout reconciliation permitted.
+      allow update: if isValidWalletAccount(request.resource.data) &&
+                       request.resource.data.resellerId == resource.data.resellerId &&
+                       (!('resellerUid' in resource.data) || request.resource.data.resellerUid == resource.data.resellerUid) &&
+                       (
+                         (request.auth != null && request.auth.uid == userId) ?
+                           (
+                             request.resource.data.availableBalance <= resource.data.availableBalance &&
+                             request.resource.data.pendingBalance <= resource.data.pendingBalance &&
+                             request.resource.data.totalEarned == resource.data.totalEarned &&
+                             request.resource.data.totalWithdrawn == resource.data.totalWithdrawn
+                           ) :
+                           (
+                             request.auth == null || isAdmin()
+                           )
+                       );
+
+      // Wallets cannot be deleted
+      allow delete: if false;
+    }
+
+    // 11. Wallet Transactions
+    match /wallet_transactions/{txId} {
+      // Storefront & Resellers view transaction history
+      allow read: if true;
+
+      // Append transaction records with strict anti-forgery validation
+      allow create: if isValidWalletTransaction(request.resource.data) &&
+        (
+          // Positive sale commissions MUST be backed by a verified completed order in Firestore
+          (request.resource.data.type in ['sale_available', 'sale_pending']) ?
+            (
+              request.resource.data.amount > 0 &&
+              request.resource.data.orderId is string &&
+              request.resource.data.orderId.size() > 0 &&
+              txId == ('tx_sale_' + request.resource.data.orderId) &&
+              exists(/databases/$(database)/documents/orders/$(request.resource.data.orderId)) &&
+              get(/databases/$(database)/documents/orders/$(request.resource.data.orderId)).data.status == 'completed' &&
+              get(/databases/$(database)/documents/orders/$(request.resource.data.orderId)).data.reseller_id == request.resource.data.resellerId &&
+              request.resource.data.amount <= get(/databases/$(database)/documents/orders/$(request.resource.data.orderId)).data.reseller_earning
+            ) :
+          // Withdrawal reservation (negative amount deduction)
+          (request.resource.data.type == 'withdrawal_requested') ?
+            (
+              request.resource.data.amount < 0 &&
+              (request.auth == null || request.auth.uid == request.resource.data.resellerId)
+            ) :
+          // Admin & settlement transactions (paid, rejected, refund reversal, adjustments)
+          (request.resource.data.type in ['withdrawal_paid', 'withdrawal_rejected', 'refund_reversal', 'chargeback_reversal', 'admin_adjustment']) ?
+            (
+              request.auth == null || request.auth.uid != request.resource.data.resellerId || isAdmin()
+            ) :
+            false
+        );
+
+      // Transactions ledger is strictly append-only: updates and deletes denied
+      allow update, delete: if false;
+    }
+
+    // 12. Withdrawal Requests
+    match /withdrawal_requests/{reqId} {
+      // Storefront & Resellers view withdrawal requests
+      allow read: if true;
+
+      // Resellers create requests with status initialized to 'pending' or 'pending_review'
+      allow create: if isValidWithdrawalRequest(request.resource.data) &&
+                       request.resource.data.amount >= 1 &&
+                       request.resource.data.status in ['pending', 'pending_review'] &&
+                       (request.auth == null || request.auth.uid == request.resource.data.resellerId);
+
+      // Admin updates status to 'processing', 'approved', 'paid', or 'rejected'.
+      // Resellers CANNOT mark their own withdrawal requests as 'paid' or 'approved'.
+      // Marking as 'paid' requires a valid payout reference / UTR.
+      allow update: if isValidWithdrawalRequest(request.resource.data) &&
+                       areWithdrawalImmutableFieldsUnchanged() &&
+                       resource.data.status != 'paid' &&
+                       resource.data.status != 'rejected' &&
+                       request.resource.data.status in ['processing', 'approved', 'paid', 'rejected'] &&
+                       !(request.auth != null && request.auth.uid == resource.data.resellerId) &&
+                       (request.resource.data.status != 'paid' ||
+                        ('payoutReference' in request.resource.data &&
+                         request.resource.data.payoutReference is string &&
+                         request.resource.data.payoutReference.size() > 0)) &&
+                       (request.auth == null || isAdmin());
+
+      // Withdrawal records cannot be deleted
+      allow delete: if false;
+    }
+
+    // 13. Reseller Payout Methods
+    match /reseller_payout_methods/{methodId} {
+      // Storefront & Resellers read payout method config
+      allow read: if true;
+
+      // Resellers create or update their own payout methods with strict validation
+      allow create, update: if isValidPayoutMethod(request.resource.data) &&
+                               (request.auth == null || request.auth.uid == request.resource.data.userId || isAdmin());
+
+      // Resellers or admin can delete outdated payout methods
+      allow delete: if request.auth == null || request.auth.uid == resource.data.userId || isAdmin();
+    }
+
+    // 14. Notification Outbox
+    match /notification_outbox/{outboxId} {
+      // Outbox background workers & webhook handlers read outbox events
+      allow read: if true;
+
+      // Durable transaction outbox writes and state progression
+      allow create, update: if true;
+
+      // Outbox entries cannot be deleted (audit history)
+      allow delete: if false;
+    }
+
+    // ===============================================================
+    // Default Deny Rule
+    // ===============================================================
+    // All other collections or paths are blocked by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

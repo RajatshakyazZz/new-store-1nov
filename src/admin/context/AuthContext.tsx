@@ -88,9 +88,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         (process.env.NEXT_PUBLIC_ADMIN_PASSWORD ||
           (process.env as any).ADMIN_PASSWORD ||
           (process.env as any).VITE_ADMIN_PASSWORD)) ||
-      'vaultzet@2026';
+      'digihaven@2026';
 
-    if ((configuredPassword && pass === configuredPassword) || pass === 'vaultworld@2026' || pass === 'vaultzet@2026') {
+    if ((configuredPassword && pass === configuredPassword) || pass === 'digihaven@2026') {
       const profile: AdminProfile = {
         name: 'DigiHaven Administrator',
         email: 'Shaul.official1993@gmail.com',

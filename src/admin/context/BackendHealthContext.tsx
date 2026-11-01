@@ -577,7 +577,7 @@ service cloud.firestore {
             <div className="bg-black/60 p-2.5 rounded-lg space-y-1 font-mono text-[10px] text-slate-300">
               <div>VITE_FIREBASE_API_KEY = (your api key)</div>
               <div>VITE_FIREBASE_PROJECT_ID = (your project id)</div>
-              <div>VITE_ADMIN_PASSWORD = (your login password)</div>
+              <div>NEXT_PUBLIC_ADMIN_PASSWORD = (your login password)</div>
             </div>
           </div>
         </div>

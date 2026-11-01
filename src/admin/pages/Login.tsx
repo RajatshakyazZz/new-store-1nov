@@ -24,7 +24,7 @@ export default function Login() {
     setIsLoading(false);
 
     if (ok) {
-      success('Access Granted', 'Welcome to VaultWorld Admin Portal.');
+      success('Access Granted', 'Welcome to DigiHaven Admin Portal.');
       navigate('/');
     } else {
       const isConfigured = Boolean(
@@ -32,12 +32,12 @@ export default function Login() {
           (process.env.NEXT_PUBLIC_ADMIN_PASSWORD ||
             (process.env as any).ADMIN_PASSWORD ||
             (process.env as any).VITE_ADMIN_PASSWORD ||
-            'vaultzet@2026')
+            'digihaven@2026')
       );
       if (!isConfigured) {
         error(
           'Password Not Configured',
-          'VITE_ADMIN_PASSWORD is not set in Vercel. Please add VITE_ADMIN_PASSWORD in your Vercel Environment Variables.'
+          'NEXT_PUBLIC_ADMIN_PASSWORD is not set in Vercel. Please add NEXT_PUBLIC_ADMIN_PASSWORD in your Vercel Environment Variables.'
         );
       } else {
         error('Access Denied', 'Incorrect admin password. Please try again.');
@@ -95,7 +95,7 @@ export default function Login() {
                 <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5 pointer-events-none" />
               </div>
               <p className="text-[11px] text-slate-500 leading-relaxed pt-1">
-                Protected by <code className="text-purple-400 font-mono">VITE_ADMIN_PASSWORD</code> in your Vercel Environment Variables.
+                Protected by <code className="text-orange-400 font-mono">NEXT_PUBLIC_ADMIN_PASSWORD</code> in your Vercel Environment Variables.
               </p>
             </div>
 

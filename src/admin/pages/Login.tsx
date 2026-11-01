@@ -31,8 +31,7 @@ export default function Login() {
         typeof process !== 'undefined' &&
           (process.env.NEXT_PUBLIC_ADMIN_PASSWORD ||
             (process.env as any).ADMIN_PASSWORD ||
-            (process.env as any).VITE_ADMIN_PASSWORD ||
-            'digihaven@2026')
+            (process.env as any).VITE_ADMIN_PASSWORD)
       );
       if (!isConfigured) {
         error(

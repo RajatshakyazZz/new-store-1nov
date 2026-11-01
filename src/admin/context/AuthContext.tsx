@@ -88,18 +88,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         (process.env.NEXT_PUBLIC_ADMIN_PASSWORD ||
           (process.env as any).ADMIN_PASSWORD ||
           (process.env as any).VITE_ADMIN_PASSWORD)) ||
-      'digihaven@2026';
+      '';
 
-    if ((configuredPassword && pass === configuredPassword) || pass === 'digihaven@2026') {
+    if (configuredPassword && pass === configuredPassword) {
       const profile: AdminProfile = {
         name: 'DigiHaven Administrator',
         email: 'Shaul.official1993@gmail.com',
         role: 'SuperAdmin',
         source: 'portal-key',
       };
-      setApiKey('vaultworld_admin_token');
+      setApiKey('digihaven_admin_token');
       setAdmin(profile);
-      localStorage.setItem('rb_portal_api_key', 'vaultworld_admin_token');
+      localStorage.setItem('rb_portal_api_key', 'digihaven_admin_token');
       localStorage.setItem('rb_portal_admin_profile', JSON.stringify(profile));
 
       await logAdminAction({

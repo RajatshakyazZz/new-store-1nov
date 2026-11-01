@@ -26,6 +26,7 @@ function StoreLayoutInner({ children }: { children: React.ReactNode }) {
     setIsMounted(true);
     if (typeof window !== 'undefined') {
       const isAuth =
+        localStorage.getItem('rb_portal_api_key') === 'digihaven_admin_token' ||
         localStorage.getItem('rb_portal_api_key') === 'vaultworld_admin_token' ||
         Boolean(localStorage.getItem('rb_portal_admin_profile'));
 

@@ -601,20 +601,20 @@ function OrderSuccessContent() {
               </div>
             </div>
 
-            {/* The ReelsBundles Signature Hero Card (.rbt-success) */}
-            <section className="relative rounded-[26px] p-6 sm:p-9 border border-[#e7e4f3] bg-gradient-to-r from-[#f0fff8] via-[#f7f7ff] to-[#fff3fb] shadow-[0_12px_36px_rgba(39,35,92,0.06)] overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            {/* The Signature Hero Card (.rbt-success) with Direct Instant Download Button Above the Fold */}
+            <section className="relative rounded-[26px] p-5 sm:p-8 border border-emerald-200/90 bg-gradient-to-br from-[#f0fff8] via-white to-[#fff7ed] shadow-[0_12px_36px_rgba(16,185,129,0.10)] overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
                 
                 {/* Big Green Check Circle Icon */}
                 <div className="md:col-span-2 flex justify-center md:justify-start">
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#12b763] text-white flex items-center justify-center shadow-[0_16px_32px_rgba(18,183,99,0.25)] shrink-0">
-                    <Check className="w-10 h-10 sm:w-12 sm:h-12 stroke-[3.5]" />
+                  <div className="relative w-16 h-16 sm:w-22 sm:h-22 rounded-full bg-[#12b763] text-white flex items-center justify-center shadow-[0_14px_28px_rgba(18,183,99,0.28)] shrink-0">
+                    <Check className="w-9 h-9 sm:w-11 sm:h-11 stroke-[3.5]" />
                     <div className="absolute -inset-1 rounded-full border-2 border-emerald-400/50 animate-ping pointer-events-none" />
                   </div>
                 </div>
 
-                {/* Hero Headline & Explanation */}
-                <div className="md:col-span-7 text-center md:text-left space-y-2">
+                {/* Hero Headline, Explanation & Instant Download CTA */}
+                <div className="md:col-span-7 text-center md:text-left space-y-2.5">
                   <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#12a458] tracking-wide uppercase">
                     <Sparkles className="w-4 h-4 fill-emerald-500 text-emerald-500" />
                     Verified &amp; Payment Successful
@@ -624,16 +624,51 @@ function OrderSuccessContent() {
                   </h1>
                   <p className="text-xs sm:text-sm text-[#5e6888] font-medium max-w-xl leading-relaxed">
                     Thank you for your purchase! Your payment was verified and confirmed.
-                    Your Google Drive reels access links are ready below
+                    Click the download button below for instant Google Drive access
                     {verifiedData?.customer?.email && (
                       <>
-                        {' '}and have also been sent to{' '}
+                        {' '}(also sent to{' '}
                         <strong className="text-slate-900 font-bold underline decoration-orange-300">
                           {verifiedData.customer.email}
-                        </strong>.
+                        </strong>
+                        ).
                       </>
                     )}
                   </p>
+
+                  {/* Instant Top Download CTA Button(s) */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2.5">
+                    <a
+                      href={verifiedData?.items?.[0]?.googleDriveLink || 'https://drive.google.com'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm sm:text-base shadow-[0_10px_28px_rgba(16,185,129,0.35)] border border-emerald-400/40 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <Download className="w-5 h-5 stroke-[2.5] animate-bounce" />
+                      <span>Download / Open Google Drive Now</span>
+                      <ExternalLink className="w-4 h-4 opacity-90" />
+                    </a>
+
+                    {verifiedData?.items?.[0]?.googleDriveLink && (
+                      <button
+                        type="button"
+                        onClick={() => handleCopyLink(verifiedData.items[0].googleDriveLink, 'hero-drive-link')}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-extrabold shadow-2xs transition-colors cursor-pointer"
+                      >
+                        {copiedKey === 'hero-drive-link' ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                            <span className="text-emerald-700">Drive Link Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5 text-slate-500" />
+                            <span>Copy Drive Link</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 {/* 3D Visual Art Badge on Desktop */}
@@ -652,6 +687,260 @@ function OrderSuccessContent() {
                   </div>
                 </div>
 
+              </div>
+            </section>
+
+            {/* UNLOCKED GOOGLE DRIVE PRODUCTS LIST (.rbt-products) — MOVED DIRECTLY BELOW HERO FOR INSTANT ACCESS */}
+            <section id="download-links" className="space-y-4">
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black">
+                    <FolderOpen className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg sm:text-xl font-black text-[#17214a] leading-none">
+                      Your Google Drive Download Links
+                    </h2>
+                    <small className="text-xs text-slate-500 font-medium">
+                      Click &apos;Open Google Drive Folder&apos; to view, stream or download your files
+                    </small>
+                  </div>
+                </div>
+
+                <span className="text-xs font-black text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                  {verifiedData?.items?.length || 1} Item(s) Ready
+                </span>
+              </div>
+
+              {/* Products Grid */}
+              <div className="space-y-4">
+                {verifiedData?.items?.map((item: any, idx: number) => {
+                  const driveUrl = item.googleDriveLink || 'https://drive.google.com';
+                  const isReseller = item.license === 'reseller';
+                  const copyKey = `item-${idx}`;
+
+                  return (
+                    <article
+                      key={idx}
+                      className="rounded-[22px] border-2 border-emerald-200/90 bg-white p-4 sm:p-5 shadow-[0_8px_24px_rgba(16,185,129,0.08)] transition-all hover:shadow-[0_12px_32px_rgba(16,185,129,0.14)]"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+                        
+                        {/* 1. Compact Thumbnail + Title Row on Mobile / Left Column on Desktop */}
+                        <div className="md:col-span-3">
+                          <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 shadow-sm border border-slate-100">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={resolveItemImage(item)}
+                              alt={item.title}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                            <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-sm text-[10px] font-black uppercase tracking-wider text-white">
+                              {item.resolution || '1080P FULL HD'}
+                            </div>
+                            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-emerald-600/90 text-[10px] font-black uppercase text-white">
+                              Unlocked
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 2. Middle Content Column */}
+                        <div className="md:col-span-5 space-y-2.5">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span
+                              className={`text-[10.5px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
+                                isReseller
+                                  ? 'bg-[#ffe4ee] text-[#9f1239]'
+                                  : 'bg-[#efe8ff] text-[#6c3cff]'
+                              }`}
+                            >
+                              {isReseller ? 'Reseller Rights Included' : 'Personal License'}
+                            </span>
+                            {Array.isArray(item.files) && item.files.length > 1 && (
+                              <span className="text-[10.5px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                {item.files.length} Drive Files Included
+                              </span>
+                            )}
+                            <span className="text-[11px] font-bold text-slate-400">
+                              Format: {item.format || 'MP4 Video'}
+                            </span>
+                          </div>
+
+                          <h3 className="text-base sm:text-lg font-black text-[#17214a] leading-snug">
+                            {item.title}
+                          </h3>
+
+                          <p className="text-xs text-[#5e6888] font-medium leading-relaxed">
+                            Organized in high-speed Google Drive folders. Ready to post directly to Instagram Reels, YouTube Shorts &amp; TikTok with trending audio.
+                          </p>
+
+                          <div className="flex items-center gap-4 text-xs font-bold text-slate-600 pt-1">
+                            <span className="flex items-center gap-1.5">
+                              <Zap className="w-3.5 h-3.5 text-orange-600" />
+                              <span>Instant Delivery</span>
+                            </span>
+                            <span>•</span>
+                            <span className="flex items-center gap-1.5">
+                              <Award className="w-3.5 h-3.5 text-emerald-600" />
+                              <span>Lifetime Access</span>
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* 3. Right Access Card (.rbt-access) */}
+                        <div className="md:col-span-4">
+                          <div className="rounded-2xl border border-[#dcefe4] bg-gradient-to-r from-[#f2fff8] to-[#f8fffb] p-4 sm:p-5 space-y-3.5">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-xl bg-[#16aa5d] text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-600/20">
+                                <FolderOpen className="w-5 h-5 stroke-[2.5]" />
+                              </div>
+                              <div>
+                                <strong className="block text-xs sm:text-sm font-black text-[#16894e]">
+                                  Google Drive Unlocked
+                                </strong>
+                                <span className="block text-[11px] text-[#63708b] font-medium">
+                                  {Array.isArray(item.files) && item.files.length > 1
+                                    ? `${item.files.length} shared folders ready`
+                                    : 'Your shared link is ready to open'}
+                                </span>
+                              </div>
+                            </div>
+
+                            {Array.isArray(item.files) && item.files.length > 1 ? (
+                              <div className="space-y-2.5 pt-1">
+                                {item.files.map((f: any, fIdx: number) => {
+                                  const fUrl = f.file_url || f.url || driveUrl;
+                                  const fCopyKey = `item-${idx}-file-${fIdx}`;
+                                  return (
+                                    <div
+                                      key={f.id || fIdx}
+                                      className="p-2.5 rounded-xl bg-white border border-emerald-100 shadow-sm space-y-1.5"
+                                    >
+                                      <div className="flex items-center justify-between gap-1 text-[11px]">
+                                        <span className="font-bold text-[#17214a] truncate">
+                                          {f.name || `Drive File #${fIdx + 1}`}
+                                        </span>
+                                        <button
+                                          type="button"
+                                          onClick={() => handleCopyLink(fUrl, fCopyKey)}
+                                          className="text-[10px] font-bold text-slate-500 hover:text-orange-700 shrink-0"
+                                        >
+                                          {copiedKey === fCopyKey ? 'Copied' : 'Copy'}
+                                        </button>
+                                      </div>
+                                      <a
+                                        href={fUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-transform hover:scale-[1.01]"
+                                      >
+                                        <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+                                        <span>Open Drive Folder</span>
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                      </a>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ) : (
+                              <>
+                                <a
+                                  href={driveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_10px_22px_rgba(16,185,129,0.28)] transition-transform hover:scale-[1.02]"
+                                >
+                                  <Download className="w-4 h-4 stroke-[2.5]" />
+                                  <span>Open Google Drive Folder</span>
+                                  <ArrowRight className="w-4 h-4" />
+                                </a>
+
+                                <div className="flex items-center justify-between gap-2 pt-1">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleCopyLink(driveUrl, copyKey)}
+                                    className="text-[11px] font-bold text-slate-500 hover:text-orange-700 flex items-center gap-1 transition-colors"
+                                  >
+                                    {copiedKey === copyKey ? (
+                                      <>
+                                        <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                                        <span className="text-emerald-600">Copied to Clipboard!</span>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Copy className="w-3 h-3" />
+                                        <span>Copy Drive Link</span>
+                                      </>
+                                    )}
+                                  </button>
+
+                                  <a
+                                    href={driveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[11px] font-bold text-emerald-700 hover:underline flex items-center gap-1"
+                                  >
+                                    <span>Direct Link</span>
+                                    <ExternalLink className="w-3 h-3" />
+                                  </a>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                      </div>
+                    </article>
+                  );
+                })}
+
+                {/* BONUS PACK IF ORDER BUMP ADDED */}
+                {verifiedData?.hasBump && (
+                  <article className="rounded-[22px] border border-amber-200 bg-gradient-to-r from-[#fffcf2] to-[#fffaf0] p-4 sm:p-5 shadow-[0_8px_24px_rgba(217,119,6,0.06)]">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+                      <div className="md:col-span-3">
+                        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-amber-200">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={verifiedData?.orderBump?.thumbnail || "https://reelsbundles.in/wp-content/uploads/2026/10/3200-ultimate-twisted-world-reel-bundle-reels-bundle-1-2-768x576.png"}
+                            alt={verifiedData?.orderBump?.title || "Bonus Reels Pack"}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-amber-600 text-[10px] font-black uppercase text-white">
+                            ★ EXCLUSIVE BONUS
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="md:col-span-5 space-y-2">
+                        <span className="text-[10.5px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900">
+                          Order Bump Bonus Offer
+                        </span>
+                        <h3 className="text-base sm:text-lg font-black text-amber-950">
+                          {verifiedData?.orderBump?.title || "1500+ Ultimate Twisted World & Viral AI Reels Pack"}
+                        </h3>
+                        <p className="text-xs text-amber-800 font-medium leading-relaxed">
+                          {verifiedData?.orderBump?.subtitle || "Extra bonus collection unlocked via checkout special offer. High retention surreal & reverse world AI animations."}
+                        </p>
+                      </div>
+
+                      <div className="md:col-span-4">
+                        <a
+                          href={verifiedData?.orderBump?.googleDriveLink || "https://drive.google.com/drive/folders/bonus-pack-twisted-world"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_10px_22px_rgba(245,158,11,0.25)] transition-transform hover:scale-[1.02]"
+                        >
+                          <Download className="w-4 h-4 stroke-[2.5]" />
+                          <span>Open Bonus Drive Folder</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                )}
               </div>
             </section>
 
@@ -793,260 +1082,6 @@ function OrderSuccessContent() {
                 </div>
               </section>
             )}
-
-            {/* UNLOCKED GOOGLE DRIVE PRODUCTS LIST (.rbt-products) */}
-            <section className="space-y-4">
-              <div className="flex items-center justify-between gap-4 flex-wrap">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#f0ebff] text-[#6c3cff] flex items-center justify-center font-black">
-                    <FolderOpen className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg sm:text-xl font-black text-[#17214a] leading-none">
-                      Your Google Drive Download Links
-                    </h2>
-                    <small className="text-xs text-slate-500 font-medium">
-                      Click &apos;Open Google Drive Folder&apos; to view, stream or download your files
-                    </small>
-                  </div>
-                </div>
-
-                <span className="text-xs font-black text-orange-700 bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
-                  {verifiedData?.items?.length || 1} Item(s) Ready
-                </span>
-              </div>
-
-              {/* Products Grid */}
-              <div className="space-y-4">
-                {verifiedData?.items?.map((item: any, idx: number) => {
-                  const driveUrl = item.googleDriveLink || 'https://drive.google.com';
-                  const isReseller = item.license === 'reseller';
-                  const copyKey = `item-${idx}`;
-
-                  return (
-                    <article
-                      key={idx}
-                      className="rounded-[22px] border border-[#e7e4f3] bg-white p-4 sm:p-5 shadow-[0_8px_24px_rgba(39,35,92,0.05)] transition-all hover:shadow-[0_12px_32px_rgba(39,35,92,0.08)]"
-                    >
-                      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-                        
-                        {/* 1. Thumbnail Column */}
-                        <div className="md:col-span-3">
-                          <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 shadow-sm border border-slate-100">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={resolveItemImage(item)}
-                              alt={item.title}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                            />
-                            <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-sm text-[10px] font-black uppercase tracking-wider text-white">
-                              {item.resolution || '1080P FULL HD'}
-                            </div>
-                            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-emerald-600/90 text-[10px] font-black uppercase text-white">
-                              Unlocked
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* 2. Middle Content Column */}
-                        <div className="md:col-span-5 space-y-2.5">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span
-                              className={`text-[10.5px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
-                                isReseller
-                                  ? 'bg-[#ffe4ee] text-[#9f1239]'
-                                  : 'bg-[#efe8ff] text-[#6c3cff]'
-                              }`}
-                            >
-                              {isReseller ? 'Reseller Rights Included' : 'Personal License'}
-                            </span>
-                            {Array.isArray(item.files) && item.files.length > 1 && (
-                              <span className="text-[10.5px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                                {item.files.length} Drive Files Included
-                              </span>
-                            )}
-                            <span className="text-[11px] font-bold text-slate-400">
-                              Format: {item.format || 'MP4 Video'}
-                            </span>
-                          </div>
-
-                          <h3 className="text-base sm:text-lg font-black text-[#17214a] leading-snug">
-                            {item.title}
-                          </h3>
-
-                          <p className="text-xs text-[#5e6888] font-medium leading-relaxed">
-                            Organized in high-speed Google Drive folders. Ready to post directly to Instagram Reels, YouTube Shorts &amp; TikTok with trending audio.
-                          </p>
-
-                          <div className="flex items-center gap-4 text-xs font-bold text-slate-600 pt-1">
-                            <span className="flex items-center gap-1.5">
-                              <Zap className="w-3.5 h-3.5 text-orange-600" />
-                              <span>Instant Delivery</span>
-                            </span>
-                            <span>•</span>
-                            <span className="flex items-center gap-1.5">
-                              <Award className="w-3.5 h-3.5 text-emerald-600" />
-                              <span>Lifetime Access</span>
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* 3. Right Access Card (.rbt-access) */}
-                        <div className="md:col-span-4">
-                          <div className="rounded-2xl border border-[#dcefe4] bg-gradient-to-r from-[#f2fff8] to-[#f8fffb] p-4 sm:p-5 space-y-3.5">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-[#16aa5d] text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-600/20">
-                                <FolderOpen className="w-5 h-5 stroke-[2.5]" />
-                              </div>
-                              <div>
-                                <strong className="block text-xs sm:text-sm font-black text-[#16894e]">
-                                  Google Drive Unlocked
-                                </strong>
-                                <span className="block text-[11px] text-[#63708b] font-medium">
-                                  {Array.isArray(item.files) && item.files.length > 1
-                                    ? `${item.files.length} shared folders ready`
-                                    : 'Your shared link is ready to open'}
-                                </span>
-                              </div>
-                            </div>
-
-                            {Array.isArray(item.files) && item.files.length > 1 ? (
-                              <div className="space-y-2.5 pt-1">
-                                {item.files.map((f: any, fIdx: number) => {
-                                  const fUrl = f.file_url || f.url || driveUrl;
-                                  const fCopyKey = `item-${idx}-file-${fIdx}`;
-                                  return (
-                                    <div
-                                      key={f.id || fIdx}
-                                      className="p-2.5 rounded-xl bg-white border border-emerald-100 shadow-sm space-y-1.5"
-                                    >
-                                      <div className="flex items-center justify-between gap-1 text-[11px]">
-                                        <span className="font-bold text-[#17214a] truncate">
-                                          {f.name || `Drive File #${fIdx + 1}`}
-                                        </span>
-                                        <button
-                                          type="button"
-                                          onClick={() => handleCopyLink(fUrl, fCopyKey)}
-                                          className="text-[10px] font-bold text-slate-500 hover:text-orange-700 shrink-0"
-                                        >
-                                          {copiedKey === fCopyKey ? 'Copied' : 'Copy'}
-                                        </button>
-                                      </div>
-                                      <a
-                                        href={fUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-[#6734ff] to-[#7d3dff] hover:from-[#5e2ae6] hover:to-[#6f33ea] text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-transform hover:scale-[1.01]"
-                                      >
-                                        <Download className="w-3.5 h-3.5 stroke-[2.5]" />
-                                        <span>Open Drive Folder</span>
-                                        <ArrowRight className="w-3.5 h-3.5" />
-                                      </a>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            ) : (
-                              <>
-                                <a
-                                  href={driveUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#6734ff] to-[#7d3dff] hover:from-[#5e2ae6] hover:to-[#6f33ea] text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_10px_22px_rgba(103,52,255,0.22)] transition-transform hover:scale-[1.02]"
-                                >
-                                  <Download className="w-4 h-4 stroke-[2.5]" />
-                                  <span>Open Google Drive Folder</span>
-                                  <ArrowRight className="w-4 h-4" />
-                                </a>
-
-                                <div className="flex items-center justify-between gap-2 pt-1">
-                                  <button
-                                    type="button"
-                                    onClick={() => handleCopyLink(driveUrl, copyKey)}
-                                    className="text-[11px] font-bold text-slate-500 hover:text-orange-700 flex items-center gap-1 transition-colors"
-                                  >
-                                    {copiedKey === copyKey ? (
-                                      <>
-                                        <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
-                                        <span className="text-emerald-600">Copied to Clipboard!</span>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <Copy className="w-3 h-3" />
-                                        <span>Copy Drive Link</span>
-                                      </>
-                                    )}
-                                  </button>
-
-                                  <a
-                                    href={driveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[11px] font-bold text-orange-600 hover:underline flex items-center gap-1"
-                                  >
-                                    <span>Direct Link</span>
-                                    <ExternalLink className="w-3 h-3" />
-                                  </a>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-
-                      </div>
-                    </article>
-                  );
-                })}
-
-                {/* BONUS PACK IF ORDER BUMP ADDED */}
-                {verifiedData?.hasBump && (
-                  <article className="rounded-[22px] border border-amber-200 bg-gradient-to-r from-[#fffcf2] to-[#fffaf0] p-4 sm:p-5 shadow-[0_8px_24px_rgba(217,119,6,0.06)]">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-                      <div className="md:col-span-3">
-                        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-amber-200">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={verifiedData?.orderBump?.thumbnail || "https://reelsbundles.in/wp-content/uploads/2026/10/3200-ultimate-twisted-world-reel-bundle-reels-bundle-1-2-768x576.png"}
-                            alt={verifiedData?.orderBump?.title || "Bonus Reels Pack"}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-amber-600 text-[10px] font-black uppercase text-white">
-                            ★ EXCLUSIVE BONUS
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="md:col-span-5 space-y-2">
-                        <span className="text-[10.5px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900">
-                          Order Bump Bonus Offer
-                        </span>
-                        <h3 className="text-base sm:text-lg font-black text-amber-950">
-                          {verifiedData?.orderBump?.title || "1500+ Ultimate Twisted World & Viral AI Reels Pack"}
-                        </h3>
-                        <p className="text-xs text-amber-800 font-medium leading-relaxed">
-                          {verifiedData?.orderBump?.subtitle || "Extra bonus collection unlocked via checkout special offer. High retention surreal & reverse world AI animations."}
-                        </p>
-                      </div>
-
-                      <div className="md:col-span-4">
-                        <a
-                          href={verifiedData?.orderBump?.googleDriveLink || "https://drive.google.com/drive/folders/bonus-pack-twisted-world"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_10px_22px_rgba(245,158,11,0.25)] transition-transform hover:scale-[1.02]"
-                        >
-                          <Download className="w-4 h-4 stroke-[2.5]" />
-                          <span>Open Bonus Drive Folder</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                )}
-              </div>
-            </section>
 
             {/* STEP-BY-STEP DOWNLOAD & ACCESS GUIDE (.rbt-info-grid) */}
             <section className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">

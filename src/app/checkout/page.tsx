@@ -1077,7 +1077,7 @@ function CheckoutContent() {
                     <button
                       type="submit"
                       disabled={isProcessing}
-                      className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
+                      className="w-full py-3.5 sm:py-4 px-5 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
                     >
                       {isProcessing ? (
                         <span className="flex items-center gap-2">
@@ -1086,8 +1086,14 @@ function CheckoutContent() {
                         </span>
                       ) : (
                         <>
-                          <Lock className="w-4 h-4 text-white" />
-                          <span>Pay ₹{checkoutTotal}.00 (Instant Access)</span>
+                          <span className="inline-flex items-center justify-center bg-slate-950 px-2.5 py-1 rounded-lg border border-white/20 shadow-sm shrink-0">
+                            <img
+                              src="/cashfree-logo.png"
+                              alt="Cashfree"
+                              className="h-4 sm:h-4.5 w-auto object-contain"
+                            />
+                          </span>
+                          <span>Pay with Cashfree • ₹{checkoutTotal}.00</span>
                         </>
                       )}
                     </button>
@@ -1177,10 +1183,14 @@ function CheckoutContent() {
 
                 {/* Secure Gateway Details Card */}
                 <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-orange-500/30 text-white space-y-3.5 shadow-md">
-                  <div className="flex items-center justify-between">
-                    <div className="font-bold text-xs text-orange-400 flex items-center gap-1.5">
-                      <CreditCard className="w-4 h-4 text-orange-400" />
-                      <span>Instant Secure Payment Gateway</span>
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <div className="font-bold text-xs text-orange-400 flex items-center gap-2">
+                      <img
+                        src="/cashfree-logo.png"
+                        alt="Cashfree Payments"
+                        className="h-4 sm:h-5 w-auto object-contain"
+                      />
+                      <span className="text-slate-300 font-semibold">Official Payment Gateway</span>
                     </div>
                     <span className="text-[10px] font-bold text-slate-400">
                       RBI Regulated • Zero Extra Fee
@@ -1498,7 +1508,7 @@ function CheckoutContent() {
                   <button
                     type="submit"
                     disabled={isProcessing}
-                    className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] transition-all disabled:opacity-70 cursor-pointer"
+                    className="w-full py-4 px-5 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] transition-all disabled:opacity-70 cursor-pointer"
                   >
                     {isProcessing ? (
                       <span className="flex items-center gap-2">
@@ -1507,8 +1517,14 @@ function CheckoutContent() {
                       </span>
                     ) : (
                       <>
-                        <Lock className="w-4 h-4 text-white" />
-                        <span>Pay ₹{checkoutTotal}.00 (Instant Access)</span>
+                        <span className="inline-flex items-center justify-center bg-slate-950 px-2.5 py-1 rounded-lg border border-white/20 shadow-sm shrink-0">
+                          <img
+                            src="/cashfree-logo.png"
+                            alt="Cashfree"
+                            className="h-4 sm:h-4.5 w-auto object-contain"
+                          />
+                        </span>
+                        <span>Pay with Cashfree • ₹{checkoutTotal}.00</span>
                       </>
                     )}
                   </button>
@@ -1576,7 +1592,7 @@ function CheckoutContent() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
+                  className="w-full py-3.5 sm:py-4 px-5 rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-[0_0_28px_rgba(255,107,0,0.6)] hover:shadow-[0_0_36px_rgba(255,149,0,0.85)] border border-orange-400/40 hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-70 cursor-pointer"
                 >
                   {isProcessing ? (
                     <span className="flex items-center gap-2">
@@ -1585,8 +1601,14 @@ function CheckoutContent() {
                     </span>
                   ) : (
                     <>
-                      <Lock className="w-4 h-4 text-white" />
-                      <span>Pay ₹{checkoutTotal}.00 (Instant Access)</span>
+                      <span className="inline-flex items-center justify-center bg-slate-950 px-2.5 py-1 rounded-lg border border-white/20 shadow-sm shrink-0">
+                        <img
+                          src="/cashfree-logo.png"
+                          alt="Cashfree"
+                          className="h-4 sm:h-4.5 w-auto object-contain"
+                        />
+                      </span>
+                      <span>Pay with Cashfree • ₹{checkoutTotal}.00</span>
                     </>
                   )}
                 </button>

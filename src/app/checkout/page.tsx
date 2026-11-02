@@ -944,7 +944,7 @@ function CheckoutContent() {
                         (touched.name || fullName.length > 0) && nameError
                           ? 'border-red-400 bg-red-50/30 focus:ring-red-400'
                           : fullName.length > 0 && !nameError
-                          ? 'border-orange-400 bg-orange-50/20 focus:ring-orange-400'
+                          ? 'border-emerald-500 bg-emerald-50/40 focus:ring-emerald-500'
                           : 'border-slate-200 focus:ring-orange-500/30 focus:border-orange-500'
                       }`}
                     />
@@ -962,7 +962,13 @@ function CheckoutContent() {
                       <label className="block text-xs font-bold text-slate-700">
                         Gmail Address (For Google Drive Access) <span className="text-red-500">*</span>
                       </label>
-                      <span className="text-[10px] font-extrabold text-orange-950 bg-orange-50 border border-orange-200/70 px-2 py-0.5 rounded">
+                      <span
+                        className={`text-[10px] font-extrabold px-2 py-0.5 rounded border ${
+                          email.length > 0 && !emailError
+                            ? 'text-emerald-800 bg-emerald-100 border-emerald-300'
+                            : 'text-orange-950 bg-orange-50 border-orange-200/70'
+                        }`}
+                      >
                         Only @gmail.com
                       </span>
                     </div>
@@ -978,7 +984,7 @@ function CheckoutContent() {
                         (touched.email || email.length > 0) && emailError
                           ? 'border-red-400 bg-red-50/30 focus:ring-red-400'
                           : email.length > 0 && !emailError
-                          ? 'border-orange-400 bg-orange-50/20 focus:ring-orange-400'
+                          ? 'border-emerald-500 bg-emerald-50/40 focus:ring-emerald-500'
                           : 'border-slate-200 focus:ring-orange-500/30 focus:border-orange-500'
                       }`}
                     />
@@ -988,8 +994,8 @@ function CheckoutContent() {
                         <span>{emailError}</span>
                       </p>
                     ) : email.length > 0 && !emailError ? (
-                      <p className="text-[11px] font-bold text-orange-600 mt-1 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                      <p className="text-[11px] font-bold text-emerald-600 mt-1 flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                         <span>Valid @gmail.com address verified for Google Drive delivery.</span>
                       </p>
                     ) : (
@@ -1006,10 +1012,10 @@ function CheckoutContent() {
                         WhatsApp / Phone Number (10 Digits) <span className="text-red-500">*</span>
                       </label>
                       <span
-                        className={`text-[10px] font-extrabold px-2 py-0.5 rounded ${
+                        className={`text-[10px] font-extrabold px-2 py-0.5 rounded border ${
                           phone.length === 10 && !phoneError
-                            ? 'bg-orange-100 text-orange-950'
-                            : 'bg-slate-100 text-slate-600'
+                            ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                            : 'bg-slate-100 text-slate-600 border-slate-200'
                         }`}
                       >
                         {phone.length}/10 Digits
@@ -1020,11 +1026,17 @@ function CheckoutContent() {
                         (touched.phone || phone.length > 0) && phoneError
                           ? 'border-red-400 bg-red-50/30 focus-within:ring-red-400'
                           : phone.length === 10 && !phoneError
-                          ? 'border-orange-400 bg-orange-50/20 focus-within:ring-orange-400'
+                          ? 'border-emerald-500 bg-emerald-50/40 focus-within:ring-emerald-500'
                           : 'border-slate-200 bg-white focus-within:ring-orange-500/30 focus-within:border-orange-500'
                       }`}
                     >
-                      <span className="px-3.5 py-3 bg-slate-100 border-r border-slate-200 text-xs sm:text-sm font-extrabold text-slate-700 select-none shrink-0">
+                      <span
+                        className={`px-3.5 py-3 border-r text-xs sm:text-sm font-extrabold select-none shrink-0 transition-colors ${
+                          phone.length === 10 && !phoneError
+                            ? 'bg-emerald-100/70 border-emerald-300 text-emerald-800'
+                            : 'bg-slate-100 border-slate-200 text-slate-700'
+                        }`}
+                      >
                         +91
                       </span>
                       <input
@@ -1047,8 +1059,8 @@ function CheckoutContent() {
                         <span>{phoneError}</span>
                       </p>
                     ) : phone.length === 10 && !phoneError ? (
-                      <p className="text-[11px] font-bold text-orange-600 mt-1 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                      <p className="text-[11px] font-bold text-emerald-600 mt-1 flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                         <span>Valid 10-digit WhatsApp number verified (+91 {phone}).</span>
                       </p>
                     ) : null}

@@ -2451,13 +2451,13 @@ class PortalApiClient {
   }
 
   // ==========================================
-  // 16. SETTINGS & INTEGRATIONS (PayU Gateway)
+  // 16. SETTINGS & INTEGRATIONS (Cashfree Gateway)
   // ==========================================
   async getPayUConfig(): Promise<PgBridgeConfig> {
     // 1. First attempt to fetch from server-side admin settings API (reads Firestore directly)
     if (typeof window !== 'undefined') {
       try {
-        const res = await fetch('/api/admin/settings/payu', {
+        const res = await fetch('/api/admin/settings/cashfree', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
           cache: 'no-store',
@@ -2465,35 +2465,41 @@ class PortalApiClient {
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.config) {
+            const appId = data.config.app_id || data.config.merchant_key || '';
+            const secretKey = data.config.secret_key || data.config.merchant_salt || '';
             const mapped: PgBridgeConfig = {
               enabled: typeof data.config.enabled === 'boolean' ? data.config.enabled : true,
-              merchant_key: data.config.merchant_key || '',
-              merchant_salt: data.config.merchant_salt || '',
-              app_id: data.config.merchant_key || '',
-              secret_key: data.config.merchant_salt || '',
+              merchant_key: appId,
+              merchant_salt: secretKey,
+              app_id: appId,
+              secret_key: secretKey,
               environment: data.config.environment || 'PRODUCTION',
-              return_url: data.config.return_url || 'https://digihaven.shop/api/payment/payu/return',
+              return_url:
+                data.config.return_url || 'https://digihaven.vercel.app/api/payment/cashfree/return',
             };
+            this.saveSettingLocally('cashfree', mapped);
             this.saveSettingLocally('payu', mapped);
             return mapped;
           }
         }
       } catch (apiErr) {
-        console.warn('API /api/admin/settings/payu fetch error, falling back to Firestore/local:', apiErr);
+        console.warn('API /api/admin/settings/cashfree fetch error, falling back to Firestore/local:', apiErr);
       }
     }
 
-    // 2. Direct client Firestore query (store_settings/general, store_settings/payu, store_settings/cashfree)
+    // 2. Direct client Firestore query (store_settings/cashfree, store_settings/general, store_settings/payu)
     if (db) {
       try {
-        const [genSnap, payuSnap, cfSnap] = await Promise.all([
+        const [cfSnap, genSnap, payuSnap] = await Promise.all([
+          getDoc(doc(db, 'store_settings', 'cashfree')).catch(() => null),
           getDoc(doc(db, 'store_settings', 'general')).catch(() => null),
           getDoc(doc(db, 'store_settings', 'payu')).catch(() => null),
-          getDoc(doc(db, 'store_settings', 'cashfree')).catch(() => null),
         ]);
 
         let data: any = null;
-        if (genSnap && genSnap.exists() && (genSnap.data()?.merchant_key || genSnap.data()?.app_id)) {
+        if (cfSnap && cfSnap.exists() && (cfSnap.data()?.app_id || cfSnap.data()?.merchant_key)) {
+          data = cfSnap.data();
+        } else if (genSnap && genSnap.exists() && (genSnap.data()?.app_id || genSnap.data()?.merchant_key)) {
           data = genSnap.data();
         } else if (payuSnap && payuSnap.exists()) {
           data = payuSnap.data();
@@ -2504,73 +2510,73 @@ class PortalApiClient {
         }
 
         if (data) {
+          const appId = data.app_id || data.merchant_key || '';
+          const secretKey = data.secret_key || data.merchant_salt || '';
           const mapped: PgBridgeConfig = {
             enabled: typeof data.enabled === 'boolean' ? data.enabled : true,
-            merchant_key: data.merchant_key || data.app_id || '',
-            merchant_salt: data.merchant_salt || data.secret_key || '',
-            app_id: data.merchant_key || data.app_id || '',
-            secret_key: data.merchant_salt || data.secret_key || '',
-            environment: data.environment === 'TEST' || data.environment === 'SANDBOX' ? 'TEST' : 'PRODUCTION',
-            return_url: data.return_url || 'https://digihaven.shop/api/payment/payu/return',
+            merchant_key: appId,
+            merchant_salt: secretKey,
+            app_id: appId,
+            secret_key: secretKey,
+            environment:
+              data.environment === 'TEST' || data.environment === 'SANDBOX' ? 'SANDBOX' : 'PRODUCTION',
+            return_url:
+              data.return_url || 'https://digihaven.vercel.app/api/payment/cashfree/return',
           };
+          this.saveSettingLocally('cashfree', mapped);
           this.saveSettingLocally('payu', mapped);
           return mapped;
         }
       } catch (e) {
-        console.warn('Firestore direct payu fetch error, using local cache:', e);
+        console.warn('Firestore direct cashfree fetch error, using local cache:', e);
       }
     }
 
-    return this.getSavedSetting('payu', initialPgBridge);
+    return this.getSavedSetting('cashfree', initialPgBridge);
   }
 
   async updatePayUConfig(config: PgBridgeConfig): Promise<PgBridgeConfig> {
     const clean = sanitizePayload(config);
-    this.saveSettingLocally('payu', clean);
     this.saveSettingLocally('cashfree', clean);
+    this.saveSettingLocally('payu', clean);
 
-    let apiSucceeded = false;
-
-    // 1. Post to server-side admin settings API (persists to Firestore store_settings/general securely)
+    // 1. Post to server-side admin settings API (persists to Firestore store_settings/general & cashfree securely)
     if (typeof window !== 'undefined') {
       try {
-        const res = await fetch('/api/admin/settings/payu', {
+        const res = await fetch('/api/admin/settings/cashfree', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(clean),
         });
         const data = await res.json();
-        if (res.ok && data.success) {
-          apiSucceeded = true;
-        } else {
-          console.warn('Server API error saving PayU config:', data.error);
+        if (!res.ok || !data.success) {
+          console.warn('Server API error saving Cashfree config:', data.error);
         }
       } catch (apiErr) {
-        console.warn('Network error saving PayU config to API route:', apiErr);
+        console.warn('Network error saving Cashfree config to API route:', apiErr);
       }
     }
 
-    // 2. Direct client Firestore persistence (save to store_settings/general as primary universally allowed doc)
+    // 2. Direct client Firestore persistence (save to store_settings/general & store_settings/cashfree)
     if (db) {
       try {
         await setDoc(doc(db, 'store_settings', 'general'), clean, { merge: true });
-        apiSucceeded = true;
       } catch (e) {
         console.warn('Firestore direct write to store_settings/general warning:', e);
       }
 
-      // Also attempt secondary docs in parallel without failing
+      // Also save to cashfree and payu docs in parallel
       Promise.allSettled([
-        setDoc(doc(db, 'store_settings', 'payu'), clean, { merge: true }),
         setDoc(doc(db, 'store_settings', 'cashfree'), clean, { merge: true }),
+        setDoc(doc(db, 'store_settings', 'payu'), clean, { merge: true }),
       ]).catch(() => null);
     }
 
     await logAdminAction({
       adminEmail: 'Shaulchristian1993@gmail.com',
-      action: 'UPDATE_PAYU_CONFIG',
+      action: 'UPDATE_CASHFREE_CONFIG',
       module: 'Payments',
-      details: `Updated PayU Gateway credentials (Env: ${clean.environment || 'PRODUCTION'}) in Cloud Database`,
+      details: `Updated Cashfree Gateway credentials (Env: ${clean.environment || 'PRODUCTION'}) in Cloud Database`,
     });
 
     return clean;

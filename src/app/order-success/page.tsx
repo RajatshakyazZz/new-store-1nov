@@ -136,7 +136,9 @@ function OrderSuccessContent() {
     let targetId = rawOrderId;
     if (!targetId && typeof window !== 'undefined') {
       try {
-        const saved = localStorage.getItem('vaultzet_latest_order');
+        const saved =
+          localStorage.getItem('digihaven_latest_order') ||
+          localStorage.getItem('vaultzet_latest_order');
         if (saved) {
           const parsed = JSON.parse(saved);
           targetId = parsed.orderId || parsed.orderNumber || '';
@@ -155,7 +157,7 @@ function OrderSuccessContent() {
     let isCancelled = false;
     setStatus('verifying');
 
-    const verifyUrl = `/api/payment/payu/verify-order?order_id=${encodeURIComponent(targetId)}${rawToken ? `&token=${encodeURIComponent(rawToken)}` : ''}`;
+    const verifyUrl = `/api/payment/cashfree/verify-order?order_id=${encodeURIComponent(targetId)}${rawToken ? `&token=${encodeURIComponent(rawToken)}` : ''}`;
 
     fetch(verifyUrl)
       .then((res) => res.json())
@@ -167,6 +169,7 @@ function OrderSuccessContent() {
           const orderNum = data.orderNumber || targetId;
 
           try {
+            localStorage.removeItem('digihaven_latest_order');
             localStorage.removeItem('vaultzet_latest_order');
             const existingRaw = localStorage.getItem('vaultzet_purchased_orders');
             const list = existingRaw ? JSON.parse(existingRaw) : [];
@@ -190,7 +193,7 @@ function OrderSuccessContent() {
           // Strict server-side gatekeeper: ONLY fire browser event if backend confirms this order hasn't fired yet
           if (data.eligible_for_browser_event) {
             // 1. Immediately notify server to mark client fired, preventing any future fires across reloads/devices
-            fetch('/api/payment/payu/verify-order', {
+            fetch('/api/payment/cashfree/verify-order', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({

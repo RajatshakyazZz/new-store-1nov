@@ -3,7 +3,7 @@ import { getCashfreeCredentials } from '@/lib/cashfree';
 
 export async function GET() {
   try {
-    const creds = await getCashfreeCredentials();
+    const creds = await getCashfreeCredentials(true);
 
     const mask = (str: string) => {
       if (!str) return 'NOT_CONFIGURED';
@@ -14,12 +14,11 @@ export async function GET() {
     const hasAppId = !!creds.appId;
     const hasSecretKey = !!creds.secretKey;
 
-    const source =
-      process.env.CASHFREE_APP_ID || process.env.NEXT_PUBLIC_CASHFREE_APP_ID || process.env.CASHFREE_CLIENT_ID
-        ? 'VERCEL_ENVIRONMENT_VARIABLES'
-        : creds.appId
-        ? 'FIRESTORE_SETTINGS'
-        : 'NONE';
+    const source = creds.appId
+      ? 'FIRESTORE_SETTINGS'
+      : process.env.CASHFREE_APP_ID || process.env.NEXT_PUBLIC_CASHFREE_APP_ID || process.env.CASHFREE_CLIENT_ID
+      ? 'VERCEL_ENVIRONMENT_VARIABLES'
+      : 'NONE';
 
     return NextResponse.json({
       configured: hasAppId && hasSecretKey,
@@ -30,8 +29,8 @@ export async function GET() {
       returnUrl: creds.returnUrl,
       source,
       instructions: !hasAppId || !hasSecretKey
-        ? 'To fix: In Vercel > Storefront Project (vaultzet.shop) > Settings > Environment Variables, add CASHFREE_APP_ID and CASHFREE_SECRET_KEY, then click Deployments > Redeploy.'
-        : 'Cashfree credentials detected successfully on Storefront.',
+        ? 'To fix: In Admin Portal > Settings & Integrations > Cashfree Gateway, enter your Cashfree App ID and Secret Key and click Save.'
+        : 'Cashfree credentials detected and verified in Cloud Firestore.',
     });
   } catch (err: any) {
     return NextResponse.json(

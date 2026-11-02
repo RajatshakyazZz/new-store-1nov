@@ -10278,8 +10278,10 @@ export const initialPayUConfig: PgBridgeConfig = {
   enabled: true,
   merchant_key: '',
   merchant_salt: '',
+  app_id: '',
+  secret_key: '',
   environment: 'PRODUCTION',
-  return_url: 'https://digihaven.shop/api/payment/payu/return',
+  return_url: 'https://digihaven.vercel.app/api/payment/cashfree/return',
 };
 
 export const initialCashfreeConfig = initialPayUConfig;

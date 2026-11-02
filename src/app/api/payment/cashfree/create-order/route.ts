@@ -240,10 +240,12 @@ export async function POST(request: Request) {
     }
 
     const hostHeader = request.headers.get('host') || '';
-    const isLocalhost = hostHeader.includes('localhost');
+    const isLocalhost = hostHeader.includes('localhost') || hostHeader.includes('127.0.0.1');
     const returnBaseUrl = isLocalhost
       ? `http://${hostHeader}`
-      : (process.env.NEXT_PUBLIC_SITE_URL || 'https://new-store-1nov.vercel.app');
+      : hostHeader
+      ? `https://${hostHeader}`
+      : (process.env.NEXT_PUBLIC_SITE_URL || 'https://digihaven.vercel.app').replace(/\/+$/, '');
 
     const orderToken = generateOrderToken(orderNumber);
 

@@ -35,6 +35,31 @@ import { resolveBundleSlug } from '@/lib/bundleResolver';
 import { fetchCustomProductBySlug } from '@/lib/customProducts';
 import { isMegaAllAccessBundle } from '@/lib/freeBundleOffer';
 
+function loadCashfreeSdk(): Promise<any> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined') {
+      reject(new Error('Window is not defined'));
+      return;
+    }
+    if ((window as any).Cashfree) {
+      resolve((window as any).Cashfree);
+      return;
+    }
+    const existing = document.getElementById('cashfree-sdk-v3') as HTMLScriptElement | null;
+    if (existing) {
+      existing.addEventListener('load', () => resolve((window as any).Cashfree));
+      existing.addEventListener('error', () => reject(new Error('Failed to load Cashfree SDK')));
+      return;
+    }
+    const script = document.createElement('script');
+    script.id = 'cashfree-sdk-v3';
+    script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';
+    script.async = true;
+    script.onload = () => resolve((window as any).Cashfree);
+    script.onerror = () => reject(new Error('Failed to load Cashfree SDK'));
+    document.body.appendChild(script);
+  });
+}
 
 function CheckoutContent() {
   const router = useRouter();
@@ -63,6 +88,10 @@ function CheckoutContent() {
     if ((isBuyNowMode || resellerSlug) && !buyNowItem) return true;
     return false;
   });
+
+  useEffect(() => {
+    loadCashfreeSdk().catch(() => {});
+  }, []);
 
   // Dynamic client hydration to guarantee checkout is NEVER empty and always loads the correct product
   useEffect(() => {
@@ -647,8 +676,8 @@ function CheckoutContent() {
     };
 
     try {
-      // 1. Create Order on server
-      const res = await fetch('/api/payment/payu/create-order', {
+      // 1. Create Cashfree Order on server
+      const res = await fetch('/api/payment/cashfree/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderPayload),
@@ -656,39 +685,35 @@ function CheckoutContent() {
 
       const data = await res.json();
 
-      if (!res.ok || !data.success || !data.action || !data.params) {
+      if (!res.ok || !data.success || !data.payment_session_id) {
         throw new Error(
           data.error ||
-            'Could not initialize payment gateway. Please try again shortly or contact support.'
+            'Could not initialize Cashfree payment gateway. Please verify Cashfree API credentials in the Admin Portal.'
         );
       }
 
       // Store temporary pending order details for confirmation
-      localStorage.setItem('digihaven_latest_order', JSON.stringify({
+      const pendingOrderData = JSON.stringify({
         ...orderPayload,
         orderId: orderNumber,
         orderToken: data.order_token,
         status: 'pending',
-      }));
+      });
+      localStorage.setItem('digihaven_latest_order', pendingOrderData);
+      localStorage.setItem('vaultzet_latest_order', pendingOrderData);
 
-      // 2. Auto-submit form to Secure Hosted Checkout (UPI, GPay, PhonePe, Paytm, Cards, NetBanking)
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = data.action;
-      form.style.display = 'none';
-
-      Object.entries(data.params).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = String(value);
-        form.appendChild(input);
+      // 2. Launch Cashfree Official v3 Checkout (UPI, GPay, PhonePe, Paytm, Cards, NetBanking)
+      const Cashfree = await loadCashfreeSdk();
+      const cashfree = Cashfree({
+        mode: data.environment === 'SANDBOX' ? 'sandbox' : 'production',
       });
 
-      document.body.appendChild(form);
-      form.submit();
+      await cashfree.checkout({
+        paymentSessionId: data.payment_session_id,
+        redirectTarget: '_self',
+      });
     } catch (err: any) {
-      console.error('Payment order error:', err);
+      console.error('Cashfree payment order error:', err);
       setIsProcessing(false);
       setErrorMessage(
         err.message || 'Payment initiation failed. Please check your connection and try again.'

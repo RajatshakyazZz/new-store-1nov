@@ -91,14 +91,16 @@ export default function SettingsIntegrations() {
     if (pgConfig) {
       setPgForm({
         ...pgConfig,
-        merchant_key: pgConfig.merchant_key || pgConfig.app_id || '',
-        merchant_salt: pgConfig.merchant_salt || pgConfig.secret_key || '',
-        environment: pgConfig.environment === 'TEST' || pgConfig.environment === 'SANDBOX' ? 'TEST' : 'PRODUCTION',
-        return_url: (pgConfig.return_url || 'https://digihaven.shop/api/payment/payu/return')
-          .replace('api/payment/cashfree/return', 'api/payment/payu/return')
-          .replace('store.vaultzet.shop', 'digihaven.shop')
-          .replace('vaultworld.shop', 'digihaven.shop')
-          .replace('vaultzet.shop', 'digihaven.shop'),
+        merchant_key: pgConfig.app_id || pgConfig.merchant_key || '',
+        merchant_salt: pgConfig.secret_key || pgConfig.merchant_salt || '',
+        app_id: pgConfig.app_id || pgConfig.merchant_key || '',
+        secret_key: pgConfig.secret_key || pgConfig.merchant_salt || '',
+        environment: pgConfig.environment === 'TEST' || pgConfig.environment === 'SANDBOX' ? 'SANDBOX' : 'PRODUCTION',
+        return_url: (pgConfig.return_url || 'https://digihaven.vercel.app/api/payment/cashfree/return')
+          .replace('api/payment/payu/return', 'api/payment/cashfree/return')
+          .replace('store.vaultzet.shop', 'digihaven.vercel.app')
+          .replace('vaultworld.shop', 'digihaven.vercel.app')
+          .replace('vaultzet.shop', 'digihaven.vercel.app'),
       });
     }
   }, [pgConfig]);
@@ -132,27 +134,29 @@ export default function SettingsIntegrations() {
   // Mutations
   const updatePgMutation = useMutation({
     mutationFn: (updated: PgBridgeConfig) => {
+      const appId = (updated.app_id || updated.merchant_key || '').trim();
+      const secretKey = (updated.secret_key || updated.merchant_salt || '').trim();
       const payload: PgBridgeConfig = {
         ...updated,
-        merchant_key: updated.merchant_key || updated.app_id || '',
-        merchant_salt: updated.merchant_salt || updated.secret_key || '',
-        app_id: updated.merchant_key || updated.app_id || '',
-        secret_key: updated.merchant_salt || updated.secret_key || '',
+        app_id: appId,
+        secret_key: secretKey,
+        merchant_key: appId,
+        merchant_salt: secretKey,
       };
       return portalApi.updatePgBridgeConfig(payload);
     },
     onSuccess: () => {
       addToast({
         type: 'success',
-        title: 'PayU Saved to Cloud Database 🚀',
-        message: 'PayU credentials saved to Firestore! Live across all mobile devices, laptops & storefront checkout.',
+        title: 'Cashfree Saved to Cloud Database 🚀',
+        message: 'Cashfree App ID & Secret Key saved to Firestore! Live immediately on storefront checkout — no Vercel env needed.',
       });
       queryClient.invalidateQueries({ queryKey: ['pg-bridge'] });
     },
     onError: (err: any) => {
       addToast({
         type: 'error',
-        title: 'Failed to update PayU Config',
+        title: 'Failed to update Cashfree Config',
         message: err.message,
       });
     },
@@ -331,31 +335,31 @@ export default function SettingsIntegrations() {
   });
 
   const handleTestCallback = () => {
-    const key = pgForm?.merchant_key || pgForm?.app_id;
-    const salt = pgForm?.merchant_salt || pgForm?.secret_key;
+    const key = pgForm?.app_id || pgForm?.merchant_key;
+    const salt = pgForm?.secret_key || pgForm?.merchant_salt;
     if (!key || !salt) {
       addToast({
         type: 'warning',
         title: 'Missing Credentials',
-        message: 'Please enter your PayU Merchant Key and Salt first.',
+        message: 'Please enter your Cashfree App ID and Secret Key first.',
       });
       return;
     }
     addToast({
       type: 'info',
-      title: 'PayU Test Check',
+      title: 'Cashfree Test Check',
       message: `Environment: ${pgForm.environment || 'PRODUCTION'}. Ready for checkout.`,
     });
   };
 
   const handleProcessorVerify = async () => {
-    const key = String(pgForm?.merchant_key || pgForm?.app_id || '').trim();
-    const salt = String(pgForm?.merchant_salt || pgForm?.secret_key || '').trim();
-    if (!key || !salt) {
+    const appId = String(pgForm?.app_id || pgForm?.merchant_key || '').trim();
+    const secretKey = String(pgForm?.secret_key || pgForm?.merchant_salt || '').trim();
+    if (!appId || !secretKey) {
       addToast({
         type: 'warning',
         title: 'Credentials Required',
-        message: 'Please fill in both PayU Merchant Key and Merchant Salt before verifying.',
+        message: 'Please fill in both Cashfree App ID and Secret Key before verifying.',
       });
       return;
     }
@@ -364,22 +368,32 @@ export default function SettingsIntegrations() {
     try {
       await updatePgMutation.mutateAsync({
         ...pgForm,
-        merchant_key: key,
-        merchant_salt: salt,
-        app_id: key,
-        secret_key: salt,
+        app_id: appId,
+        secret_key: secretKey,
+        merchant_key: appId,
+        merchant_salt: secretKey,
       } as PgBridgeConfig);
+
+      // Verify server-side diagnostics
+      let diagOk = true;
+      try {
+        const res = await fetch('/api/payment/cashfree/diagnostics', { cache: 'no-store' });
+        if (res.ok) {
+          const diag = await res.json();
+          diagOk = Boolean(diag.configured);
+        }
+      } catch {}
 
       addToast({
         type: 'success',
-        title: 'PayU Status Verified & Synced! 🚀',
-        message: `Environment: ${pgForm?.environment || 'PRODUCTION'}. Credentials are saved in Firestore and ready for live checkout.`,
+        title: diagOk ? 'Cashfree Status Verified & Synced! 🚀' : 'Cashfree Credentials Saved! 🚀',
+        message: `Environment: ${pgForm?.environment || 'PRODUCTION'}. Cashfree App ID & Secret Key are saved in Cloud Firestore and active on checkout.`,
       });
     } catch (err: any) {
       addToast({
         type: 'error',
         title: 'Verification Failed',
-        message: err.message || 'Could not verify PayU credentials.',
+        message: err.message || 'Could not verify Cashfree credentials.',
       });
     } finally {
       setIsVerifyingPg(false);
@@ -405,14 +419,14 @@ export default function SettingsIntegrations() {
           Settings & Integrations
         </h1>
         <p className="text-sm text-slate-400 mt-1">
-          Configure payment gateways, Meta Conversions API health, MMC Analytics, RankMath SEO modules, and LiteSpeed cache.
+          Configure Cashfree payment gateway, Meta Conversions API health, MMC Analytics, RankMath SEO modules, and LiteSpeed cache.
         </p>
       </div>
 
       {/* Tabs - Touch-scrollable & edge-to-edge on mobile */}
       <div className="flex items-center gap-2 border-b border-slate-800 pb-3 overflow-x-auto admin-touch-scroll admin-no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
         {[
-          { id: 'pg', label: 'PayU Gateway', icon: CreditCard, color: 'text-purple-400' },
+          { id: 'pg', label: 'Cashfree Gateway', icon: CreditCard, color: 'text-purple-400' },
           { id: 'telegram', label: 'Telegram Alerts & Bot', icon: Send, color: 'text-sky-400' },
           { id: 'meta', label: 'DNP Meta CAPI', icon: Radio, color: 'text-blue-400' },
           { id: 'analytics', label: 'MMC Analytics', icon: Users, color: 'text-emerald-400' },
@@ -438,7 +452,7 @@ export default function SettingsIntegrations() {
         })}
       </div>
 
-      {/* TAB 1: PAYU PAYMENT GATEWAY */}
+      {/* TAB 1: CASHFREE PAYMENT GATEWAY */}
       {activeTab === 'pg' && pgForm && (
         <div className="space-y-6">
           <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-6">
@@ -447,7 +461,7 @@ export default function SettingsIntegrations() {
                 <div className="flex items-center gap-2">
                   <h3 className="text-base font-bold text-white flex items-center gap-2">
                     <CreditCard className="w-5 h-5 text-purple-400" />
-                    PayU Payment Gateway (India)
+                    Cashfree Payment Gateway (India)
                   </h3>
                   <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
                     pgForm.enabled
@@ -461,23 +475,23 @@ export default function SettingsIntegrations() {
                       ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
                       : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
                   }`}>
-                    {pgForm.environment === 'PRODUCTION' ? 'Live Production' : 'Test Mode'}
+                    {pgForm.environment === 'PRODUCTION' ? 'Live Production' : 'Sandbox Mode'}
                   </span>
                 </div>
                 <p className="text-xs text-slate-400 mt-1">
-                  Primary payment engine powering UPI (PhonePe, GPay, Paytm, CRED), Cards & NetBanking on DigiHaven Store via PayU India.
+                  Primary payment engine powering Instant UPI (PhonePe, GPay, Paytm, CRED), Cards & NetBanking on DigiHaven Store via Cashfree Payments.
                 </p>
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
                 <a
-                  href="https://dashboard.payu.in"
+                  href="https://merchant.cashfree.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5"
                 >
                   <ExternalLink className="w-3.5 h-3.5 text-purple-400" />
-                  <span>PayU Dashboard</span>
+                  <span>Cashfree Dashboard</span>
                 </a>
                 <button
                   type="button"
@@ -494,9 +508,9 @@ export default function SettingsIntegrations() {
             {/* Gateway Status Switch */}
             <div className="flex items-center justify-between p-4 rounded-xl bg-slate-950/80 border border-slate-800/80">
               <div className="space-y-0.5">
-                <div className="text-xs font-bold text-white">Enable PayU on Storefront</div>
+                <div className="text-xs font-bold text-white">Enable Cashfree on Storefront</div>
                 <div className="text-[11px] text-slate-400">
-                  When active, customers will checkout securely via PayU India Payment Gateway.
+                  When active, customers will checkout securely via Cashfree Payments Gateway (PG v3).
                 </div>
               </div>
               <button
@@ -518,8 +532,8 @@ export default function SettingsIntegrations() {
             <div className="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/30 flex items-start gap-3">
               <Database className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
               <div className="text-xs text-slate-300 leading-relaxed">
-                <span className="font-bold text-white">Direct Cloud Database Sync: </span>
-                PayU Merchant Key & Salt database me save hote hain. Iske liye koi Vercel environment variables ya code rebuild ki zaroorat nahi hai. Ek baar save karne par Phone, Laptop aur Storefront Checkout par ye keys automatically live ho jayengi.
+                <span className="font-bold text-white">Direct Cloud Database Sync (No Vercel Env Needed): </span>
+                Cashfree App ID & Secret Key seedha Cloud Firestore database me save hote hain. Iske liye koi Vercel environment variables lagane ya code rebuild karne ki zaroorat nahi hai. Yahan save karte hi Storefront Checkout par aapka Cashfree gateway turant live ho jayega!
               </div>
             </div>
 
@@ -529,12 +543,12 @@ export default function SettingsIntegrations() {
                   <span>Environment Mode</span>
                 </label>
                 <select
-                  value={pgForm.environment || 'PRODUCTION'}
+                  value={pgForm.environment === 'TEST' || pgForm.environment === 'SANDBOX' ? 'SANDBOX' : 'PRODUCTION'}
                   onChange={(e) => setPgForm({ ...pgForm, environment: e.target.value as any })}
                   className="w-full mt-1.5 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-purple-500 font-medium"
                 >
-                  <option value="PRODUCTION">PRODUCTION (Real live payments - secure.payu.in)</option>
-                  <option value="TEST">TEST (Sandbox Test mode - test.payu.in)</option>
+                  <option value="PRODUCTION">PRODUCTION (Real live payments - api.cashfree.com)</option>
+                  <option value="SANDBOX">SANDBOX (Sandbox Test mode - sandbox.cashfree.com)</option>
                 </select>
                 <p className="text-[10px] text-slate-500 mt-1">Select PRODUCTION when receiving real customer payments.</p>
               </div>
@@ -542,23 +556,23 @@ export default function SettingsIntegrations() {
               <div>
                 <label className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
                   <Key className="w-3.5 h-3.5 text-purple-400" />
-                  <span>PayU Merchant Key *</span>
+                  <span>Cashfree App ID / Client ID *</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. 7rnFly or your PayU Merchant Key"
-                  value={pgForm.merchant_key || pgForm.app_id || ''}
-                  onChange={(e) => setPgForm({ ...pgForm, merchant_key: e.target.value, app_id: e.target.value })}
+                  placeholder="e.g. 765432abcdef... or TEST10234..."
+                  value={pgForm.app_id || pgForm.merchant_key || ''}
+                  onChange={(e) => setPgForm({ ...pgForm, app_id: e.target.value, merchant_key: e.target.value })}
                   className="w-full mt-1.5 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-purple-500 font-mono"
                 />
-                <p className="text-[10px] text-slate-500 mt-1">Found in PayU Dashboard &gt; Integration Details / API Keys.</p>
+                <p className="text-[10px] text-slate-500 mt-1">Found in Cashfree Merchant Dashboard &gt; Developers &gt; API Keys.</p>
               </div>
 
               <div className="md:col-span-2">
                 <label className="text-xs font-bold text-slate-300 flex items-center justify-between">
                   <span className="flex items-center gap-1.5">
                     <Lock className="w-3.5 h-3.5 text-purple-400" />
-                    <span>PayU Merchant Salt *</span>
+                    <span>Cashfree Secret Key / Client Secret *</span>
                   </span>
                   <button
                     type="button"
@@ -566,30 +580,30 @@ export default function SettingsIntegrations() {
                     className="text-[11px] text-purple-400 hover:text-purple-300 flex items-center gap-1 font-semibold"
                   >
                     {showSecret ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                    <span>{showSecret ? 'Hide Salt' : 'Show Salt'}</span>
+                    <span>{showSecret ? 'Hide Secret Key' : 'Show Secret Key'}</span>
                   </button>
                 </label>
                 <div className="relative mt-1.5">
                   <input
                     type={showSecret ? 'text' : 'password'}
-                    placeholder="e.g. pj1nGpHgw... or your PayU Salt"
-                    value={pgForm.merchant_salt || pgForm.secret_key || ''}
-                    onChange={(e) => setPgForm({ ...pgForm, merchant_salt: e.target.value, secret_key: e.target.value })}
+                    placeholder="e.g. cfsk_ma_prod_... or cfsk_ma_test_..."
+                    value={pgForm.secret_key || pgForm.merchant_salt || ''}
+                    onChange={(e) => setPgForm({ ...pgForm, secret_key: e.target.value, merchant_salt: e.target.value })}
                     className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-purple-500 font-mono pr-10"
                   />
                 </div>
-                <p className="text-[10px] text-slate-500 mt-1">Never share your Merchant Salt. Stored securely and used for SHA-512 signature hashing.</p>
+                <p className="text-[10px] text-slate-500 mt-1">Never share your Cashfree Secret Key. Stored securely in Cloud Firestore for server-to-server order creation.</p>
               </div>
 
               <div className="md:col-span-2">
                 <label className="text-xs font-bold text-slate-300">Customer Return / Redirect URL</label>
                 <input
                   type="text"
-                  value={pgForm.return_url || 'https://digihaven.shop/api/payment/payu/return'}
+                  value={pgForm.return_url || 'https://digihaven.vercel.app/api/payment/cashfree/return'}
                   onChange={(e) => setPgForm({ ...pgForm, return_url: e.target.value })}
                   className="w-full mt-1.5 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-purple-500 font-mono"
                 />
-                <p className="text-[10px] text-slate-500 mt-1">URL where buyer returns after completing PayU payment.</p>
+                <p className="text-[10px] text-slate-500 mt-1">URL where buyer returns after completing Cashfree payment (automatically detects your live domain).</p>
               </div>
             </div>
 
@@ -597,7 +611,7 @@ export default function SettingsIntegrations() {
             <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-800/30">
               <div className="text-xs font-bold text-purple-300 flex items-center gap-1.5 mb-2">
                 <Sparkles className="w-4 h-4 text-purple-400" />
-                <span>Supported Customer Payment Methods via PayU India</span>
+                <span>Supported Customer Payment Methods via Cashfree Payments</span>
               </div>
               <div className="flex flex-wrap gap-2 text-[11px] text-slate-300">
                 <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-1 font-medium">
@@ -629,7 +643,7 @@ export default function SettingsIntegrations() {
                 className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-purple-600/20 transition-all disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
-                <span>{updatePgMutation.isPending ? 'Saving...' : 'Save PayU Gateway Config'}</span>
+                <span>{updatePgMutation.isPending ? 'Saving...' : 'Save Cashfree Gateway Config'}</span>
               </button>
             </div>
           </div>

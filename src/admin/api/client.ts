@@ -2248,7 +2248,7 @@ class PortalApiClient {
     }
 
     await logAdminAction({
-      adminEmail: 'Shaul.official1993@gmail.com',
+      adminEmail: 'Shaulchristian1993@gmail.com',
       action: 'UPDATE_STORE_SETUP',
       module: 'Store Setup',
       details: `Updated store name: "${clean.store_name}", email: "${clean.contact_email}", phone: "${clean.support_whatsapp}"`,
@@ -2323,7 +2323,7 @@ class PortalApiClient {
     }
 
     await logAdminAction({
-      adminEmail: 'Shaul.official1993@gmail.com',
+      adminEmail: 'Shaulchristian1993@gmail.com',
       action: 'UPDATE_META_PIXEL',
       module: 'Meta Pixel',
       details: `Updated Pixel ID: ${clean.pixel_id}`,
@@ -2385,7 +2385,7 @@ class PortalApiClient {
       }
     }
     await logAdminAction({
-      adminEmail: 'Shaul.official1993@gmail.com',
+      adminEmail: 'Shaulchristian1993@gmail.com',
       action: 'UPDATE_WHATSAPP',
       module: 'WhatsApp Button',
       details: `Updated support phone to ${clean.phone_number}`,
@@ -2567,7 +2567,7 @@ class PortalApiClient {
     }
 
     await logAdminAction({
-      adminEmail: 'Shaul.official1993@gmail.com',
+      adminEmail: 'Shaulchristian1993@gmail.com',
       action: 'UPDATE_PAYU_CONFIG',
       module: 'Payments',
       details: `Updated PayU Gateway credentials (Env: ${clean.environment || 'PRODUCTION'}) in Cloud Database`,

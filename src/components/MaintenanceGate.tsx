@@ -13,7 +13,7 @@ interface MaintenanceGateProps {
 export default function MaintenanceGate({
   message = 'Our store is undergoing scheduled performance upgrades. We will be back online shortly!',
   storeName = 'DigiHaven',
-  supportEmail = 'Shaul.official1993@gmail.com',
+  supportEmail = 'Shaulchristian1993@gmail.com',
 }: MaintenanceGateProps) {
   const [isChecking, setIsChecking] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(30);

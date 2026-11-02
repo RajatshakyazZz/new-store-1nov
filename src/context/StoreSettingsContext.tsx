@@ -36,7 +36,7 @@ const DEFAULT_SETTINGS: StoreSettings = {
   storeName: 'DigiHaven',
   ownerName: 'DigiHaven Team',
   tagline: 'Everything You Need, All in One Place.',
-  supportEmail: 'Shaul.official1993@gmail.com',
+  supportEmail: 'Shaulchristian1993@gmail.com',
   supportPhone: '+91 7015281360',
   supportWhatsapp: '+91 7015281360',
   currency: 'INR',
@@ -71,13 +71,14 @@ function sanitizeLogoUrl(url?: string, fallback = '/logo.webp?v=3'): string {
   return url.trim();
 }
 
-function sanitizeEmail(email?: string, fallback = 'Shaul.official1993@gmail.com'): string {
+function sanitizeEmail(email?: string, fallback = 'Shaulchristian1993@gmail.com'): string {
   if (!email || !email.trim()) return fallback;
   if (
     /reelsbundles/i.test(email) ||
     /digonest/i.test(email) ||
     /rajattracozegaming/i.test(email) ||
-    /vaultworld/i.test(email)
+    /vaultworld/i.test(email) ||
+    /Shaul\.official1993/i.test(email)
   ) {
     return fallback;
   }

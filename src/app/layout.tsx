@@ -129,7 +129,7 @@ export default function RootLayout({
         ],
         contactPoint: {
           '@type': 'ContactPoint',
-          email: 'Shaul.official1993@gmail.com',
+          email: 'Shaulchristian1993@gmail.com',
           telephone: '+91-7015281360',
           contactType: 'customer support',
           areaServed: 'IN',

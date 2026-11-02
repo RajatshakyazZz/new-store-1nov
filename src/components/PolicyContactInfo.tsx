@@ -7,7 +7,7 @@ import { useStoreSettings } from '@/context/StoreSettingsContext';
 export default function PolicyContactInfo() {
   const { settings } = useStoreSettings();
   const storeName = settings?.storeName || 'DigiHaven';
-  const supportEmail = settings?.supportEmail || 'Shaul.official1993@gmail.com';
+  const supportEmail = settings?.supportEmail || 'Shaulchristian1993@gmail.com';
   const supportPhone = settings?.supportPhone || settings?.supportWhatsapp || '+91 7015281360';
 
   return (

@@ -8,7 +8,7 @@ import { useStoreSettings } from '@/context/StoreSettingsContext';
 export default function AboutUsPage() {
   const { settings } = useStoreSettings();
   const storeName = settings?.storeName || 'DigiHaven';
-  const supportEmail = settings?.supportEmail || 'Shaul.official1993@gmail.com';
+  const supportEmail = settings?.supportEmail || 'Shaulchristian1993@gmail.com';
   return (
     <div className="py-12 sm:py-20 bg-slate-50/50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

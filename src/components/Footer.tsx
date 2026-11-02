@@ -296,8 +296,8 @@ export default function Footer() {
               Cookie Preferences
             </button>
             <span className="text-slate-300">•</span>
-            <a href={`mailto:${settings.supportEmail || 'Shaul.official1993@gmail.com'}`} className="hover:text-orange-600 transition-colors font-medium">
-              ✉️ {settings.supportEmail || 'Shaul.official1993@gmail.com'}
+            <a href={`mailto:${settings.supportEmail || 'Shaulchristian1993@gmail.com'}`} className="hover:text-orange-600 transition-colors font-medium">
+              ✉️ {settings.supportEmail || 'Shaulchristian1993@gmail.com'}
             </a>
             <span className="text-slate-300">•</span>
             <a href={`tel:${settings.supportPhone || '+917015281360'}`} className="hover:text-orange-600 transition-colors font-bold text-slate-800">

@@ -10,7 +10,7 @@ export default function ContactUsPage() {
   const { settings } = useStoreSettings();
 
   const storeName = settings?.storeName || 'DigiHaven';
-  const supportEmail = settings?.supportEmail || 'Shaul.official1993@gmail.com';
+  const supportEmail = settings?.supportEmail || 'Shaulchristian1993@gmail.com';
   const supportPhone = settings?.supportPhone || '+91 7015281360';
   const supportWhatsapp = settings?.supportWhatsapp || '+91 7015281360';
   const cleanWaNumber = supportWhatsapp.replace(/[^0-9]/g, '');

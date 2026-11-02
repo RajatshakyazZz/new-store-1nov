@@ -16,7 +16,7 @@ export default function StoreSetup() {
 
   const [form, setForm] = useState<StoreSetupConfig>({
     store_name: 'DigiHaven',
-    contact_email: 'Shaul.official1993@gmail.com',
+    contact_email: 'Shaulchristian1993@gmail.com',
     support_whatsapp: '+91 7015281360',
     currency: 'INR',
     currency_symbol: '₹',

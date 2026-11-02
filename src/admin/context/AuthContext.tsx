@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } catch {
           setAdmin({
             name: 'DigiHaven Administrator',
-            email: 'Shaul.official1993@gmail.com',
+            email: 'Shaulchristian1993@gmail.com',
             role: 'SuperAdmin',
             source: 'portal-key',
           });
@@ -62,7 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         setAdmin({
           name: 'DigiHaven Administrator',
-          email: 'Shaul.official1993@gmail.com',
+          email: 'Shaulchristian1993@gmail.com',
           role: 'SuperAdmin',
           source: 'portal-key',
         });
@@ -93,7 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (configuredPassword && pass === configuredPassword) {
       const profile: AdminProfile = {
         name: 'DigiHaven Administrator',
-        email: 'Shaul.official1993@gmail.com',
+        email: 'Shaulchristian1993@gmail.com',
         role: 'SuperAdmin',
         source: 'portal-key',
       };
@@ -124,7 +124,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (res.valid) {
         const profile: AdminProfile = {
           name: res.user || 'DigiHaven Administrator',
-          email: 'Shaul.official1993@gmail.com',
+          email: 'Shaulchristian1993@gmail.com',
           role: (res.role as AdminRole) || 'SuperAdmin',
           source: 'portal-key',
         };
